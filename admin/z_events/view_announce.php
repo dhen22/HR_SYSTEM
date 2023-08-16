@@ -136,6 +136,6 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 <script>
     var img = document.getElementById("logoImg");
 
-    img.src = "/leave_system/img/logo.jpg";
+    img.src = "/HR_SYSTEM/img/logo.jpg";
 </script>
 
