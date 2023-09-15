@@ -90,7 +90,8 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 						<div class="form-group">
 							<label for="" class="control-label">Avatar</label>
 							<div class="custom-file">
-								<input type="hidden" name="avatar" value="<?php echo isset($meta['avatar']) ? $meta['avatar']: '' ?>">
+								<!-- <input type="hidden" name="avatar" value="<?php echo isset($meta['avatar']) ? $meta['avatar']: '' ?>"> -->
+								<input type="hidden" name="avatar" value="<?php echo $meta['avatar'] ?? ''; ?>">
 							<input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this,$(this))">
 							<label class="custom-file-label" for="customFile">Choose file</label>
 							</div>
