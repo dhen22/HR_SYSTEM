@@ -135,11 +135,11 @@
                     $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
                 ?>
                 <div class="col-md-4 mb-3">
-                    <div class="card">
+                    <div class="card " style="background-color: light;">
                         <div class="card-body">
                             <h5 class="card-title" style="font-weight: bold;"><?php echo $row['title'] ?></h5>
                             <p class="card-text"><?php echo ($row['date_updated'] != null) ? date('Y-m-d H:i', strtotime($row['date_updated'])) : date('Y-m-d H:i', strtotime($row['date_created'])); ?></p>
-                            <button type="button" class="btn btn-flat btn-default btn-sm view_announce" data-id="<?php echo $row['id'] ?>">
+                            <button type="button" class="btn btn-flat btn-default btn-sm view_announce" data-id="<?php echo $row['id'] ?>" style=" background-color: white;"> <!-- Set your desired text color using the color property -->
                                 <span class="fa fa-eye"></span> View
                             </button>
                         </div>
@@ -155,7 +155,7 @@
         $('.view_announce').click(function () {
             var announcementId = $(this).data('id');
             // Assuming you have defined the uni_modal function to open the modal
-            uni_modal("", "z_events/view_announce.php?id=" + announcementId);
+            uni_modal("", "announcement/view_announce.php?id=" + announcementId);
         });
     });
 </script>

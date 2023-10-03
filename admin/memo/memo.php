@@ -5,10 +5,10 @@
 <?php endif;?>
 <div class="card card-outline card-primary">
 	<div class="card-header">
-		<h3 class="card-title">List of Announcement</h3>
-		<?php if($_settings->userdata('type') == 1): ?>
+		<h3 class="card-title">List of Memo</h3>
+		<?php if($_settings->userdata('type') != 3): ?>
 		<div class="card-tools">
-		<a href="?page=z_events/manage_announce" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
+		<a href="?page=memo/manage_memo" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
 		<?php endif; ?>
 	</div>
@@ -28,8 +28,8 @@
 				<tbody>
 					<?php 
 					$i = 1;
-						/* $qry = $conn->query("SELECT * from `announcement_list` order by unix_timestamp(date_updated) desc, unix_timestamp(date_created) desc "); */
-						$qry = $conn->query("SELECT * from `announcement_list` order by unix_timestamp(date_created) desc ");
+						/* $qry = $conn->query("SELECT * from `memo_list` order by unix_timestamp(date_updated) desc, unix_timestamp(date_created) desc "); */
+						$qry = $conn->query("SELECT * from `memo_list` order by unix_timestamp(date_created) desc ");
 						while($row = $qry->fetch_assoc()):
                             $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
 					?>
@@ -46,12 +46,12 @@
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>
 				                  <div class="dropdown-menu" role="menu">
-								  	<a class="dropdown-item view_announce" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye"></span> View</a>
-				                    <!-- <div class="dropdown-divider"></div> -->
+								  	<a class="dropdown-item view_memo" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye"></span> View</a>
+									<div class="dropdown-divider"></div>
+									<!-- <div class="dropdown-divider"></div> -->
 
 									<?php if($_settings->userdata('type') == 1 || $_settings->userdata('type') == 2): ?>
-									<div class="dropdown-divider"></div>
-				                    <a class="dropdown-item edit_data"  href="./?page=z_events/manage_announce&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
+				                    <a class="dropdown-item edit_data"  href="./?page=memo/manage_memo&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
 				                    <div class="dropdown-divider"></div>
 				                    <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
 									<?php endif; ?>
@@ -68,24 +68,24 @@
 <script>
 	$(document).ready(function(){
 		$('.delete_data').click(function(){
-			_conf("Are you sure to delete this Announcement permanently?","delete_announcement",[$(this).attr('data-id')])
+			_conf("Are you sure to delete this Memo permanently?","delete_memo",[$(this).attr('data-id')])
 		})
-		$('.view_announce').click(function(){
-			uni_modal("</i>","z_events/view_announce.php?id="+$(this).attr('data-id'))
+		$('.view_memo').click(function(){
+			uni_modal("</i>","memo/view_memo.php?id="+$(this).attr('data-id'))
 		})
 		/* $('.edit_data').click(function(){
 			
-			uni_modal("<i class='fa fa-edit'></i> Edit announcement Details",'z_events/manage_announce.php?id='+$(this).attr('data-id'))
+			uni_modal("<i class='fa fa-edit'></i> Edit memo Details",'events/manage_memo.php?id='+$(this).attr('data-id'))
 		}) */
 		//$('#create_new').click(function(){
-			//uni_modal("<i class='fa fa-plus'></i> Create New announcement",'z_events/manage_announce.php')
+			//uni_modal("<i class='fa fa-plus'></i> Create New memo",'events/manage_memo.php')
 		//})
 		$('.table').dataTable();
 	})
-	function delete_announcement($id){
+	function delete_memo($id){
 		start_loader();
 		$.ajax({
-			url:_base_url_+"classes/Master.php?f=delete_announcement",
+			url:_base_url_+"classes/Master.php?f=delete_memo",
 			method:"POST",
 			data:{id: $id},
 			dataType:"json",

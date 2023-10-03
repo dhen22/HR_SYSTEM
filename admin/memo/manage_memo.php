@@ -1,7 +1,7 @@
 <?php
 if(isset($_GET['id']) && $_GET['id'] > 0){
 	/* require_once('../../config.php'); */
-    $qry = $conn->query("SELECT * from `announcement_list` where id = '{$_GET['id']}' ");
+    $qry = $conn->query("SELECT * from `memo_list` where id = '{$_GET['id']}' ");
     if($qry->num_rows > 0){
         foreach($qry->fetch_assoc() as $k => $v){
             $$k=$v;
@@ -12,15 +12,15 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 
 <div class="card card-outline card-primary">
 	<div class="card-header">
-		<h3 class="card-title">Create New Announcement</h3>
+		<h3 class="card-title">Create New Memo</h3>
 	</div>
 	<div class="card-body">
-		<form action="" id="announcement-form">
+		<form action="" id="memo-form">
 			<input type="hidden" name ="id" value="<?php echo isset($id) ? $id : '' ?>">
 			<div class="row">
 				<div class="col-6">
 					<div class="form-group">
-						<label for="title" class="control-label">Announcement</label>
+						<label for="title" class="control-label">Memo</label>
 						<input name="title" id="title" type="text" class="form-control form  rounded-0" value="<?php echo isset($title) ? $title : ''; ?>" required/>
 					</div>
 					<div class="form-group">
@@ -52,22 +52,22 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		</form>
 	</div>
 	<div class="card-footer">
-		<button class="btn btn-flat btn-primary" form="announcement-form">Save</button>
-		<a class="btn btn-flat btn-default" href="?page=z_events/announcement">Cancel</a>
+		<button class="btn btn-flat btn-primary" form="memo-form">Save</button>
+		<a class="btn btn-flat btn-default" href="?page=memo/memo">Cancel</a>
 	</div>
 </div>
 
 <script>
   
 	$(document).ready(function(){
-		$('#announcement-form').submit(function(e){
+		$('#memo-form').submit(function(e){
 			e.preventDefault();
 var _this = $(this)
             var _this = $(this)
 			 $('.err-msg').remove();
 			start_loader();
 			$.ajax({
-				url:_base_url_+"classes/Master.php?f=save_announcement",
+				url:_base_url_+"classes/Master.php?f=save_memo",
 				data: new FormData($(this)[0]),
                 cache: false,
                 contentType: false,
@@ -82,7 +82,7 @@ var _this = $(this)
 				},
 				success:function(resp){
 					if(typeof resp =='object' && resp.status == 'success'){
-						location.href = "./?page=z_events/announcement";
+						location.href = "./?page=memo/memo";
 					}else if(resp.status == 'failed' && !!resp.msg){
                         var el = $('<div>')
                             el.addClass("alert alert-danger err-msg").text(resp.msg)

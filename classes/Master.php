@@ -124,7 +124,8 @@ Class Master extends DBConnection {
 
 	}
 
-	//------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
+
 	function save_announcement(){
 		extract($_POST);
 		$data = "";
@@ -140,7 +141,7 @@ Class Master extends DBConnection {
 			return $this->capture_err();
 		if($check > 0){
 			$resp['status'] = 'failed';
-			$resp['msg'] = " Announcement already exist.";
+			$resp['msg'] = " announcement already exist.";
 			return json_encode($resp);
 			exit;
 		}
@@ -154,21 +155,73 @@ Class Master extends DBConnection {
 		if($save){
 			$resp['status'] = 'success';
 			if(empty($id))
-				$this->settings->set_flashdata('success',"New Announcement successfully saved.");
+				$this->settings->set_flashdata('success',"New announcement successfully saved.");
 			else
-				$this->settings->set_flashdata('success',"Announcement successfully updated.");
+				$this->settings->set_flashdata('success',"announcement successfully updated.");
 		}else{
 			$resp['status'] = 'failed';
 			$resp['err'] = $this->conn->error."[{$sql}]";
 		}
 		return json_encode($resp);
 	}
-	function delete_announcement(){
+	function delete_announcement(){	
 		extract($_POST);
 		$del = $this->conn->query("DELETE FROM `announcement_list` where id = '{$id}'");
 		if($del){
 			$resp['status'] = 'success';
-			$this->settings->set_flashdata('success',"Announcement successfully deleted.");
+			$this->settings->set_flashdata('success',"announcement successfully deleted.");
+		}else{
+			$resp['status'] = 'failed';
+			$resp['error'] = $this->conn->error;
+		}
+		return json_encode($resp);
+
+	}
+
+	function save_memo(){
+		extract($_POST);
+		$data = "";
+		foreach($_POST as $k =>$v){
+			if(!in_array($k,array('id'))){
+				$v = addslashes($v);
+				if(!empty($data)) $data .=",";
+				$data .= " `{$k}`='{$v}' ";
+			}
+		}
+		$check = $this->conn->query("SELECT * FROM `memo_list` where `title` = '{$title}' ".(!empty($id) ? " and id != {$id} " : "")." ")->num_rows;
+		if($this->capture_err())
+			return $this->capture_err();
+		if($check > 0){
+			$resp['status'] = 'failed';
+			$resp['msg'] = " memo already exist.";
+			return json_encode($resp);
+			exit;
+		}
+		if(empty($id)){
+			$sql = "INSERT INTO `memo_list` set {$data} ";
+			$save = $this->conn->query($sql);
+		}else{
+			$sql = "UPDATE `memo_list` set {$data} where id = '{$id}' ";
+			$save = $this->conn->query($sql);
+		}
+		if($save){
+			$resp['status'] = 'success';
+			if(empty($id))
+				$this->settings->set_flashdata('success',"New memo successfully saved.");
+			else
+				$this->settings->set_flashdata('success',"memo successfully updated.");
+		}else{
+			$resp['status'] = 'failed';
+			$resp['err'] = $this->conn->error."[{$sql}]";
+		}
+		return json_encode($resp);
+	}
+	function delete_memo(){
+		extract($_POST);
+		$del = $this->conn->query("DELETE FROM `memo_list` where id = '{$id}'");
+		if($del){
+			$resp['status'] = 'success';
+			$this->settings->set_flashdata('success',"memo successfully deleted.");
 		}else{
 			$resp['status'] = 'failed';
 			$resp['error'] = $this->conn->error;
@@ -535,6 +588,12 @@ switch ($action) {
 	break;
 	case 'delete_announcement':
 		echo $Master->delete_announcement();
+	break;
+	case 'save_memo':
+		echo $Master->save_memo();
+	break;
+	case 'delete_memo':
+		echo $Master->delete_memo();
 	break;
 	case 'save_leave_type':
 		echo $Master->save_leave_type();

@@ -10,7 +10,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 }
 ?>
 <style>
-    /* Announcement Modal Body */
+    /* announcement Modal Body */
     /* p,label{
         margin-bottom:5px;
     } */
@@ -27,7 +27,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         width: 100%;
     }
     
-    /* Announcement Logo */
+    /* announcement Logo */
     .modal-logo {
         display: flex;
         align-items: center;
@@ -46,7 +46,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         border: none;
     }
 
-    /* Announcement Letter */
+    /* announcement Letter */
     .announcement-letter {
         font-size: 14px;
         margin: 0 30px; 
@@ -81,13 +81,13 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 </style>
 <div id="print_out">
     <div class="container-fluid">
-        <!-- Announcement Logo -->
+        <!-- announcement Logo -->
         <div class="modal-logo">
             <img id="logoImg" src="" alt="Logo">
             <h2 class="modal-header">Asian Land Strategies Corporation</h2>
         </div>
 
-        <!-- Announcement Letter -->
+        <!-- announcement Letter -->
         <div class="card-body announcement-letter">
             <table class="table info-table">
                 <tr>
@@ -129,7 +129,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
     </div>
 </div>
 
-<!-- Announcement Close Button -->
+<!-- announcement Close Button -->
 <div class="w-100 d-flex justify-content-end mb-2">
     <a href="javascript:void(0)" class="btn btn-flat btn-success ml-3" id="print"><span class="fas fa-print"></span>  Print</a>
     <button class="btn btn-flat btn-sm btn-default bg-black" data-dismiss="modal">
@@ -178,7 +178,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                         border: none;
                     }
 
-                    /* Announcement Letter */
+                    /* announcement Letter */
                     .announcement-letter {
                         font-size: 20px;
                         margin: 0 30px; 

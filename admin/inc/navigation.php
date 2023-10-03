@@ -2,7 +2,7 @@
 <!-- Main Sidebar Container -->
       <aside class="main-sidebar sidebar-light-primary text-white bg-light disabled elevation-4 sidebar-no-expand">
         <!-- Brand Logo -->
-        <a href="<?php echo base_url ?>admin" class="brand-link bg-lightblue text-sm">
+        <a href="<?php echo base_url ?>admin" class="brand-link" style="background-color: #0A369D; color: white; text-align: center;">
         <img src="<?php echo validate_image($_settings->info('logo'))?>" alt="Store Logo" class="brand-image img-circle elevation-3" style="opacity: .8;width: 1.7rem;height: 1.7rem;max-height: unset">
         <span class="brand-text font-weight-light text-white"><?php echo $_settings->info('short_name') ?></span>
         </a>
@@ -128,22 +128,22 @@
                     <li class="nav-header">Events</li>
                     
                     <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=z_events/announcement" class="nav-link nav-z_events_announcement">
+                      <a href="<?php echo base_url ?>admin/?page=announcement/announcement" class="nav-link nav-announcement_announcement">
                         <i class="nav-icon fa fa-arrow-circle-right"></i>
                         <p>
-                          Announcements List
+                          Announcement List
                         </p>
                       </a>
                     </li>
 
-                    <!-- <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=z_events/memos" class="nav-link nav-z_events_memos">
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=memo/memo" class="nav-link nav-memo_memo">
                         <i class="nav-icon fas fa-envelope"></i>
                         <p>
-                          Memos
+                          Memo
                         </p>
                       </a>
-                    </li> -->
+                    </li>
                   </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
