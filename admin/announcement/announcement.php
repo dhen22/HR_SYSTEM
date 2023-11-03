@@ -3,6 +3,26 @@
 	alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
 </script>
 <?php endif;?>
+
+<style>
+    .msg_announce {
+        color: white; /* Set the text color to white */
+        padding: 15px 15px; /* Add some padding for better visual appearance */
+        border: none; /* Remove the button border */
+        border-radius: 2px; /* Add rounded corners */
+        text-decoration: none; /* Remove underlines from the link */
+        display: inline-block; /* Make the link behave like a button */
+		line-height: 1px;
+		width: 100px;
+    }
+
+	.msg_announce:hover {
+        color: white; /* Set the text color to white on hover */
+    }
+
+    /* You can add more styles as needed */
+</style>
+
 <div class="card card-outline card-primary">
 	<div class="card-header">
 		<h3 class="card-title">List of Announcement</h3>
@@ -23,6 +43,7 @@
 						<!-- <th>Message</th> -->
 						<th>Ref./Rev</th>
 						<th>Date Updated</th>
+						<th>Message</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -34,31 +55,27 @@
 						while($row = $qry->fetch_assoc()):
                             $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
 					?>
-						<!-- <tr title="<?php echo $row['description'] ?>"> -->
 						<tr>
 							<td class="text-center"><?php echo $i++; ?></td>
 							<td><?php echo $row['title'] ?></td>
 							<td><?php echo $row['from_'] ?></td>
-							<!-- <td><?php echo $row['message'] ?></td> -->
 							<td><?php echo $row['ref_'] ?></td>
 							<td><?php echo ($row['date_updated'] != null) ? date('Y-m-d H:i',strtotime($row['date_updated'])) : date('Y-m-d H:i',strtotime($row['date_created'])); ?></td>
+							<td><a class="btn btn-flat btn-primary msg_announce" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span></span> Message </a></td>
 							<td align="center">
-								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+								<button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
 				                    <span class="sr-only">Toggle Dropdown</span>
-				                  </button>
-				                  <div class="dropdown-menu" role="menu">
-								  	<a class="dropdown-item view_announce" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye"></span> View</a>
-				                    <!-- <div class="dropdown-divider"></div> -->
-
+				                </button>
+								<div class="dropdown-menu" role="menu">
+									<a class="dropdown-item view_announce" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye"></span> View</a>
 									<?php if($_settings->userdata('type') == 1 || $_settings->userdata('type') == 2): ?>
 									<div class="dropdown-divider"></div>
-				                    <a class="dropdown-item edit_data"  href="./?page=announcement/manage_announce&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
-				                    <div class="dropdown-divider"></div>
-				                    <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
+									<a class="dropdown-item edit_data"  href="./?page=announcement/manage_announce&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
 									<?php endif; ?>
-
-				                  </div>
+								</div>
 							</td>
 						</tr>
 					<?php endwhile; ?>

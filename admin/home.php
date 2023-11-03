@@ -122,6 +122,25 @@
 
 <!-- ANNOUNCENMENTS ANNOUNCENMENTS ANNOUNCENMENTS ANNOUNCENMENTS ANNOUNCENMENTS ANNOUNCENMENTS ANNOUNCENMENTS -->
 
+<style>
+  .msg_announce {
+      color: white; /* Set the text color to white */
+      padding: 15px 15px; /* Add some padding for better visual appearance */
+      border: none; /* Remove the button border */
+      border-radius: 2px; /* Add rounded corners */
+      text-decoration: none; /* Remove underlines from the link */
+      display: inline-block; /* Make the link behave like a button */
+  line-height: 1px;
+  width: 100px;
+  }
+
+.msg_announce:hover {
+      color: white; /* Set the text color to white on hover */
+  }
+
+  /* You can add more styles as needed */
+</style>
+
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Today's Announcements</h3>
@@ -142,6 +161,7 @@
                             <button type="button" class="btn btn-flat btn-default btn-sm view_announce" data-id="<?php echo $row['id'] ?>" style=" background-color: white;"> <!-- Set your desired text color using the color property -->
                                 <span class="fa fa-eye"></span> View
                             </button>
+                            <a class="btn btn-flat btn-primary msg_announce" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span></span> Message </a></td>
                         </div>
                     </div>
                 </div>
@@ -156,6 +176,9 @@
             var announcementId = $(this).data('id');
             // Assuming you have defined the uni_modal function to open the modal
             uni_modal("", "announcement/view_announce.php?id=" + announcementId);
+        });
+        $('.msg_announce').click(function(){
+          uni_modal("</i>","announcement/msg_announce.php?id="+$(this).attr('data-id'))
         });
     });
 </script>

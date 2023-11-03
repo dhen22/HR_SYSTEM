@@ -144,6 +144,16 @@
                         </p>
                       </a>
                     </li>
+
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=policies" class="nav-link nav-policies">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                          Policies
+                        </p>
+                      </a>
+                    </li>
+
                   </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
