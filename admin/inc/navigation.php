@@ -131,7 +131,7 @@
                       <a href="<?php echo base_url ?>admin/?page=announcement/announcement" class="nav-link nav-announcement_announcement">
                         <i class="nav-icon fa fa-arrow-circle-right"></i>
                         <p>
-                          Announcement List
+                          Announcements
                         </p>
                       </a>
                     </li>
@@ -140,20 +140,36 @@
                       <a href="<?php echo base_url ?>admin/?page=memo/memo" class="nav-link nav-memo_memo">
                         <i class="nav-icon fas fa-envelope"></i>
                         <p>
-                          Memo
+                          Memos
                         </p>
                       </a>
                     </li>
 
                     <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=policies" class="nav-link nav-policies">
+                      <a href="#" class="nav-link nav-policies_policies nav-policies_list_policies">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
                           Policies
+                          <span class="right badge badge-danger">List</span>
                         </p>
                       </a>
+                      <ul class="nav nav-treeview policies-submenu">
+                        <li class="nav-item">
+                          <a href="<?php echo base_url ?>admin/?page=policies/policies" class="nav-link">
+                            <i class="nav-icon fas fa-file"></i>
+                            <p>View</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="<?php echo base_url ?>admin/?page=policies/list_policies" class="nav-link">
+                            <i class="nav-icon fas fa-file"></i>
+                            <p>List</p>
+                          </a>
+                        </li>
+                        <!-- Add more sub-menu items as needed -->
+                      </ul>
                     </li>
-
+                    
                   </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

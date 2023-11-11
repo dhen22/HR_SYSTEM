@@ -14,15 +14,16 @@
 	</div>
 	<div class="card-body">
         <div class="container-fluid">
-			<table class="table table-stripped table-hover">
+			<table class="table table-stripped table-hover table-bordered">
+				<!-- <thead style="background-color: black;"> -->
 				<thead>
 					<tr>
-						<th>No.</th>
-						<th>Title</th>
-						<th>From</th>
-						<th>Re</th>
-						<th>Date Updated</th>
-						<th>Action</th>
+						<th style="color: black;">No.</th>
+						<th style="color: black;">Title</th>
+						<th style="color: black;">From</th>
+						<th style="color: black;">Re</th>
+						<th style="color: black;">Date Updated</th>
+						<th style="color: black;">Action</th>
 					</tr>
 				</thead>
 				<tbody>
