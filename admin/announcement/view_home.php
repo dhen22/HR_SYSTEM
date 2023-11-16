@@ -77,7 +77,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 
         .info-table td {
             border: none;
-            padding: 5px;
+            padding: 0;
         }
 
         .long-line {
@@ -151,7 +151,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
     </div>
 
     <div class="card-footer">
-		<a class="btn btn-flat btn-default" href="?page=announcement/announcement">Cancel</a>
+		<a class="btn btn-flat btn-default" href="?page=home">Cancel</a>
 	</div>
 
 </div>

@@ -37,7 +37,7 @@
                         
 
                     <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=employees/records&id=<?php echo $_settings->userdata('id') ?>" class="nav-link nav-records">
+                      <a href="<?php echo base_url ?>admin/?page=employees/records&id=<?php echo $_settings->userdata('id') ?>" class="nav-link nav-employees_records">
                         <i class="nav-icon fas fa-id-card"></i>
                         <p>
                           My Records

@@ -10,7 +10,8 @@
                 <span class="info-box-text">Pending Applications</span>
                 <span class="info-box-number text-right">
                   <?php 
-                    $pending = $conn->query("SELECT * FROM `leave_applications` where date_format(date_start,'%Y') = '".date('Y')."' and date_format(date_end,'%Y') = '".date('Y')."' and status = 0 ")->num_rows;
+                    /* $pending = $conn->query("SELECT * FROM `leave_applications` where date_format(date_start,'%Y') = '".date('Y')."' and date_format(date_end,'%Y') = '".date('Y')."' and status = 0 ")->num_rows; */
+                    $pending = $conn->query("SELECT * FROM `leave_applications` where type != 0 and status = 0 ")->num_rows;
                     echo number_format($pending);
                   ?>
                   <?php ?>
@@ -48,11 +49,11 @@
               <span class="info-box-icon bg-lightblue elevation-1"><i class="fas fa-th-list"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Total Designations</span>
+                <span class="info-box-text">Total Employees</span>
                 <span class="info-box-number text-right">
                 <?php 
-                    $designation = $conn->query("SELECT id FROM `designation_list`")->num_rows;
-                    echo number_format($designation);
+                    $employee = $conn->query("SELECT DISTINCT(user_id) as total FROM `employee_meta`")->num_rows;
+                    echo number_format($employee);
                   ?>
                 </span>
               </div>
@@ -142,33 +143,34 @@
 </style>
 
 <div class="card">
-    <div class="card-header">
-        <h3 class="card-title">Today's Announcements</h3>
-    </div>
-    <div class="card-body">
-        <div class="container-fluid">
-            <div class="row">
-                <?php
-                $qry = $conn->query("SELECT * from `announcement_list` order by date_created desc LIMIT 3");
-                while ($row = $qry->fetch_assoc()):
-                    $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
-                ?>
-                <div class="col-md-4 mb-3">
-                    <div class="card " style="background-color: light;">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-weight: bold;"><?php echo $row['title'] ?></h5>
-                            <p class="card-text"><?php echo ($row['date_updated'] != null) ? date('Y-m-d H:i', strtotime($row['date_updated'])) : date('Y-m-d H:i', strtotime($row['date_created'])); ?></p>
-                            <button type="button" class="btn btn-flat btn-default btn-sm view_announce" data-id="<?php echo $row['id'] ?>" style=" background-color: white;"> <!-- Set your desired text color using the color property -->
-                                <span class="fa fa-eye"></span> View
-                            </button>
-                            <a class="btn btn-flat btn-primary msg_announce" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span></span> Message </a></td>
-                        </div>
-                    </div>
-                </div>
-                <?php endwhile; ?>
+  <div class="card-header">
+      <h3 class="card-title">Today's Announcements</h3>
+  </div>
+    
+  <div class="card-body">
+    <div class="container-fluid">
+      <div class="row">
+        <?php
+        $qry = $conn->query("SELECT * from `announcement_list` order by date_created desc LIMIT 3");
+        while ($row = $qry->fetch_assoc()):
+            $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
+        ?>
+        <div class="col-md-4 mb-3">
+          <div class="card " style="background-color: light; height: 150px;">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title" style="font-weight: bold;"><?php echo $row['title'] ?></h5>
+              <p class="card-text"><?php echo ($row['date_updated'] != null) ? date('Y-m-d H:i', strtotime($row['date_updated'])) : date('Y-m-d H:i', strtotime($row['date_created'])); ?></p>
+              <div class="mt-auto">
+                  <a class="btn btn-flat btn-default btn-sm view_announce"  href="./?page=announcement/view_home&id=<?php echo $row['id'] ?>"><span class="fa fa-eye text-primary"></span> View</a>
+                  <a class="btn btn-flat btn-primary msg_announce" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span></span> Message </a>
+              </div>
             </div>
+          </div>
         </div>
+        <?php endwhile; ?>
+      </div>
     </div>
+  </div>
 </div>
 <script>
     $(document).ready(function () {

@@ -20,7 +20,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
     }
 
     #uni_modal .modal-dialog{
-        max-width: 800px;
+        max-width: 750px;
     }
 
     #uni_modal .modal-content {

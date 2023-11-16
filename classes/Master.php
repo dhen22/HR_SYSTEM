@@ -230,6 +230,57 @@ Class Master extends DBConnection {
 
 	}
 
+	function save_policies(){
+		extract($_POST);
+		$data = "";
+		foreach($_POST as $k =>$v){
+			if(!in_array($k,array('id'))){
+				$v = addslashes($v);
+				if(!empty($data)) $data .=",";
+				$data .= " `{$k}`='{$v}' ";
+			}
+		}
+		$check = $this->conn->query("SELECT * FROM `policies_list` where `title` = '{$title}' ".(!empty($id) ? " and id != {$id} " : "")." ")->num_rows;
+		if($this->capture_err())
+			return $this->capture_err();
+		if($check > 0){
+			$resp['status'] = 'failed';
+			$resp['msg'] = " policies already exist.";
+			return json_encode($resp);
+			exit;
+		}
+		if(empty($id)){
+			$sql = "INSERT INTO `policies_list` set {$data} ";
+			$save = $this->conn->query($sql);
+		}else{
+			$sql = "UPDATE `policies_list` set {$data} where id = '{$id}' ";
+			$save = $this->conn->query($sql);
+		}
+		if($save){
+			$resp['status'] = 'success';
+			if(empty($id))
+				$this->settings->set_flashdata('success',"New policies successfully saved.");
+			else
+				$this->settings->set_flashdata('success',"Policies successfully updated.");
+		}else{
+			$resp['status'] = 'failed';
+			$resp['err'] = $this->conn->error."[{$sql}]";
+		}
+		return json_encode($resp);
+	}
+	function delete_policies(){	
+		extract($_POST);
+		$del = $this->conn->query("DELETE FROM `policies_list` where id = '{$id}'");
+		if($del){
+			$resp['status'] = 'success';
+			$this->settings->set_flashdata('success',"Policies successfully deleted.");
+		}else{
+			$resp['status'] = 'failed';
+			$resp['error'] = $this->conn->error;
+		}
+		return json_encode($resp);
+
+	}
 	//------------------------------------------------------------------------------------------------------
 
 	function save_leave_type(){
@@ -594,6 +645,12 @@ switch ($action) {
 	break;
 	case 'delete_memo':
 		echo $Master->delete_memo();
+	break;
+	case 'save_policies':
+		echo $Master->save_policies();
+	break;
+	case 'delete_policies':
+		echo $Master->delete_policies();
 	break;
 	case 'save_leave_type':
 		echo $Master->save_leave_type();

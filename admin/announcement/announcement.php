@@ -68,7 +68,7 @@
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                </button>
 								<div class="dropdown-menu" role="menu">
-									<a class="dropdown-item view_announce" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye"></span> View</a>
+									<a class="dropdown-item view_announce" href="./?page=announcement/view_announce&id=<?php echo $row['id'] ?>"><span class="fa fa-eye"></span> View</a>
 									<?php if($_settings->userdata('type') == 1 || $_settings->userdata('type') == 2): ?>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item edit_data"  href="./?page=announcement/manage_announce&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
@@ -89,9 +89,9 @@
 		$('.delete_data').click(function(){
 			_conf("Are you sure to delete this announcement permanently?","delete_announcement",[$(this).attr('data-id')])
 		})
-		$('.view_announce').click(function(){
+		/* $('.view_announce').click(function(){
 			uni_modal("</i>","announcement/view_announce.php?id="+$(this).attr('data-id'))
-		})
+		}) */
 		$('.msg_announce').click(function(){
 			uni_modal("</i>","announcement/msg_announce.php?id="+$(this).attr('data-id'))
 		})

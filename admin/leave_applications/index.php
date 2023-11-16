@@ -62,7 +62,7 @@ $is_approver = $meta_qry->num_rows > 0 && $meta_qry->fetch_array()['meta_value']
 						<tr>
 							<td class="text-center"><?php echo $i++; ?></td>
 							<?php if($_settings->userdata('type') != 3): ?>
-							<th>
+							<th style="font-size: 16px;">
 								<small><b>ID: </b><?php echo $row['employee_id'] ?></small><br>
 								<small><b>Name: </b><?php echo $row['name'] ?></small>
 							</th>
