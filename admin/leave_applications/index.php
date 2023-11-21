@@ -128,7 +128,7 @@ $is_approver = $meta_qry->num_rows > 0 && $meta_qry->fetch_array()['meta_value']
 	function delete_leave_application($id){
 		start_loader();
 		$.ajax({
-			url:_base_url_+"classes/Master.php?f=delete_leave_application",
+			url:_base_url_+"classes/Master.php?f=delete_application",
 			method:"POST",
 			data:{id: $id},
 			dataType:"json",

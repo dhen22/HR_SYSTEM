@@ -145,6 +145,9 @@
 <div class="card">
   <div class="card-header">
       <h3 class="card-title">Today's Announcements</h3>
+      <div class="text-right">
+        <a href="?page=announcement/announcement" class="btn btn-default btn-sm">See All</a>
+      </div>
   </div>
     
   <div class="card-body">
@@ -161,8 +164,8 @@
               <h5 class="card-title" style="font-weight: bold;"><?php echo $row['title'] ?></h5>
               <p class="card-text"><?php echo ($row['date_updated'] != null) ? date('Y-m-d H:i', strtotime($row['date_updated'])) : date('Y-m-d H:i', strtotime($row['date_created'])); ?></p>
               <div class="mt-auto">
-                  <a class="btn btn-flat btn-default btn-sm view_announce"  href="./?page=announcement/view_home&id=<?php echo $row['id'] ?>"><span class="fa fa-eye text-primary"></span> View</a>
-                  <a class="btn btn-flat btn-primary msg_announce" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span></span> Message </a>
+                  <a class="btn btn-default btn-sm view_announce" style="border-radius:5px;" href="./?page=announcement/view_home&id=<?php echo $row['id'] ?>"><span class="fa fa-eye text-primary"></span> View</a>
+                  <a class="btn btn-primary msg_announce" style="border-radius:5px;" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span></span> Message </a>
               </div>
             </div>
           </div>
@@ -172,6 +175,46 @@
     </div>
   </div>
 </div>
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Latest Memos</h3> 
+      <div class="text-right">
+        <a href="?page=memo/memo" class="btn btn-default btn-sm">See All</a>
+      </div>
+  </div>
+  <div class="card-body">
+    <div class="container-fluid">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>From</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          $qry = $conn->query("SELECT * from `memo_list` order by date_created desc LIMIT 5");
+          while ($row = $qry->fetch_assoc()):
+              $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
+          ?>
+          <tr>
+            <td style="font-weight: bold;"><?php echo $row['title'] ?></td>
+            <td><?php echo $row['from_'] ?></td>
+            <td><?php echo ($row['date_updated'] != null) ? date('Y-m-d H:i', strtotime($row['date_updated'])) : date('Y-m-d H:i', strtotime($row['date_created'])); ?></td>
+            <td>
+              <a class="btn btn-default btn-sm view_memo" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye text-primary"></span> View</a>
+            </td>
+          </tr>
+          <?php endwhile; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 <script>
     $(document).ready(function () {
         $('.view_announce').click(function () {
@@ -179,6 +222,9 @@
             // Assuming you have defined the uni_modal function to open the modal
             uni_modal("", "announcement/view_announce.php?id=" + announcementId);
         });
+        $('.view_memo').click(function(){
+          uni_modal("</i>","memo/view_memo.php?id="+$(this).attr('data-id'))
+        })
         $('.msg_announce').click(function(){
           uni_modal("</i>","announcement/msg_announce.php?id="+$(this).attr('data-id'))
         });

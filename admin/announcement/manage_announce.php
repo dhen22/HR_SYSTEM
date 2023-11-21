@@ -139,15 +139,14 @@ var _this = $(this)
 		            [ 'color', [ 'color' ] ],
 		            [ 'para', [ 'ol', 'ul', 'paragraph', 'height' ] ],
 		            [ 'table', [ 'table' ] ],
-		            /* [ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ] */
-					[ 'view', [ 'undo', 'redo', 'fullscreen' ] ]
+		            ['insert', ['link', 'picture', 'video']],
+		            [ 'view', [ 'undo', 'redo', 'fullscreen', 'help' ] ]
 		        ]
 		    })
 	})
 
 	$(document).ready(function(){
 		 $('.summernote_2').summernote({
-				placeholder: 'create content here...',
 				tabsize: 5,
 		        height: '45vh',
 		        toolbar: [
@@ -159,7 +158,7 @@ var _this = $(this)
 		            [ 'para', [ 'ol', 'ul', 'paragraph', 'height' ] ],
 		            [ 'table', [ 'table' ] ],
 					['insert', ['link', 'picture', 'video']],
-		            [ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ]
+		            [ 'view', [ 'undo', 'redo', 'fullscreen', 'help' ] ]
 		        ]
 		    })
 	})

@@ -112,7 +112,8 @@ var _this = $(this)
 		            [ 'color', [ 'color' ] ],
 		            [ 'para', [ 'ol', 'ul', 'paragraph', 'height' ] ],
 		            [ 'table', [ 'table' ] ],
-		            [ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ]
+		            ['insert', ['link', 'picture', 'video']],
+		            [ 'view', [ 'undo', 'redo', 'fullscreen', 'help' ] ]
 		        ]
 		    })
 	})

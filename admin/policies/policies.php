@@ -29,7 +29,7 @@
 							</p>
 						</div>
 						<div class="card-footer" style="text-align: right;">
-							<a class="btn btn-flat btn-primary view_policies" href="javascript:void(0)" data-id="<?php echo $row['id']; ?>" onclick="toggleDescription(<?php echo $row['id']; ?>)">
+							<a class="btn btn-flat btn-primary view_policies" style="border-radius: 5px;" href="javascript:void(0)" data-id="<?php echo $row['id']; ?>" onclick="toggleDescription(<?php echo $row['id']; ?>)">
 								<span></span> View Policy
 							</a>
 						</div>
