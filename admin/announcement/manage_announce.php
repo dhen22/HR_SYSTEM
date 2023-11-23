@@ -18,6 +18,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 </style>
 
 
+
 <div class="card card-outline card-primary">
 	<div class="card-header">
 		<h3 class="card-title">Create New Announcement</h3>
@@ -76,11 +77,12 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 					<textarea name="description" id="description" cols="30" rows="3" style="resize:none !important" class="form-control summernote_2" required><?php echo isset($description) ? $description : ''; ?></textarea>
 				</div>
 			</div>
+
 		</form>
 	</div>
 	<div class="card-footer">
-		<button class="btn btn-flat btn-primary" form="announcement-form">Save</button>
-		<a class="btn btn-flat btn-default" href="?page=announcement/announcement">Cancel</a>
+		<button class="btn btn-primary" form="announcement-form">Save</button>
+		<a class="btn btn-default" href="?page=announcement/announcement">Cancel</a>
 	</div>
 </div>
 

@@ -10,11 +10,10 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 }
 ?>
 <style>
+    #uni_modal .modal-footer button {
+        display: none !important;
+    }   
 
-    #uni_modal .modal-footer button:not(.btn-secondary) {
-    display: none !important;
-    }
-    
     #uni_modal .modal-dialog{
         max-width: 750px;
     }
@@ -37,7 +36,6 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         overflow: hidden;
         word-wrap: break-word;
     }
-    
 </style>
 
 <div class="container-fluid">
@@ -48,14 +46,18 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         </div>
 
         <div class="long-line"></div>
-            <br>
-            <div class="title">
-                <h5><?php echo $title ?></h5>
-            </div>
-            
-            <div class="description-container">
-                <p><?php echo $description ?></p>
-            </div>
+        <br>
+        <div class="title">
+            <h5><?php echo $title ?></h5>
+        </div>
+
+        <div class="description-container">
+            <p><?php echo $description ?></p>
         </div>
     </div>
+</div>
+
+<!-- Cancel Button -->
+<div class="modal-cancel">
+    <button type="button" class="btn btn-secondary" style="float: right;" data-dismiss="modal">Close</button>
 </div>

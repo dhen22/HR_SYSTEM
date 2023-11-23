@@ -151,7 +151,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
     </div>
 
     <div class="card-footer">
-		<a class="btn btn-flat btn-default" href="?page=home">Cancel</a>
+		<a class="btn btn-default" href="?page=home">Close</a>
 	</div>
 
 </div>

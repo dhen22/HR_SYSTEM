@@ -8,7 +8,7 @@
 		<h3 class="card-title">List of Memo</h3>
 		<?php if($_settings->userdata('type') != 3): ?>
 		<div class="card-tools">
-		<a href="?page=memo/manage_memo" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
+		<a href="?page=memo/manage_memo" class="btn btn-primary"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
 		<?php endif; ?>
 	</div>
@@ -21,7 +21,7 @@
 						<th style="color: black;">No.</th>
 						<th style="color: black;">Title</th>
 						<th style="color: black;">From</th>
-						<th style="color: black;">Re</th>
+						<th style="color: black;">Ref/Rev</th>
 						<th style="color: black;">Date Updated</th>
 						<th style="color: black;">Action</th>
 					</tr>
@@ -42,7 +42,7 @@
 							<td><?php echo $row['re_'] ?></td>
 							<td><?php echo ($row['date_updated'] != null) ? date('Y-m-d H:i',strtotime($row['date_updated'])) : date('Y-m-d H:i',strtotime($row['date_created'])); ?></td>
 							<td align="center">
-								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+								 <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>

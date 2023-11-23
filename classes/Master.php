@@ -451,9 +451,9 @@ Class Master extends DBConnection {
 			$resp['status'] = 'success';
 			$resp['id'] = $user_id;
 			if(empty($id))
-				$this->settings->set_flashdata('success',"New Driver successfully saved.");
+				$this->settings->set_flashdata('success',"New Employee successfully saved.");
 			else
-				$this->settings->set_flashdata('success',"Driver Details successfully updated.");
+				$this->settings->set_flashdata('success',"Employee Details successfully updated.");
 			$dir = 'uploads/';
 			if(!is_dir(base_app.$dir))
 				mkdir(base_app.$dir);

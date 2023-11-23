@@ -9,7 +9,7 @@
 		<h3 class="card-title">List of Policies</h3>
 		<?php if($_settings->userdata('type') != 3): ?>
 		<div class="card-tools">
-		<a href="?page=policies/manage_policies" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
+		<a href="?page=policies/manage_policies" class="btn btn-primary"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
 		<?php endif; ?>
 	</div>
@@ -48,7 +48,7 @@
 							</td>
 							
 							<td align="center">
-								<button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+								<button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                </button>
