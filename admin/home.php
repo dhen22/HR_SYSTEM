@@ -125,21 +125,21 @@
 
 <style>
   .msg_announce {
-      color: white; /* Set the text color to white */
-      padding: 15px 15px; /* Add some padding for better visual appearance */
-      border: none; /* Remove the button border */
-      border-radius: 2px; /* Add rounded corners */
-      text-decoration: none; /* Remove underlines from the link */
-      display: inline-block; /* Make the link behave like a button */
+      color: white; 
+      padding: 15px 15px; 
+      border: none; 
+      border-radius: 2px; 
+      text-decoration: none; 
+      display: inline-block; 
   line-height: 1px;
   width: 100px;
   }
 
 .msg_announce:hover {
-      color: white; /* Set the text color to white on hover */
+      color: white; 
   }
 
-  /* You can add more styles as needed */
+  
 </style>
 
 <div class="card">
@@ -162,7 +162,7 @@
           <div class="card " style="background-color: light; height: 150px;">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title" style="font-weight: bold;"><?php echo $row['title'] ?></h5>
-              <p class="card-text"><?php echo ($row['date_updated'] != null) ? date('Y-m-d H:i', strtotime($row['date_updated'])) : date('Y-m-d H:i', strtotime($row['date_created'])); ?></p>
+              <p class="card-text"><?php echo ($row['date_updated'] != null) ? date('F j, Y', strtotime($row['date_updated'])) : date('F j, Y', strtotime($row['date_created'])); ?></p>
               <div class="mt-auto">
                   <a class="btn btn-default btn-sm view_announce" style="border-radius:5px;" href="./?page=announcement/view_home&id=<?php echo $row['id'] ?>"><span class="fa fa-eye text-primary"></span> View</a>
                   <a class="btn btn-primary msg_announce" style="border-radius:5px;" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span></span> Message </a>
@@ -203,7 +203,7 @@
           <tr>
             <td style="font-weight: bold;"><?php echo $row['title'] ?></td>
             <td><?php echo $row['from_'] ?></td>
-            <td><?php echo ($row['date_updated'] != null) ? date('Y-m-d H:i', strtotime($row['date_updated'])) : date('Y-m-d H:i', strtotime($row['date_created'])); ?></td>
+            <td><?php echo ($row['date_updated'] != null) ? date('F j, Y', strtotime($row['date_updated'])) : date('F j, Y', strtotime($row['date_created'])); ?></td>
             <td>
               <a class="btn btn-default btn-sm view_memo" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye text-primary"></span> View</a>
             </td>

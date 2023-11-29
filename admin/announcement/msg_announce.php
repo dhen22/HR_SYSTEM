@@ -69,9 +69,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 
 <!-- announcement Close Button -->
 <div class="w-100 d-flex justify-content-end mb-2">
-    <button class="btn btn-flat btn-sm btn-default bg-black" data-dismiss="modal">
-        <i class="fa fa-times">Close</i>
-    </button>
+    <button type="button" class="btn btn-secondary" style="float: right;" data-dismiss="modal">Close</button>
 </div>
 
 

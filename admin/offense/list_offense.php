@@ -6,10 +6,10 @@
 
 <div class="card card-outline card-primary">
 	<div class="card-header">
-		<h3 class="card-title">List of Policies</h3>
+		<h3 class="card-title">List of Offense</h3>
 		<?php if($_settings->userdata('type') != 3): ?>
 		<div class="card-tools">
-		<a href="?page=policies/manage_policies" class="btn btn-primary"><span class="fas fa-plus"></span>  Create New</a>
+		<a href="?page=offense/manage_offense" class="btn btn-primary"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
 		<?php endif; ?>
 	</div>
@@ -18,36 +18,24 @@
 			<table class="table table-stripped table-hover table-bordered">
 				<thead>
 					<tr>
-						<th style="width: 5%;">No.</th>
-						<th style="width: 5%;">Policy No</th>
+						<th style="width: 2%;">No.</th>
+						<th style="width: 10%;">Rule No</th>
 						<th style="width: 15%;">Title</th>
-						<th style="width: 20%;">Refer</th>
-						<th style="width: 8%;">Date Updated</th>
-						<th style="width: 8%;">Status</th>
-						<th style="width: 8%;">Action</th>
+						<th style="width: 8%;">Date Created</th>
+						<th style="width: 5%;">Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php 
 					$i = 1;
-						$qry = $conn->query("SELECT * from `policies_list` order by id asc ");
+						$qry = $conn->query("SELECT * from `offense_list` order by id asc ");
 						while($row = $qry->fetch_assoc()):
-                            $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
 					?>
 						<tr>
 							<td class="text-center"><?php echo $i++; ?></td>
-							<td><?php echo $row['no'] ?></td>
+							<td><?php echo $row['rule'] ?></td>
 							<td><?php echo $row['title'] ?></td>
-							<td><?php echo $row['refer'] ?></td>
-							<td><?php echo ($row['date_updated'] != null) ? date('Y-m-d', strtotime($row['date_updated'])) : date('Y-m-d', strtotime($row['date_created'])); ?></td>
-							
-							<td class='text-center'>
-								<?php if($row['status'] == 1): ?>
-									<span class="badge badge-success">Active</span>
-								<?php else: ?>
-									<span class="badge badge-secondary">Inactive</span>
-								<?php endif; ?>
-							</td>
+							<td><?php echo ($row['date_created'] != null) ? date('Y-m-d', strtotime($row['date_created'])) : date('Y-m-d', strtotime($row['date_created'])); ?></td>
 							
 							<td align="center">
 								<button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
@@ -55,10 +43,10 @@
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                </button>
 								<div class="dropdown-menu" role="menu">
-									<a class="dropdown-item view_policies" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye"></span> View</a>
+									<a class="dropdown-item view_offense" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye"></span> View</a>
 									<?php if($_settings->userdata('type') == 1 || $_settings->userdata('type') == 2): ?>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item edit_data"  href="./?page=policies/manage_policies&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
+									<a class="dropdown-item edit_data"  href="./?page=offense/manage_offense&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
 									<?php endif; ?>
@@ -74,10 +62,10 @@
 <script>
 	$(document).ready(function(){
 		$('.delete_data').click(function(){
-			_conf("Are you sure to delete this Policies permanently?","delete_policies",[$(this).attr('data-id')])
+			_conf("Are you sure to delete this Offense permanently?","delete_offense",[$(this).attr('data-id')])
 		})
-		$('.view_policies').click(function(){
-			uni_modal("</i>","policies/view_policies.php?id="+$(this).attr('data-id'))
+		$('.view_offense').click(function(){
+			uni_modal("</i>","offense/view_offense.php?id="+$(this).attr('data-id'))
 		})
 		/* $('.msg_announce').click(function(){
 			uni_modal("</i>","announcement/msg_announce.php?id="+$(this).attr('data-id'))
@@ -91,10 +79,10 @@
 		//})
 		$('.table').dataTable();
 	})
-	function delete_policies($id){
+	function delete_offense($id){
 		start_loader();
 		$.ajax({
-			url:_base_url_+"classes/Master.php?f=delete_policies",
+			url:_base_url_+"classes/Master.php?f=delete_offense",
 			method:"POST",
 			data:{id: $id},
 			dataType:"json",

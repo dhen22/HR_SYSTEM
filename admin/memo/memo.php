@@ -40,7 +40,7 @@
 							<td><?php echo $row['title'] ?></td>
 							<td><?php echo $row['from_'] ?></td>
 							<td><?php echo $row['re_'] ?></td>
-							<td><?php echo ($row['date_updated'] != null) ? date('Y-m-d H:i',strtotime($row['date_updated'])) : date('Y-m-d H:i',strtotime($row['date_created'])); ?></td>
+							<td><?php echo ($row['date_updated'] != null) ? date('Y-m-d', strtotime($row['date_updated'])) : date('Y-m-d', strtotime($row['date_created'])); ?></td>
 							<td align="center">
 								 <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action

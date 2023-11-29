@@ -60,7 +60,7 @@
 							<td><?php echo $row['title'] ?></td>
 							<td><?php echo $row['from_'] ?></td>
 							<td><?php echo $row['ref_'] ?></td>
-							<td><?php echo ($row['date_updated'] != null) ? date('Y-m-d H:i',strtotime($row['date_updated'])) : date('Y-m-d H:i',strtotime($row['date_created'])); ?></td>
+							<td><?php echo ($row['date_updated'] != null) ? date('Y-m-d', strtotime($row['date_updated'])) : date('Y-m-d', strtotime($row['date_created'])); ?></td>
 							<td><a class="btn btn-primary msg_announce" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span></span> Message </a></td>
 							<td align="center">
 								<button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">

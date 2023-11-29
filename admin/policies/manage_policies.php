@@ -103,7 +103,6 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 
 	$(document).ready(function(){
 		$('.summernote_2').summernote({
-				placeholder: 'create content here...',
 				tabsize: 5,
 				height: '45vh',
 				toolbar: [

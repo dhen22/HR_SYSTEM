@@ -40,6 +40,10 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 							<input type="text" name="employee_id" id="employee_id" class="form-control rounded-0" value="<?php echo isset($meta['employee_id']) ? $meta['employee_id']: '' ?>" required>
 						</div>
 						<div class="form-group">
+							<label for="date_hired">Date Hired</label>
+							<input type="date" name="date_hired" id="date_hired" class="form-control rounded-0" value="<?php echo isset($meta['date_hired']) ? date("Y-m-d",strtotime($meta['date_hired'])): '' ?>" required>
+						</div>
+						<div class="form-group">
 							<label for="firstname">First Name</label>
 							<input type="text" name="firstname" id="firstname" class="form-control rounded-0" value="<?php echo isset($meta['firstname']) ? $meta['firstname']: '' ?>" required>
 						</div>
@@ -58,6 +62,10 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 						<div class="form-group">
 							<label for="contact">Contact No.</label>
 							<input type="text" name="contact" id="contact" class="form-control rounded-0" value="<?php echo isset($meta['contact']) ? $meta['contact']: '' ?>" required>
+						</div>
+						<div class="form-group">
+							<label for="email">Email Address</label>
+							<input type="text" name="email" id="email" class="form-control rounded-0" value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>" required>
 						</div>
 						<div class="form-group">
 							<label for="address">Address</label>

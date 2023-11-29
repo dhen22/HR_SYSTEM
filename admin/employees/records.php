@@ -54,9 +54,15 @@ if(isMobileDevice()):
                                 <label class="float-left w-auto whitespace-nowrap">Employee ID:</label>
                                 <p class="col-md-auto border-bottom border-dark w-100"><b><?php echo $employee_id ?></b></p>
                             </div>
-                            <div class="d-flex w-max-100">
-                                <label class="float-left w-auto whitespace-nowrap">Name:</label>
-                                <p class="col-md-auto border-bottom border-dark w-100"><b><?php echo $name ?></b></p>
+                            <div class="row justify-content-between w-max-100 mr-0">
+                                <div class="col-6 d-flex w-max-100">
+                                    <label class="float-left w-auto whitespace-nowrap">Name:</label>
+                                    <p class="col-md-auto border-bottom border-dark w-100"><b><?php echo $name ?></b></p>
+                                </div>
+                                <div class="col-6 d-flex w-max-100">
+                                    <label class="float-left w-auto whitespace-nowrap">Date Hired: </label>
+                                    <p class="col-md-auto border-bottom px-2 border-dark w-100"><b><?php echo date("M d, Y",strtotime($date_hired)) ?></b></p>
+                                </div>
                             </div>
                             <div class="row justify-content-between  w-max-100 mr-0">
                                 <div class="col-6 d-flex w-max-100">
@@ -68,9 +74,15 @@ if(isMobileDevice()):
                                     <p class="col-md-auto border-bottom px-2 border-dark w-100"><b><?php echo $contact ?></b></p>
                                 </div>
                             </div>
-                            <div class="d-flex w-max-100">
-                                <label class="float-left w-auto whitespace-nowrap">Address:</label>
-                                <p class="col-md-auto border-bottom border-dark w-100"><b><?php echo $address ?></b></p>
+                            <div class="row justify-content-between w-max-100 mr-0">
+                                <div class="col-6 d-flex w-max-100">
+                                    <label class="float-left w-auto whitespace-nowrap">Address:</label>
+                                    <p class="col-md-auto border-bottom border-dark w-100"><b><?php echo $address ?></b></p>
+                                </div>
+                                <div class="col-6 d-flex w-max-100">
+                                    <label class="float-left w-auto whitespace-nowrap">Email Address: </label>
+                                    <p class="col-md-auto border-bottom px-2 border-dark w-100"><b><?php echo $email ?></b></p>
+                                </div>
                             </div>
                             <div class="row justify-content-between  w-max-100  mr-0">
                                 <div class="col-6 d-flex w-max-100">

@@ -281,6 +281,58 @@ Class Master extends DBConnection {
 		return json_encode($resp);
 
 	}
+
+	function save_offense(){
+		extract($_POST);
+		$data = "";
+		foreach($_POST as $k =>$v){
+			if(!in_array($k,array('id'))){
+				$v = addslashes($v);
+				if(!empty($data)) $data .=",";
+				$data .= " `{$k}`='{$v}' ";
+			}
+		}
+		$check = $this->conn->query("SELECT * FROM `offense_list` where `title` = '{$title}' ".(!empty($id) ? " and id != {$id} " : "")." ")->num_rows;
+		if($this->capture_err())
+			return $this->capture_err();
+		if($check > 0){
+			$resp['status'] = 'failed';
+			$resp['msg'] = " Offense already exist.";
+			return json_encode($resp);
+			exit;
+		}
+		if(empty($id)){
+			$sql = "INSERT INTO `offense_list` set {$data} ";
+			$save = $this->conn->query($sql);
+		}else{
+			$sql = "UPDATE `offense_list` set {$data} where id = '{$id}' ";
+			$save = $this->conn->query($sql);
+		}
+		if($save){
+			$resp['status'] = 'success';
+			if(empty($id))
+				$this->settings->set_flashdata('success',"New Offense successfully saved.");
+			else
+				$this->settings->set_flashdata('success',"Offense successfully updated.");
+		}else{
+			$resp['status'] = 'failed';
+			$resp['err'] = $this->conn->error."[{$sql}]";
+		}
+		return json_encode($resp);
+	}
+	function delete_offense(){	
+		extract($_POST);
+		$del = $this->conn->query("DELETE FROM `offense_list` where id = '{$id}'");
+		if($del){
+			$resp['status'] = 'success';
+			$this->settings->set_flashdata('success',"Offense successfully deleted.");
+		}else{
+			$resp['status'] = 'failed';
+			$resp['error'] = $this->conn->error;
+		}
+		return json_encode($resp);
+
+	}
 	//------------------------------------------------------------------------------------------------------
 
 	function save_leave_type(){
@@ -651,6 +703,12 @@ switch ($action) {
 	break;
 	case 'delete_policies':
 		echo $Master->delete_policies();
+	break;
+	case 'save_offense':
+		echo $Master->save_offense();
+	break;
+	case 'delete_offense':
+		echo $Master->delete_offense();
 	break;
 	case 'save_leave_type':
 		echo $Master->save_leave_type();

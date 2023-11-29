@@ -92,6 +92,10 @@
                         </p>
                       </a>
                     </li>
+
+                    <?php endif; ?>
+                    <?php if($_settings->userdata('type') <= 2): ?>
+
                     <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=user/list" class="nav-link nav-user_list">
                         <i class="nav-icon fas fa-users"></i>
@@ -145,6 +149,33 @@
                       </a>
                     </li>
 
+                    <li class="nav-header">Manual</li>
+
+                    <?php if($_settings->userdata('type') == 3): ?>
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=policies/policies" class="nav-link nav-policies_policies">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                          Policies
+                        </p>
+                      </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=offense/offense" class="nav-link nav-offense_offense">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                          Table of offense
+                        </p>
+                      </a>
+                    </li>
+
+                    <?php endif; ?>
+
+                    <?php if($_settings->userdata('type') != 3): ?>
+
+                    <!-- POLICIES -->
+
                     <li class="nav-item dropdown">
                       <a href="#" class="nav-link nav-policies_policies nav-policies_list_policies">
                         <i class="nav-icon fas fa-book"></i>
@@ -166,9 +197,36 @@
                             <p>List</p>
                           </a>
                         </li>
-                        <!-- Add more sub-menu items as needed -->
                       </ul>
                     </li>
+
+                    <!-- TABLE OF OFFENSE -->
+
+                    <li class="nav-item dropdown">
+                      <a href="#" class="nav-link nav-offense_offense nav-offense_list_offense">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                          Table of Offense
+                          <span class="right badge badge-danger">List</span>
+                        </p>
+                      </a>
+                      <ul class="nav nav-treeview offense-submenu">
+                        <li class="nav-item">
+                          <a href="<?php echo base_url ?>admin/?page=offense/offense" class="nav-link">
+                            <i class="nav-icon fas fa-file"></i>
+                            <p>View</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="<?php echo base_url ?>admin/?page=offense/list_offense" class="nav-link">
+                            <i class="nav-icon fas fa-file"></i>
+                            <p>List</p>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                    
+                    <?php endif; ?>
                     
                   </ul>
                 </nav>

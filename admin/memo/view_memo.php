@@ -129,12 +129,11 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
     </div>
 </div>
 
-<!-- memo Close Button -->
 <div class="w-100 d-flex justify-content-end mb-2">
     <a href="javascript:void(0)" class="btn btn-success ml-3" id="print"><span class="fas fa-print"></span>  Print</a>
+    &nbsp; 
     <button type="button" class="btn btn-secondary" style="float: right;" data-dismiss="modal">Close</button>
 </div>
-
 
 <script>
     var img = document.getElementById("logoImg");

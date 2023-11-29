@@ -54,6 +54,10 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         <div class="description-container">
             <p><?php echo $description ?></p>
         </div>
+
+        <div class="description-container" style="text-align: center;">
+            <p><?php echo $refer ?></p>
+        </div>
     </div>
 </div>
 

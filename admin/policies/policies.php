@@ -28,10 +28,17 @@
 								<span style="display:none;"><?php echo $row['description']; ?></span>
 							</p>
 						</div>
-						<div class="card-footer" style="text-align: right;">
-							<a class="btn btn-flat btn-primary view_policies" style="border-radius: 5px;" href="javascript:void(0)" data-id="<?php echo $row['id']; ?>" onclick="toggleDescription(<?php echo $row['id']; ?>)">
-								<span></span> View Policy
-							</a>
+						<div class="card-footer">
+							<div class="row">
+								<div class="col-md-6">
+									<?php echo ($row['date_updated'] != null) ? date('F j, Y', strtotime($row['date_updated'])) : date('F j, Y', strtotime($row['date_created'])); ?>
+								</div>
+								<div class="col-md-6 text-right">
+									<a class="btn btn-flat btn-primary view_policies" style="border-radius: 5px;" href="javascript:void(0)" data-id="<?php echo $row['id']; ?>" onclick="toggleDescription(<?php echo $row['id']; ?>)">
+										<span></span> View Policy
+									</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
