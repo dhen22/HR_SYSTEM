@@ -7,11 +7,11 @@
 $meta_qry=$conn->query("SELECT * FROM employee_meta where user_id = '{$_settings->userdata('id')}' and meta_field = 'approver' ");
 $is_approver = $meta_qry->num_rows > 0 && $meta_qry->fetch_array()['meta_value'] == 'on' ? true : false;
 ?>
-<div class="card card-outline card-primary">
-	<div class="card-header">
-		<h3 class="card-title">List of Applications</h3>
+<div class="card">
+	<div class="card-header" style="background-color: #27374D ;padding: 0.3rem 1rem">
+		<h3 class="card-title" style="color:white; padding-top: 7px;">List of Applications</h3>
 		<div class="card-tools">
-			<a href="?page=leave_applications/manage_application" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
+			<a href="?page=leave_applications/manage_application" class="btn btn-primary"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
 	</div>
 	<div class="card-body">
@@ -71,13 +71,13 @@ $is_approver = $meta_qry->num_rows > 0 && $meta_qry->fetch_array()['meta_value']
 							<td><?php echo $row['leave_days'] ?></td>
 							<td class="text-center">
 								<?php if($row['status'] == 1): ?>
-									<span class="badge badge-success">Approved</span>
+									<span class="badge badge-success" style="width:40%;">Approved</span>
 								<?php elseif($row['status'] == 2): ?>
-									<span class="badge badge-danger">Denied</span>
+									<span class="badge badge-danger" style="width:40%;">Denied</span>
 								<?php elseif($row['status'] == 3): ?>
-									<span class="badge badge-danger">Cancelled</span>
+									<span class="badge badge-danger" style="width:40%;">Cancelled</span>
 								<?php else: ?>
-									<span class="badge badge-primary">Pending</span>
+									<span class="badge badge-primary" style="width:40%;">Pending</span>
 								<?php endif; ?>
 							</td>
 							<td align="center">

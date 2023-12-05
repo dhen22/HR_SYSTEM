@@ -43,9 +43,9 @@
 							
 							<td class='text-center'>
 								<?php if($row['status'] == 1): ?>
-									<span class="badge badge-success">Active</span>
+									<span class="badge badge-success" style="width:40%;">Active</span>
 								<?php else: ?>
-									<span class="badge badge-secondary">Inactive</span>
+									<span class="badge badge-secondary" style="width:40%;">Inactive</span>
 								<?php endif; ?>
 							</td>
 							

@@ -40,6 +40,14 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 							<input type="text" name="employee_id" id="employee_id" class="form-control rounded-0" value="<?php echo isset($meta['employee_id']) ? $meta['employee_id']: '' ?>" required>
 						</div>
 						<div class="form-group">
+							<label for="company">Company</label>
+							<select name="company" id="company" class="form-control select2bs4 select2 rounded-0" data-placeholder="Please Select Company here" required>
+								<option value="" disabled <?php echo !isset($meta['company']) ? 'selected' : '' ?>></option>
+								<option value="ALSC" <?php echo (isset($meta['company']) && $meta['company'] == 'ALSC') ? 'selected' : '' ?>>ALSC</option>
+								<option value="JAM" <?php echo (isset($meta['company']) && $meta['company'] == 'JAM') ? 'selected' : '' ?>>JAM</option>
+							</select>
+						</div>
+						<div class="form-group">
 							<label for="date_hired">Date Hired</label>
 							<input type="date" name="date_hired" id="date_hired" class="form-control rounded-0" value="<?php echo isset($meta['date_hired']) ? date("Y-m-d",strtotime($meta['date_hired'])): '' ?>" required>
 						</div>
@@ -53,7 +61,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 						</div>
 						<div class="form-group">
 							<label for="lastname">Last Name</label>
-							<input type="text" name="lastname" id="lastname" class="form-control rounded-0" value="<?php echo isset($meta['lastname']) ? $meta['lastname']: '' ?>" required>
+							<input type="text" name="lastname" id="lastname" class="form-control rounded-0" value="<?php echo isset($meta['lastname']) ? $meta['lastname']: '' ?>">
 						</div>
 						<div class="form-group">
 							<label for="dob">Date of Birth</label>

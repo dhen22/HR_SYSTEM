@@ -63,20 +63,20 @@
           </div>
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-purple elevation-1"><i class="fas fa-list"></i></span>
-
+              <span class="info-box-icon bg-purple elevation-1"><i class="fas fa-list"></i>
+              </span>
               <div class="info-box-content">
-                <span class="info-box-text">Total Type of Leave</span>
-                <span class="info-box-number text-right">
-                <?php 
-                    $leave_types = $conn->query("SELECT id FROM `leave_types` where status = 1 ")->num_rows;
-                    echo number_format($leave_types);
-                  ?>
-                </span>
+                  <a href="your_php_page.php" style="text-decoration: none; color: inherit;">
+                      <span class="info-box-text">Total Type of Leave</span>
+                      <span class="info-box-number text-right">
+                          <?php 
+                              $leave_types = $conn->query("SELECT id FROM `leave_types` where status = 1 ")->num_rows;
+                              echo number_format($leave_types);
+                          ?>
+                      </span>
+                  </a>
               </div>
-              <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box -->
           </div>
         </div>
 <?php else: ?>
@@ -135,82 +135,114 @@
   width: 100px;
   }
 
-.msg_announce:hover {
-      color: white; 
+  .card-title{
+      color:white;
   }
-
   
+
 </style>
 
-<div class="card">
-  <div class="card-header">
-      <h3 class="card-title">Today's Announcements</h3>
-      <div class="text-right">
-        <a href="?page=announcement/announcement" class="btn btn-default btn-sm">See All</a>
-      </div>
-  </div>
-    
-  <div class="card-body">
-    <div class="container-fluid">
-      <div class="row">
-        <?php
-        $qry = $conn->query("SELECT * from `announcement_list` order by date_created desc LIMIT 3");
-        while ($row = $qry->fetch_assoc()):
-            $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
-        ?>
-        <div class="col-md-4 mb-3">
-          <div class="card " style="background-color: light; height: 150px;">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title" style="font-weight: bold;"><?php echo $row['title'] ?></h5>
-              <p class="card-text"><?php echo ($row['date_updated'] != null) ? date('F j, Y', strtotime($row['date_updated'])) : date('F j, Y', strtotime($row['date_created'])); ?></p>
-              <div class="mt-auto">
-                  <a class="btn btn-default btn-sm view_announce" style="border-radius:5px;" href="./?page=announcement/view_home&id=<?php echo $row['id'] ?>"><span class="fa fa-eye text-primary"></span> View</a>
-                  <a class="btn btn-primary msg_announce" style="border-radius:5px;" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span></span> Message </a>
+<div id="announcementCarousel" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <?php
+    $qry = $conn->query("SELECT * from `announcement_list` order by date_created desc LIMIT 4");
+    $count = 0;
+    while ($row = $qry->fetch_assoc()):
+        $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
+    ?>
+    <div class="carousel-item <?php echo ($count == 0) ? 'active' : ''; ?>">
+      <div class="card">
+        <div class="card-header" style="background-color: #27374D ;padding: 0.3rem 1rem">
+          <div class="row">
+            <div class="col-auto">
+              <i class="fas fa-bullhorn" style="font-size: 1.2em; color: white;"></i>
+            </div>
+            <div class="col">
+              <h3 class="card-title">Today's Announcements</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body" style="background-color: #526D82 ; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 mx-auto mb-3">
+                <div class="card" style="background-color: white; height: 200px;">
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="announce" style="font-weight: bold; text-align: center;"><?php echo $row['title'] ?></h5>
+                    <p class="card-text" style="font-weight: bold; text-align: center;"><?php echo ($row['date_updated'] != null) ? date('F j, Y', strtotime($row['date_updated'])) : date('F j, Y', strtotime($row['date_created'])); ?></p>
+                    <div class="mt-auto">
+                      <a class="btn btn-default btn-sm view_announce" style="border-radius:5px;" href="./?page=announcement/view_home&id=<?php echo $row['id'] ?>"><span class="fa fa-eye text-primary"></span> View</a>
+                      <a class="btn btn-primary msg_announce" style="border-radius:5px;" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span></span> Message </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <?php endwhile; ?>
+      </div>
+    </div>
+    <?php
+        $count++;
+    endwhile;
+    ?>
+  </div>
+  <a class="carousel-control-prev" href="#announcementCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span style="color: black; font-weight: bold;">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#announcementCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span> 
+    <span style="color: black; font-weight: bold;">Next</span>
+  </a>
+</div>
+
+
+
+<div class="card">
+  <div class="card-header" style="background-color: #27374D; padding: 0.2rem 1rem">
+    <div class="row">
+      <div class="col-auto">
+        <i class="fas fa-envelope" style="font-size: 1.2em; color: white;"></i>
+      </div>
+      <div class="col">
+        <h3 class="card-title">Latest Memos</h3>
+        <div class="text-right">
+          <a href="?page=memo/memo" class="btn btn-default btn-sm" style="padding: 0.1rem 1rem">See All</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<div class="card">
-  <div class="card-header">
-    <h3 class="card-title">Latest Memos</h3> 
-      <div class="text-right">
-        <a href="?page=memo/memo" class="btn btn-default btn-sm">See All</a>
-      </div>
-  </div>
   <div class="card-body">
     <div class="container-fluid">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>From</th>
-            <th>Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-          $qry = $conn->query("SELECT * from `memo_list` order by date_created desc LIMIT 5");
-          while ($row = $qry->fetch_assoc()):
-              $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
-          ?>
-          <tr>
-            <td style="font-weight: bold;"><?php echo $row['title'] ?></td>
-            <td><?php echo $row['from_'] ?></td>
-            <td><?php echo ($row['date_updated'] != null) ? date('F j, Y', strtotime($row['date_updated'])) : date('F j, Y', strtotime($row['date_created'])); ?></td>
-            <td>
-              <a class="btn btn-default btn-sm view_memo" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye text-primary"></span> View</a>
-            </td>
-          </tr>
-          <?php endwhile; ?>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>From</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            $qry = $conn->query("SELECT * from `memo_list` order by date_created desc LIMIT 4");
+            while ($row = $qry->fetch_assoc()):
+                $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
+            ?>
+              <tr>
+                <td style="font-weight: bold;"><?php echo $row['title'] ?></td>
+                <td><?php echo $row['from_'] ?></td>
+                <td><?php echo ($row['date_updated'] != null) ? date('F j, Y', strtotime($row['date_updated'])) : date('F j, Y', strtotime($row['date_created'])); ?></td>
+                <td>
+                  <a class="btn btn-default btn-sm view_memo" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye text-primary"></span> View</a>
+                </td>
+              </tr>
+            <?php endwhile; ?>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
@@ -230,7 +262,3 @@
         });
     });
 </script>
-
-
-
-<!-- -------------- -->

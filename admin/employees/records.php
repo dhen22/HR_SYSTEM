@@ -29,6 +29,8 @@ if(isMobileDevice()):
         display:block !important;
         width:100% !important;
     }
+
+
 </style>
 <?php endif; ?>
 <div class="card">
@@ -50,48 +52,51 @@ if(isMobileDevice()):
                 <td width="80%" class='boder-0 align-bottom'>
                     <div class="row">
                         <div class="col-12">
-                            <div class="d-flex w-max-100">
-                                <label class="float-left w-auto whitespace-nowrap">Employee ID:</label>
-                                <p class="col-md-auto border-bottom border-dark w-100"><b><?php echo $employee_id ?></b></p>
-                            </div>
-                            <div class="row justify-content-between w-max-100 mr-0">
-                                <div class="col-6 d-flex w-max-100">
-                                    <label class="float-left w-auto whitespace-nowrap">Name:</label>
-                                    <p class="col-md-auto border-bottom border-dark w-100"><b><?php echo $name ?></b></p>
-                                </div>
-                                <div class="col-6 d-flex w-max-100">
-                                    <label class="float-left w-auto whitespace-nowrap">Date Hired: </label>
-                                    <p class="col-md-auto border-bottom px-2 border-dark w-100"><b><?php echo date("M d, Y",strtotime($date_hired)) ?></b></p>
-                                </div>
-                            </div>
-                            <div class="row justify-content-between  w-max-100 mr-0">
-                                <div class="col-6 d-flex w-max-100">
-                                    <label class="float-left w-auto whitespace-nowrap">Date of Birth: </label>
-                                    <p class="col-md-auto border-bottom px-2 border-dark w-100"><b><?php echo date("M d, Y",strtotime($dob)) ?></b></p>
-                                </div>
-                                <div class="col-6 d-flex w-max-100">
-                                    <label class="float-left w-auto whitespace-nowrap">Contact No: </label>
-                                    <p class="col-md-auto border-bottom px-2 border-dark w-100"><b><?php echo $contact ?></b></p>
-                                </div>
-                            </div>
-                            <div class="row justify-content-between w-max-100 mr-0">
-                                <div class="col-6 d-flex w-max-100">
-                                    <label class="float-left w-auto whitespace-nowrap">Address:</label>
-                                    <p class="col-md-auto border-bottom border-dark w-100"><b><?php echo $address ?></b></p>
-                                </div>
-                                <div class="col-6 d-flex w-max-100">
-                                    <label class="float-left w-auto whitespace-nowrap">Email Address: </label>
-                                    <p class="col-md-auto border-bottom px-2 border-dark w-100"><b><?php echo $email ?></b></p>
-                                </div>
-                            </div>
-                            <div class="row justify-content-between  w-max-100  mr-0">
-                                <div class="col-6 d-flex w-max-100">
-                                    <label class="float-left w-auto whitespace-nowrap">Department: </label>
-                                    <p class="col-md-auto border-bottom px-2 border-dark w-100"><b><?php echo $dept_arr[$department_id] ?></b></p>
-                                </div>
-                                <div class="col-6 d-flex w-max-100">
-                                    <label class="float-left w-auto whitespace-nowrap">Designation: </label>
-                                    <p class="col-md-auto border-bottom px-2 border-dark w-100"><b><?php echo $desg_arr[$designation_id] ?></b></p>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row justify-content-between w-max-100 mr-0 mb-2">
+                                        <div class="col-6 d-flex">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 29px;">Emp. ID:</label>
+                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $employee_id ?>">
+                                        </div>
+                                        <div class="col-6 d-flex">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 39px;">Company:</label>
+                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $company ?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-between w-max-100 mr-0 mb-2">
+                                        <div class="col-6 d-flex">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 41px;">Name:</label>
+                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $name ?>">
+                                        </div>
+                                        <div class="col-6 d-flex">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 30px;">Date Hired:</label>
+                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo date("M d, Y",strtotime($date_hired)) ?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-between w-max-100 mr-0 mb-2">
+                                        <div class="col-6 d-flex">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 13px;">Birth Date:</label>
+                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $dob ?>">
+                                        </div>
+                                        <div class="col-6 d-flex">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 27px;">Contact No:</label>
+                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $contact ?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-between w-max-100 mr-0">
+                                        <div class="col-6 d-flex">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 28px;">Address:</label>
+                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $address ?>">
+                                        </div>
+                                        <div class="col-6 d-flex">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Email Address:</label>
+                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $email ?>">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -99,6 +104,25 @@ if(isMobileDevice()):
                 </td>
             </tr>
         </table>
+        <hr class="border-dark">
+        <div class="card">
+            <div class="card-body">
+                <div class="row justify-content-between w-max-100 mr-0">
+                    <div class="col-4 d-flex">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Department:</label>
+                        <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $dept_arr[$department_id] ?>">
+                    </div>
+                    <div class="col-4 d-flex">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Designation:</label>
+                        <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $desg_arr[$designation_id] ?>">
+                    </div>
+                    <div class="col-4 d-flex">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Designation:</label>
+                        <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $desg_arr[$designation_id] ?>">
+                    </div>
+                </div>
+            </div>
+        </div>
         <hr class="border-dark">
         <div class="row">
             <div class="col-md-4 col-sm-12">

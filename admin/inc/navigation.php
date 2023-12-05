@@ -1,8 +1,13 @@
+<style>
+    .nav li a {
+        font-size: 14px; /* Font size of the navigation text */
+    }
+</style>
 
 <!-- Main Sidebar Container -->
-      <aside class="main-sidebar sidebar-light-primary text-white bg-light disabled elevation-4 sidebar-no-expand">
+      <aside class="main-sidebar sidebar-light-primary disabled elevation-5 sidebar-no-expand" style="background-color: white;">
         <!-- Brand Logo -->
-        <a href="<?php echo base_url ?>admin" class="brand-link" style="background-color: #0A369D; color: white; text-align: center;">
+        <a href="<?php echo base_url ?>admin" class="brand-link" style="background-color: #27374D ; color: white; text-align: center;">
         <img src="<?php echo validate_image($_settings->info('logo'))?>" alt="Store Logo" class="brand-image img-circle elevation-3" style="opacity: .8;width: 1.7rem;height: 1.7rem;max-height: unset">
         <span class="brand-text font-weight-light text-white"><?php echo $_settings->info('short_name') ?></span>
         </a>
@@ -22,7 +27,7 @@
                 <div class="clearfix"></div>
                 <!-- Sidebar Menu -->
                 <nav class="mt-4">
-                   <ul class="nav nav-pills nav-sidebar flex-column text-sm nav-compact nav-flat nav-child-indent nav-collapse-hide-child" data-widget="treeview" role="menu" data-accordion="false">
+                   <ul class="nav nav-pills nav-sidebar flex-column nav-compact nav-child-indent nav-collapse-hide-child" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item dropdown">
                       <a href="./" class="nav-link nav-home">
                         <i class="nav-icon fas fa-tachometer-alt"></i>

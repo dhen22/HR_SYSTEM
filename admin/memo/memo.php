@@ -3,8 +3,15 @@
 	alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
 </script>
 <?php endif;?>
-<div class="card card-outline card-primary">
-	<div class="card-header">
+
+<style>
+	.card-title{
+		color:white;
+		padding-top: 5px;
+	}
+</style>
+<div class="card">
+	<div class="card-header" style="background-color: #27374D ;padding: 0.4rem 1rem">
 		<h3 class="card-title">List of Memo</h3>
 		<?php if($_settings->userdata('type') != 3): ?>
 		<div class="card-tools">
