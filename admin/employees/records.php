@@ -38,63 +38,59 @@ if(isMobileDevice()):
         <div class="w-100 d-flex justify-content-end mb-3">
             <?php if($_settings->userdata('type') != 3): ?>
             <a href="?page=employees/manage_employee&id=<?php echo $id ?>" class="btn btn-flat btn-primary"><span class="fas fa-edit"></span>  Edit Employee</a>
-            <?php endif; ?>
             <a href="javascript:void(0)" class="btn btn-flat btn-success ml-3" id="print"><span class="fas fa-print"></span>  Print</a>
+            <?php endif; ?>
         </div>
         <div id="print_out">
-        <table class="table info-table">
-            <tr class='boder-0'>
+        <table class="table info-table"> <!-- INFORMATION OF EMPLOYEES -->
+            <!-- <tr class='boder-0'>
                 <td width="20%">
                     <div class="w-100 d-flex align-items-center justify-content-center">
                         <img src="<?php echo validate_image($avatar) ?>" alt="Employee Avatar" class="img-thumbnail" id="cimg">
                     </div>
                 </td>
-                <td width="80%" class='boder-0 align-bottom'>
+                <td width="70%" class='boder-0 align-bottom'>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-14">
                             <div class="card">
+                                <div class="card-header" style="background-color: #27374D ;padding: 0.3rem 1rem">
+                                    <h3 class="card-title" style="color:white;">Personal Information</h3>
+                                </div>
                                 <div class="card-body">
-                                    <div class="row justify-content-between w-max-100 mr-0 mb-2">
-                                        <div class="col-6 d-flex">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 29px;">Emp. ID:</label>
-                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $employee_id ?>">
+                                    <div class="row w-max-100 mr-0 mb-1">
+                                        <div class="col-4 col-md-3">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 12px;">Emp. ID:</label>
+                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo $employee_id ?>">
                                         </div>
-                                        <div class="col-6 d-flex">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 39px;">Company:</label>
-                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $company ?>">
+                                        <div class="col-4 col-md-5">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Company:</label>
+                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo $company ?>">
                                         </div>
-                                    </div>
-
-                                    <div class="row justify-content-between w-max-100 mr-0 mb-2">
-                                        <div class="col-6 d-flex">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 41px;">Name:</label>
-                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $name ?>">
-                                        </div>
-                                        <div class="col-6 d-flex">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 30px;">Date Hired:</label>
-                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo date("M d, Y",strtotime($date_hired)) ?>">
+                                        <div class="col-3 col-md-4">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 12px;">Date Hired:</label>
+                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo date("M d, Y",strtotime($date_hired)) ?>">
                                         </div>
                                     </div>
 
-                                    <div class="row justify-content-between w-max-100 mr-0 mb-2">
-                                        <div class="col-6 d-flex">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 13px;">Birth Date:</label>
-                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $dob ?>">
+                                    <div class="row w-max-100 mr-0 mb-1">
+                                        <div class="col-8 col-md-8">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">Name:</label>
+                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo $name ?>">
                                         </div>
-                                        <div class="col-6 d-flex">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 27px;">Contact No:</label>
-                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $contact ?>">
+                                        <div class="col-3 col-md-4">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 15px;">Birth Date:</label>
+                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo date("M d, Y",strtotime($dob)) ?>">
                                         </div>
                                     </div>
 
-                                    <div class="row justify-content-between w-max-100 mr-0">
-                                        <div class="col-6 d-flex">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 28px;">Address:</label>
-                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $address ?>">
+                                    <div class="row w-max-100 mr-0 mb-1">
+                                        <div class="col-8 col-md-8">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Address:</label>
+                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo $address ?>">
                                         </div>
-                                        <div class="col-6 d-flex">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Email Address:</label>
-                                            <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $email ?>">
+                                        <div class="col-3 col-md-4">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 35px;">Gender:</label>
+                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo $sex ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -102,28 +98,263 @@ if(isMobileDevice()):
                         </div>
                     </div>
                 </td>
-            </tr>
+            </tr> -->
+            
+            <div class="card">
+                <div class="card-header" style="background-color: #27374D ;padding: 0.3rem 1rem">
+                    <h3 class="card-title" style="color:white;">Personal Information</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-2 col-md-2">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 12px;">Employee Code</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $employee_id ?>">
+                        </div>
+                        <div class="col-2 col-md-2">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 12px;">Date Hired</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo date("M d, Y",strtotime($date_hired)) ?>">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Company</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $company ?>">
+                        </div>
+                        <div class="col-2 col-md-2">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Status</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo 'Single' ?>">
+                        </div>
+                        <div class="col-2 col-md-2">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 35px;">Sex</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $sex ?>">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">Last Name</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $lastname ?>">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">First Name</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $firstname ?>">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">Middle Name</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $middlename ?>">
+                        </div>
+                        <div class="col-8 col-md-8">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Address</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $address ?>">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Email Address</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $email ?>">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Position</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $desg_arr[$designation_id] ?>">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Contact No</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $contact ?>">
+                        </div>
+                        <div class="col-2 col-md-2">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 15px;">Birth Date</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo date("M d, Y", strtotime($dob)) ?>">
+                        </div>
+                        <div class="col-2 col-md-2">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 15px;">Age</label>
+                            <?php
+                            // Calculate age
+                            $birthDate = new DateTime($dob);
+                            $today = new DateTime();
+                            $age = $today->diff($birthDate)->y;
+
+                            // Display age
+                            ?>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $age; ?>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </table>
-        <hr class="border-dark">
+
+        <!-- <hr class="border-dark"> --> <!-- CONTACT INFO OF EMPLOYEES -->
+
         <div class="card">
+            <div class="card-header" style="background-color: #27374D ;padding: 0.3rem 1rem">
+                <h3 class="card-title" style="color:white;">Employee Data</h3>
+            </div>
             <div class="card-body">
-                <div class="row justify-content-between w-max-100 mr-0">
-                    <div class="col-4 d-flex">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Department:</label>
-                        <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $dept_arr[$department_id] ?>">
+                <div class="row">
+                    <div class="col-4 col-md-4">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Department</label>
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $dept_arr[$department_id] ?>">
                     </div>
-                    <div class="col-4 d-flex">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Designation:</label>
-                        <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $desg_arr[$designation_id] ?>">
+                    <div class="col-4 col-md-4">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Division</label>
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $division ?>">
                     </div>
-                    <div class="col-4 d-flex">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Designation:</label>
-                        <input type="text" class="form-control" style="width: 300px;" readonly value="<?php echo $desg_arr[$designation_id] ?>">
+                    <div class="col-4 col-md-4">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Employment Status</label>
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $emp_status ?>">
+                    </div>
+                    <div class="col-4 col-md-4">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Section</label>
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $section ?>">
+                    </div>
+                    <div class="col-4 col-md-4">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Designation</label>
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $desg_arr[$designation_id] ?>">
+                    </div>
+                    <div class="col-4 col-md-4">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">SBC Account No</label>
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $sbc ?>">
+                    </div>
+                    <div class="col-3 col-md-3">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">T.I.N No</label>
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $tin ?>">
+                    </div>
+                    <div class="col-3 col-md-3">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">SSS No</label>
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $sss ?>">
+                    </div>
+                    <div class="col-3 col-md-3">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Pag-Ibig</label>
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $pagibig ?>">
+                    </div>
+                    <div class="col-3 col-md-3">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">PhilHealth</label>
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $philhealth ?>">
                     </div>
                 </div>
             </div>
         </div>
-        <hr class="border-dark">
+        
+        <!-- <hr class="border-dark"> --> <!-- COMPANY INFORMATION OF EMPLOYEES -->
+
+        <div class="card">
+            <div class="card-header" style="background-color: #27374D ;padding: 0.3rem 1rem">
+                <h3 class="card-title" style="color:white;">Salary Info & Deductions</h3>
+            </div>
+            <div class="card-body">
+                <ul class="nav nav-tabs mb-1">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="salary-tab" data-toggle="tab" href="#salary" style="font-size: 16px; color: black;">Salary Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="monthly-tab" data-toggle="tab" href="#monthly" style="font-size: 16px; color: black;">Monthly Deductions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="loan-tab" data-toggle="tab" href="#loan" style="font-size: 16px; color: black;">Loan Deductions</a>
+                    </li>
+                </ul>
+                <div class="tab-content" style="paddin-top: 15px;">
+                    <!-- Salary Tab Nav -->
+                    <div class="tab-pane fade show active" id="salary">
+                        <div class="row">
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Salary 1</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo number_format($first_salary, 2) ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Allowance 1</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $first_allow ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Transpo Allowance</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $transpo ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Effectivity Date</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $effectivity ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Salary 2</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $second_salary ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Allowance 2</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $second_allow ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Cashier Allowance</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $cashier ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">ATM Account No</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $atm ?>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Monthly Tab Nav -->
+                    <div class="tab-pane fade" id="monthly">
+                        <div class="row">
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">GHP</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_ghp ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">MA</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_ma ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Tax Amount</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_tax ?>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Loans Deductions Tab Nav -->
+                    <div class="tab-pane fade" id="loan">
+                        <div class="row">
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Salary</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_salary ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">SSS Loan</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_sss ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Pag-Ibig Loan (MPL)</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_pagibig_mpl ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Pag-Ibig Loan (Cal)</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_pagibig_cal ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Medical</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_medical ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Emergency</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_emergency ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Car Loan</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_car ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Educational</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_educ ?>">
+                            </div>
+
+                            <!-- Planters Loadn 2 input -->
+
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Planters Loan</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_planters1 ?>">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Planters Loan 2nd</label>
+                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_planters2 ?>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <hr class="border-dark"> --> <!-- Leave List & Application Leave Records -->
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <div class="callout border-0">
