@@ -7,15 +7,16 @@
 <style>
 	.card-title{
 		color:white;
-		padding-top: 5px;
+		padding-top: 10px;
 	}
 </style>
+
 <div class="card">
-	<div class="card-header" style="background-color: #27374D ;padding: 0.4rem 1rem">
+	<div class="card-header" style="background-color: #0039a6 ;padding: 0.3rem 1rem">
 		<h3 class="card-title">List of Memo</h3>
 		<?php if($_settings->userdata('type') != 3): ?>
 		<div class="card-tools">
-		<a href="?page=memo/manage_memo" class="btn btn-primary"><span class="fas fa-plus"></span>  Create New</a>
+		<a href="?page=memo/manage_memo" class="btn btn-success"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
 		<?php endif; ?>
 	</div>
@@ -55,10 +56,10 @@
 				                  </button>
 				                  <div class="dropdown-menu" role="menu">
 								  	<a class="dropdown-item view_memo" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye"></span> View</a>
-									<div class="dropdown-divider"></div>
-									<!-- <div class="dropdown-divider"></div> -->
 
 									<?php if($_settings->userdata('type') == 1 || $_settings->userdata('type') == 2): ?>
+										
+									<div class="dropdown-divider"></div>
 				                    <a class="dropdown-item edit_data"  href="./?page=memo/manage_memo&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
 				                    <div class="dropdown-divider"></div>
 				                    <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>

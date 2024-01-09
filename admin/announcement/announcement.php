@@ -20,15 +20,20 @@
         color: white; /* Set the text color to white on hover */
     }
 
+	.card-title{
+		color:white;
+		padding-top: 10px;
+	}
+	
     /* You can add more styles as needed */
 </style>
 
-<div class="card card-outline card-primary">
-	<div class="card-header">
+<div class="card">
+	<div class="card-header" style="background-color: #0039a6 ;padding: 0.3rem 1rem">
 		<h3 class="card-title">List of Announcement</h3>
 		<?php if($_settings->userdata('type') != 3): ?>
 		<div class="card-tools">
-		<a href="?page=announcement/manage_announce" class="btn btn-primary"><span class="fas fa-plus"></span>  Create New</a>
+		<a href="?page=announcement/manage_announce" class="btn btn-success"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
 		<?php endif; ?>
 	</div>

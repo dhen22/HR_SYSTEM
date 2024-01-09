@@ -95,14 +95,34 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
                     </div>
 					<div class="col-md-2">
                         <div class="form-group">
-                            <label for="status">Civil Status</label>
+                            <label for="status">Status</label>
                             <select name="status" id="status"
                                     class="form-control select2bs4 select2 rounded-0"
                                     data-placeholder="Select status" required>
                                 <option value="" disabled <?php echo !isset($meta['status']) ? 'selected' : '' ?>></option>
                                 <option value="Head of Family" <?php echo (isset($meta['status']) && $meta['status'] == 'Head of Family') ? 'selected' : '' ?>>Head of Family
                                 </option>
-                                <option value="Male" <?php echo (isset($meta['status']) && $meta['status'] == 'Male') ? 'selected' : '' ?>>Male
+                                <option value="Married" <?php echo (isset($meta['status']) && $meta['status'] == 'Married') ? 'selected' : '' ?>>Married
+                                </option>
+								<option value="Married 1 Children" <?php echo (isset($meta['status']) && $meta['status'] == 'Married 1 Children') ? 'selected' : '' ?>>Married 1 Children
+                                </option>
+								<option value="Married 2 Children" <?php echo (isset($meta['status']) && $meta['status'] == 'Married 2 Children') ? 'selected' : '' ?>>Married 2 Children
+                                </option>
+								<option value="Married 3 Children" <?php echo (isset($meta['status']) && $meta['status'] == 'Married 3 Children') ? 'selected' : '' ?>>Married 3 Children
+                                </option>
+								<option value="Married 4 Children" <?php echo (isset($meta['status']) && $meta['status'] == 'Married 4 Children') ? 'selected' : '' ?>>Married 4 Children
+                                </option>
+								<option value="Single" <?php echo (isset($meta['status']) && $meta['status'] == 'Single') ? 'selected' : '' ?>>Single
+                                </option>
+								<option value="Single 1 Dependent" <?php echo (isset($meta['status']) && $meta['status'] == 'Single 1 Dependent') ? 'selected' : '' ?>>Single 1 Dependent
+                                </option>
+								<option value="Single 2 Dependents" <?php echo (isset($meta['status']) && $meta['status'] == 'Single 2 Dependents') ? 'selected' : '' ?>>Single 2 Dependents
+                                </option>
+								<option value="Single 3 Dependents" <?php echo (isset($meta['status']) && $meta['status'] == 'Single 3 Dependents') ? 'selected' : '' ?>>Single 3 Dependents
+                                </option>
+								<option value="Single 4 Dependents" <?php echo (isset($meta['status']) && $meta['status'] == 'Single 4 Dependents') ? 'selected' : '' ?>>Single 4 Dependents
+                                </option>
+								<option value="Zero" <?php echo (isset($meta['status']) && $meta['status'] == 'Zero') ? 'selected' : '' ?>>Zero
                                 </option>
                             </select>
                         </div>
@@ -222,6 +242,12 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 								</option>
 								<option value="Manager" <?php echo (isset($meta['division']) && $meta['division'] == 'Manager') ? 'selected' : '' ?>>Manager
 								</option>
+								<option value="Supervisor" <?php echo (isset($meta['division']) && $meta['division'] == 'Supervisor') ? 'selected' : '' ?>>Supervisor
+								</option>
+								<option value="AVP" <?php echo (isset($meta['division']) && $meta['division'] == 'AVP') ? 'selected' : '' ?>>AVP
+								</option>
+								<option value="Guard" <?php echo (isset($meta['division']) && $meta['division'] == 'Guard') ? 'selected' : '' ?>>Guard
+								</option>
 							</select>
 						</div>
 					</div>
@@ -236,6 +262,12 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 								</option>
 								<option value="Regular" <?php echo (isset($meta['emp_status']) && $meta['emp_status'] == 'Regular') ? 'selected' : '' ?>>Regular
 								</option>
+								<option value="Contractual" <?php echo (isset($meta['emp_status']) && $meta['emp_status'] == 'Contractual') ? 'selected' : '' ?>>Contractual
+								</option>
+								<option value="Terminated" <?php echo (isset($meta['emp_status']) && $meta['emp_status'] == 'Terminated') ? 'selected' : '' ?>>Terminated
+								</option>
+								<option value="AVP-In Position" <?php echo (isset($meta['emp_status']) && $meta['emp_status'] == 'AVP-In Position') ? 'selected' : '' ?>>AVP-In Position
+								</option>
 							</select>
 						</div>
 					</div>
@@ -248,11 +280,51 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 									class="form-control select2bs4 select2 rounded-0"
 									data-placeholder="Please Select Section" required>
 								<option value="" disabled <?php echo !isset($meta['section']) ? 'selected' : '' ?>></option>
+								<option value="Accounting" <?php echo (isset($meta['section']) && $meta['section'] == 'Accounting') ? 'selected' : '' ?>>Accounting
+								</option>
+								<option value="Billing" <?php echo (isset($meta['section']) && $meta['section'] == 'Billing') ? 'selected' : '' ?>>Billing
+								</option>
+								<option value="Const. and Impln." <?php echo (isset($meta['section']) && $meta['section'] == 'Const. and Impln.') ? 'selected' : '' ?>>Const. and Impln.
+								</option>
+								<option value="Contracts and Doc." <?php echo (isset($meta['section']) && $meta['section'] == 'Contracts and Doc.') ? 'selected' : '' ?>>Contracts and Doc.
+								</option>
+								<option value="Design and Devt." <?php echo (isset($meta['section']) && $meta['section'] == 'Design and Devt.') ? 'selected' : '' ?>>Design and Devt.
+								</option>
+								<option value="Documentation and Loan" <?php echo (isset($meta['section']) && $meta['section'] == 'Documentation and Loan') ? 'selected' : '' ?>>Documentation and Loan
+								</option>
 								<option value="EDP" <?php echo (isset($meta['section']) && $meta['section'] == 'EDP') ? 'selected' : '' ?>>EDP
+								</option>
+								<option value="Electrical" <?php echo (isset($meta['section']) && $meta['section'] == 'Electrical') ? 'selected' : '' ?>>Electrical
+								</option>
+								<option value="Engineering" <?php echo (isset($meta['section']) && $meta['section'] == 'Engineering') ? 'selected' : '' ?>>Engineering
 								</option>
 								<option value="Executive" <?php echo (isset($meta['section']) && $meta['section'] == 'Executive') ? 'selected' : '' ?>>Executive
 								</option>
 								<option value="Finance" <?php echo (isset($meta['section']) && $meta['section'] == 'Finance') ? 'selected' : '' ?>>Finance
+								</option>
+								<option value="General Services" <?php echo (isset($meta['section']) && $meta['section'] == 'General Services') ? 'selected' : '' ?>>General Services
+								</option>
+								<option value="Marketing" <?php echo (isset($meta['section']) && $meta['section'] == 'Marketing') ? 'selected' : '' ?>>Marketing
+								</option>
+								<option value="Personnel" <?php echo (isset($meta['section']) && $meta['section'] == 'Personnel') ? 'selected' : '' ?>>Personnel
+								</option>
+								<option value="Permits and Licenses" <?php echo (isset($meta['section']) && $meta['section'] == 'Permits and Licenses') ? 'selected' : '' ?>>Permits and Licenses
+								</option>
+								<option value="Project Admin" <?php echo (isset($meta['section']) && $meta['section'] == 'Project Admin') ? 'selected' : '' ?>>Project Admin
+								</option>
+								<option value="Purchasing" <?php echo (isset($meta['section']) && $meta['section'] == 'Purchasing') ? 'selected' : '' ?>>Purchasing
+								</option>
+								<option value="Repair and Maintenance" <?php echo (isset($meta['section']) && $meta['section'] == 'Repair and Maintenance') ? 'selected' : '' ?>>Repair and Maintenance
+								</option>
+								<option value="Security Admin" <?php echo (isset($meta['section']) && $meta['section'] == 'Security Admin') ? 'selected' : '' ?>>Security Admin
+								</option>
+								<option value="Technical Planning" <?php echo (isset($meta['section']) && $meta['section'] == 'Technical Planning') ? 'selected' : '' ?>>Technical Planning
+								</option>
+								<option value="Training and Recruitment" <?php echo (isset($meta['section']) && $meta['section'] == 'Training and Recruitment') ? 'selected' : '' ?>>Training and Recruitment
+								</option>
+								<option value="Treasury" <?php echo (isset($meta['section']) && $meta['section'] == 'Treasury') ? 'selected' : '' ?>>Treasury
+								</option>
+								<option value="Water and Electric Services" <?php echo (isset($meta['section']) && $meta['section'] == 'Water and Electric Services') ? 'selected' : '' ?>>Water and Electric Services
 								</option>
 							</select>
 						</div>
@@ -331,8 +403,9 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="effectivity">Effectivity Date</label>
-                            <input type="text" name="effectivity" id="effectivity" class="form-control rounded-0"
-								value="<?php echo isset($meta['effectivity']) ? $meta['effectivity'] : '0.00' ?>">
+                            <input type="date" name="effectivity" id="effectivity" class="form-control rounded-0"
+                                   value="<?php echo isset($meta['effectivity']) ? date("Y-m-d", strtotime($meta['effectivity'])) : '' ?>"
+                                   required>
                         </div>
                     </div>
 					<div class="col-md-3">

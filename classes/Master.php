@@ -468,12 +468,19 @@ Class Master extends DBConnection {
 				$data .= " `{$k}` = '{$v}' ";
 			}
 		}
-		if(empty($id))
+		/* if(empty($id))
 		$data .= ", `password` = md5('{$employee_id}') ";
 		if(empty($id))
 			$sql1 = "INSERT INTO `users` set {$data} ";
 		else
-			$sql1 = "UPDATE `users` set {$data}' where id = '{$id}' ";
+			$sql1 = "UPDATE `users` set {$data}' where id = '{$id}' "; */
+
+		if (empty($id)) {
+			$data .= ", `password` = md5('{$employee_id}') ";
+			$sql1 = "INSERT INTO `users` SET {$data} ";
+		} else {
+			$sql1 = "UPDATE `users` SET {$data} WHERE id = '{$id}' ";
+		}
 		
 		$save1 = $this->conn->query($sql1);
 		$this->capture_err();

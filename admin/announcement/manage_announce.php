@@ -161,7 +161,8 @@ var _this = $(this)
 		            [ 'table', [ 'table' ] ],
 					['insert', ['link', 'picture', 'video']],
 		            [ 'view', [ 'undo', 'redo', 'fullscreen', 'help' ] ]
-		        ]
+		        ],
+				disableDragAndDrop: true
 		    })
 	})
 </script>

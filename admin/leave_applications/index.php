@@ -7,11 +7,19 @@
 $meta_qry=$conn->query("SELECT * FROM employee_meta where user_id = '{$_settings->userdata('id')}' and meta_field = 'approver' ");
 $is_approver = $meta_qry->num_rows > 0 && $meta_qry->fetch_array()['meta_value'] == 'on' ? true : false;
 ?>
+
+<style>
+	.card-title{
+		color:white;
+		padding-top: 10px;
+	}
+</style>
+
 <div class="card">
-	<div class="card-header" style="background-color: #27374D ;padding: 0.3rem 1rem">
-		<h3 class="card-title" style="color:white; padding-top: 7px;">List of Applications</h3>
+	<div class="card-header" style="background-color:  #0039a6 ;padding: 0.3rem 1rem">
+		<h3 class="card-title">List of Applications</h3>
 		<div class="card-tools">
-			<a href="?page=leave_applications/manage_application" class="btn btn-primary"><span class="fas fa-plus"></span>  Create New</a>
+			<a href="?page=leave_applications/manage_application" class="btn btn-success"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
 	</div>
 	<div class="card-body">

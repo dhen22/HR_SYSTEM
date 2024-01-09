@@ -101,7 +101,7 @@ if(isMobileDevice()):
             </tr> -->
             
             <div class="card">
-                <div class="card-header" style="background-color: #27374D ;padding: 0.3rem 1rem">
+                <div class="card-header" style="background-color: #0039a6 ;padding: 0.4rem 1rem">
                     <h3 class="card-title" style="color:white;">Personal Information</h3>
                 </div>
                 <div class="card-body">
@@ -179,7 +179,7 @@ if(isMobileDevice()):
         <!-- <hr class="border-dark"> --> <!-- CONTACT INFO OF EMPLOYEES -->
 
         <div class="card">
-            <div class="card-header" style="background-color: #27374D ;padding: 0.3rem 1rem">
+            <div class="card-header" style="background-color: #0039a6 ;padding: 0.4rem 1rem">
                 <h3 class="card-title" style="color:white;">Employee Data</h3>
             </div>
             <div class="card-body">
@@ -229,131 +229,134 @@ if(isMobileDevice()):
         </div>
         
         <!-- <hr class="border-dark"> --> <!-- COMPANY INFORMATION OF EMPLOYEES -->
-
-        <div class="card">
-            <div class="card-header" style="background-color: #27374D ;padding: 0.3rem 1rem">
-                <h3 class="card-title" style="color:white;">Salary Info & Deductions</h3>
-            </div>
-            <div class="card-body">
-                <ul class="nav nav-tabs mb-1">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="salary-tab" data-toggle="tab" href="#salary" style="font-size: 16px; color: black;">Salary Info</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="monthly-tab" data-toggle="tab" href="#monthly" style="font-size: 16px; color: black;">Monthly Deductions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="loan-tab" data-toggle="tab" href="#loan" style="font-size: 16px; color: black;">Loan Deductions</a>
-                    </li>
-                </ul>
-                <div class="tab-content" style="paddin-top: 15px;">
-                    <!-- Salary Tab Nav -->
-                    <div class="tab-pane fade show active" id="salary">
-                        <div class="row">
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Salary 1</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo number_format($first_salary, 2) ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Allowance 1</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $first_allow ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Transpo Allowance</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $transpo ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Effectivity Date</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $effectivity ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Salary 2</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $second_salary ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Allowance 2</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $second_allow ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Cashier Allowance</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $cashier ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">ATM Account No</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $atm ?>">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Monthly Tab Nav -->
-                    <div class="tab-pane fade" id="monthly">
-                        <div class="row">
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">GHP</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_ghp ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">MA</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_ma ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Tax Amount</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_tax ?>">
+        <?php if($_settings->userdata('type') != 3): ?>
+            <div class="card">
+                <div class="card-header" style="background-color: #0039a6 ;padding: 0.4rem 1rem">
+                    <h3 class="card-title" style="color:white;">Salary Info & Deductions</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-tabs mb-1">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="salary-tab" data-toggle="tab" href="#salary" style="font-size: 16px; color: black;">Salary Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="monthly-tab" data-toggle="tab" href="#monthly" style="font-size: 16px; color: black;">Monthly Deductions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="loan-tab" data-toggle="tab" href="#loan" style="font-size: 16px; color: black;">Loan Deductions</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" style="paddin-top: 15px;">
+                        <!-- Salary Tab Nav -->
+                        <div class="tab-pane fade show active" id="salary">
+                            <div class="row">
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Salary 1</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($first_salary) ? '0.00' : number_format($first_salary, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Allowance 1</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($first_allow) ? '0.00' : number_format($first_allow, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Transpo Allowance</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($transpo) ? '0.00' : number_format($transpo, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Effectivity Date</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $effectivity ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Salary 2</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($second_salary) ? '0.00' : number_format($second_salary, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Allowance 2</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($second_allow) ? '0.00' : number_format($second_allow, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Cashier Allowance</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($cashier) ? '0.00' : number_format($cashier, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">ATM Account No</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($atm) ? '0.00' : $atm ?>">
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Loans Deductions Tab Nav -->
-                    <div class="tab-pane fade" id="loan">
-                        <div class="row">
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Salary</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_salary ?>">
+                        <!-- Monthly Tab Nav -->
+                        <div class="tab-pane fade" id="monthly">
+                            <div class="row">
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">GHP</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_ghp) ? '0.00' : number_format($deduc_ghp, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">MA</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_ma) ? '0.00' : number_format($deduc_ma, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Tax Amount</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_tax) ? '0.00' : number_format($deduc_tax, 2); ?>">
+                                </div>
                             </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">SSS Loan</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_sss ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Pag-Ibig Loan (MPL)</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_pagibig_mpl ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Pag-Ibig Loan (Cal)</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_pagibig_cal ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Medical</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_medical ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Emergency</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_emergency ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Car Loan</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_car ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Educational</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_educ ?>">
-                            </div>
+                        </div>
 
-                            <!-- Planters Loadn 2 input -->
+                        <!-- Loans Deductions Tab Nav -->
+                        <div class="tab-pane fade" id="loan">
+                            <div class="row">
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Salary</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_salary) ? '0.00' : number_format($deduc_salary, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">SSS Loan</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_sss) ? '0.00' : number_format($deduc_sss, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Pag-Ibig Loan (MPL)</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_pagibig_mpl) ? '0.00' : number_format($deduc_pagibig_mpl, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Pag-Ibig Loan (Cal)</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_pagibig_cal) ? '0.00' : number_format($deduc_pagibig_cal, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Medical</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_medical) ? '0.00' : number_format($deduc_medical, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Emergency</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_emergency) ? '0.00' : number_format($deduc_emergency, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Car Loan</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_car) ? '0.00' : number_format($deduc_car, 2); ?>">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Educational</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_educ) ? '0.00' : number_format($deduc_educ, 2); ?>">
+                                </div>
 
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Planters Loan</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_planters1 ?>">
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Planters Loan 2nd</label>
-                                <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $deduc_planters2 ?>">
+                                <!-- Planters Loadn 2 input -->
+
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Planters Loan</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_planters1) ? '0.00' : number_format($deduc_planters1, 2); ?>">
+                                </div>
+
+                                <div class="col-3 col-md-3">
+                                    <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Planters Loan 2nd</label>
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_planters2) ? '0.00' : number_format($deduc_planters2, 2); ?>">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
+
         <!-- <hr class="border-dark"> --> <!-- Leave List & Application Leave Records -->
         <div class="row">
             <div class="col-md-4 col-sm-12">

@@ -142,7 +142,7 @@
 
 </style>
 
-<div id="announcementCarousel" class="carousel slide" data-ride="carousel">
+<div id="announcementCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
   <div class="carousel-inner">
     <?php
     $qry = $conn->query("SELECT * from `announcement_list` order by date_created desc LIMIT 4");
@@ -152,7 +152,7 @@
     ?>
     <div class="carousel-item <?php echo ($count == 0) ? 'active' : ''; ?>">
       <div class="card">
-        <div class="card-header" style="background-color: #27374D ;padding: 0.3rem 1rem">
+        <div class="card-header" style="background-color: #0039a6 ;padding: 0.4rem 1rem">
           <div class="row">
             <div class="col-auto">
               <i class="fas fa-bullhorn" style="font-size: 1.2em; color: white;"></i>
@@ -162,7 +162,7 @@
             </div>
           </div>
         </div>
-        <div class="card-body" style="background-color: #526D82 ; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+        <div class="card-body" style="background-color: #d3d3d3; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-6 mx-auto mb-3">
@@ -200,7 +200,7 @@
 
 
 <div class="card">
-  <div class="card-header" style="background-color: #27374D; padding: 0.2rem 1rem">
+  <div class="card-header" style="background-color: #0039a6; padding: 0.2rem 1rem">
     <div class="row">
       <div class="col-auto">
         <i class="fas fa-envelope" style="font-size: 1.2em; color: white;"></i>

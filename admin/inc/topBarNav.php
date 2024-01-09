@@ -13,7 +13,7 @@
 </style>
 <!-- Navbar -->
       <!-- <nav class="main-header navbar navbar-expand navbar-dark border border-light border-top-0  border-left-0 border-right-0 navbar-light text-sm bg-lightblue"> -->
-      <nav class="main-header navbar navbar-expand navbar-dark border border-light border-top-0 border-left-0 border-right-0 navbar-light text-sm" style="background-color: #27374D;">
+      <nav class="main-header navbar navbar-expand navbar-dark border border-light border-top-0 border-left-0 border-right-0 navbar-light text-sm" style="background-color: #0039a6;">
       <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item">

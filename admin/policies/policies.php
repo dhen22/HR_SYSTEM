@@ -4,10 +4,17 @@
     </script>
 <?php endif; ?>
 
-<div class="card card-outline card-primary">
-    <div class="card-header">
-        <h3 class="card-title">Company Policies</h3>
-    </div>
+<style>
+	.card-title{
+		color:white;
+		padding-top: 5px;
+	}
+</style>
+
+<div class="card">
+    <div class="card-header" style="background-color: #0039a6 ;padding: 0.4rem 1rem">
+		<h3 class="card-title">Company Policies</h3>
+	</div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-striped table-hover">
@@ -21,8 +28,8 @@
                             <td>
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title" style="font-weight: bold;"><?php echo $row['no'] ?>. <?php echo $row['title'] ?></h5>
-                                        <p class="card-text" id="description_<?php echo $row['id']; ?>">
+                                        <h5 class="title" style="font-weight: bold; font-size: 20px; margin-bottom: 15px;"><?php echo $row['no'] ?>. <?php echo $row['title'] ?></h5>
+                                        <p class="card-text" id="description_<?php echo $row['id']; ?>" style="font-size: 14px;">
                                             <?php echo substr($row['description'], 0, 400); ?>... <!-- Displaying the first 150 characters -->
                                             <span style="display:none;"><?php echo $row['description']; ?></span>
                                         </p>

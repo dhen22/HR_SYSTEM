@@ -1,13 +1,13 @@
 <style>
     .nav li a {
-        font-size: 14px; /* Font size of the navigation text */
+        font-size: 15px; /* Font size of the navigation text */
     }
 </style>
 
 <!-- Main Sidebar Container -->
       <aside class="main-sidebar sidebar-light-primary disabled elevation-5 sidebar-no-expand" style="background-color: white;">
         <!-- Brand Logo -->
-        <a href="<?php echo base_url ?>admin" class="brand-link" style="background-color: #27374D ; color: white; text-align: center;">
+        <a href="<?php echo base_url ?>admin" class="brand-link" style="background-color: #0039a6 ; color: white; text-align: center;">
         <img src="<?php echo validate_image($_settings->info('logo'))?>" alt="Store Logo" class="brand-image img-circle elevation-3" style="opacity: .8;width: 1.7rem;height: 1.7rem;max-height: unset">
         <span class="brand-text font-weight-light text-white"><?php echo $_settings->info('short_name') ?></span>
         </a>
@@ -208,14 +208,14 @@
                     <!-- TABLE OF OFFENSE -->
 
                     <li class="nav-item dropdown">
-                      <a href="#" class="nav-link nav-offense_offense nav-offense_list_offense">
+                      <a href="<?php echo base_url ?>admin/?page=offense/offense" class="nav-link nav-offense_offense nav-offense_list_offense">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                           Table of Offense
                           <span class="right badge badge-danger">List</span>
                         </p>
                       </a>
-                      <ul class="nav nav-treeview offense-submenu">
+                      <!-- <ul class="nav nav-treeview offense-submenu">
                         <li class="nav-item">
                           <a href="<?php echo base_url ?>admin/?page=offense/offense" class="nav-link">
                             <i class="nav-icon fas fa-file"></i>
@@ -228,7 +228,7 @@
                             <p>List</p>
                           </a>
                         </li>
-                      </ul>
+                      </ul> -->
                     </li>
                     
                     <?php endif; ?>
