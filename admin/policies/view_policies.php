@@ -56,7 +56,8 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         </div>
 
         <div class="description-container" style="text-align: center;">
-            <p><?php echo $refer ?></p>
+            <!-- Add anchor tag around the link -->
+            <p>For Detailed Policy, Refer to <a href="<?php echo base_url?><?php echo $avatar ?>" target="_blank"><?php echo $refer ?></a></p>
         </div>
     </div>
 </div>

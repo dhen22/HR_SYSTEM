@@ -1,6 +1,6 @@
 <style>
     .nav li a {
-        font-size: 15px; /* Font size of the navigation text */
+        font-size: 16px; /* Font size of the navigation text */
     }
 </style>
 

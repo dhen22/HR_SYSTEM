@@ -22,10 +22,6 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="no" class="control-label">No</label>
-							<input name="no" id="no" type="text" class="form-control form rounded-0" value="<?php echo isset($no) ? $no : ''; ?>" required/>
-						</div>
-						<div class="form-group">
 							<label for="title" class="control-label">Title</label>
 							<input name="title" id="title" type="text" class="form-control form rounded-0" value="<?php echo isset($title) ? $title : ''; ?>" required/>
 						</div>
@@ -33,6 +29,27 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 							<label for="refer" class="control-label">Refer</label>
 							<input name="refer" id="refer" type="text" class="form-control form rounded-0" value="<?php echo isset($refer) ? $refer : ''; ?>" required/>
 						</div>
+						<div class="form-group">
+							<label for="date_issuance" class="control-label">Date issuance</label>
+							<input type="date" id="date_issuance" class="form-control form" required name="date_issuance" value="<?php echo isset($date_issuance) ? date("Y-m-d",strtotime($date_issuance)) : '' ?>">
+						</div>
+
+						<!-- attachement of file -->
+
+						<div class="form-group">
+							<label for="" class="control-label">Attachment</label>
+							<div class="custom-file">
+								<input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this, $(this))">
+								<?php
+									$avatar = isset($avatar) ? $avatar : '';
+									$filename = $avatar ? basename($avatar) : '';
+								?>
+								<label class="custom-file-label" for="customFile" data-value="<?php echo $avatar; ?>" required>
+									<!-- Choose file: --> <?php echo $filename; ?>
+								</label>
+							</div>
+						</div>
+
 						<div class="form-group">
 							<label for="status" class="control-label">Status</label>
 							<select name="status" id="status" class="custom-select rounded-0" required>
@@ -118,4 +135,10 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 				]
 			})
 	})
+
+	function displayImg(input, fileInput) {
+        var fileName = fileInput.val().split("\\").pop();
+        var label = input.parentNode.getElementsByClassName('custom-file-label')[0];
+        label.innerHTML = fileName;
+    }
 </script>

@@ -26,10 +26,9 @@
 				<thead>
 					<tr>
 						<th style="width: 5%;">No.</th>
-						<th style="width: 5%;">Policy No</th>
-						<th style="width: 15%;">Title</th>
-						<th style="width: 20%;">Refer</th>
-						<th style="width: 8%;">Date Updated</th>
+						<th style="width: 20%;">Title</th>
+						<th style="width: 15%;">Refer</th>
+						<th style="width: 8%;">Date Issuance</th>
 						<th style="width: 8%;">Status</th>
 						<th style="width: 8%;">Action</th>
 					</tr>
@@ -37,16 +36,15 @@
 				<tbody>
 					<?php 
 					$i = 1;
-						$qry = $conn->query("SELECT * from `policies_list` order by id asc ");
+						$qry = $conn->query("SELECT * from `policies_list` order by id asc");
 						while($row = $qry->fetch_assoc()):
                             $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
 					?>
 						<tr>
 							<td class="text-center"><?php echo $i++; ?></td>
-							<td><?php echo $row['no'] ?></td>
 							<td><?php echo $row['title'] ?></td>
 							<td><?php echo $row['refer'] ?></td>
-							<td><?php echo ($row['date_updated'] != null) ? date('Y-m-d', strtotime($row['date_updated'])) : date('Y-m-d', strtotime($row['date_created'])); ?></td>
+							<td><?php echo ($row['date_issuance'] != null) ? date('Y-m-d', strtotime($row['date_issuance'])) : date('Y-m-d', strtotime($date_issuance)); ?></td>
 							
 							<td class='text-center'>
 								<?php if($row['status'] == 1): ?>

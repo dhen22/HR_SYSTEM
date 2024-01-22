@@ -233,8 +233,8 @@ Class Master extends DBConnection {
 	function save_policies(){
 		extract($_POST);
 		$data = "";
-		foreach($_POST as $k =>$v){
-			if(!in_array($k,array('id'))){
+		foreach($_POST as $k => $v){
+			if(!in_array($k, array('id'))){
 				$v = addslashes($v);
 				if(!empty($data)) $data .=",";
 				$data .= " `{$k}`='{$v}' ";
@@ -252,6 +252,7 @@ Class Master extends DBConnection {
 		if(empty($id)){
 			$sql = "INSERT INTO `policies_list` set {$data} ";
 			$save = $this->conn->query($sql);
+			$id = $this->conn->insert_id; // Get the inserted ID #attachement of file
 		}else{
 			$sql = "UPDATE `policies_list` set {$data} where id = '{$id}' ";
 			$save = $this->conn->query($sql);
@@ -262,12 +263,40 @@ Class Master extends DBConnection {
 				$this->settings->set_flashdata('success',"New policies successfully saved.");
 			else
 				$this->settings->set_flashdata('success',"Policies successfully updated.");
+
+			#attachement of file
+			$dir = 'admin/policies/uploads/';
+			if (!is_dir(base_app.$dir)) {
+				mkdir(base_app.$dir);
+			}
+			
+			if (isset($_FILES['img'])) {
+				if (!empty($_FILES['img']['tmp_name']) && isset($_SESSION['userdata']) && isset($_SESSION['system_info'])) {
+					$originalFileName = pathinfo($_FILES['img']['name'], PATHINFO_FILENAME);
+					$fileExtension = pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
+					/* $fname = $dir . "(" . $originalFileName . ")" . time() . "." . $fileExtension; */
+					$fname = $dir . $originalFileName . "_" . date("Y-m-d") . "." . $fileExtension;
+
+			
+					$move = move_uploaded_file($_FILES['img']['tmp_name'], base_app.$fname);
+			
+					if ($move) {
+						$this->conn->query("UPDATE `policies_list` SET `avatar` = '{$fname}' WHERE id ='{$id}' ");
+			
+						if (!empty($avatar) && is_file(base_app.$avatar)) {
+							unlink(base_app.$avatar);
+						}
+					}
+				}
+			}
+			
 		}else{
 			$resp['status'] = 'failed';
 			$resp['err'] = $this->conn->error."[{$sql}]";
 		}
 		return json_encode($resp);
 	}
+	
 	function delete_policies(){	
 		extract($_POST);
 		$del = $this->conn->query("DELETE FROM `policies_list` where id = '{$id}'");
