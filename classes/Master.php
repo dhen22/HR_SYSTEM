@@ -243,12 +243,12 @@ Class Master extends DBConnection {
 		$check = $this->conn->query("SELECT * FROM `policies_list` where `title` = '{$title}' ".(!empty($id) ? " and id != {$id} " : "")." ")->num_rows;
 		if($this->capture_err())
 			return $this->capture_err();
-		if($check > 0){
+		/* if($check > 0){
 			$resp['status'] = 'failed';
 			$resp['msg'] = " policies already exist.";
 			return json_encode($resp);
 			exit;
-		}
+		} */
 		if(empty($id)){
 			$sql = "INSERT INTO `policies_list` set {$data} ";
 			$save = $this->conn->query($sql);

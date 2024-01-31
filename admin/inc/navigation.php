@@ -145,14 +145,42 @@
                       </a>
                     </li>
 
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=memo/memo" class="nav-link nav-memo_memo">
                         <i class="nav-icon fas fa-envelope"></i>
                         <p>
                           Memos
                         </p>
                       </a>
+                    </li> -->
+
+                    <!-- Updated memo with List of Previous Memos (2024-01-25) Den -->
+
+                    <li class="nav-item dropdown">
+                      <a href="#" class="nav-link nav-memo_memo nav-memo_memo">
+                        <i class="nav-icon fas fa-envelope"></i>
+                        <p>
+                          Memos
+                          <span class="right badge badge-danger">List</span>
+                        </p>
+                      </a>
+                      <ul class="nav nav-treeview memos-submenu">
+                        <li class="nav-item">
+                          <a href="<?php echo base_url ?>admin/?page=memo/memo" class="nav-link">
+                            <i class="nav-icon fas fa-file"></i>
+                            <p>List Of Memos</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="<?php echo base_url ?>admin/?page=memo/upload_memo" class="nav-link">
+                            <i class="nav-icon fas fa-file"></i>
+                            <p>Previous Memos</p>
+                          </a>
+                        </li>
+                      </ul>
                     </li>
+
+                    <!-- +++++++++++++++++++++++++++++++++++++++++++ -->
 
                     <li class="nav-header">Manual</li>
 
@@ -193,13 +221,13 @@
                         <li class="nav-item">
                           <a href="<?php echo base_url ?>admin/?page=policies/policies" class="nav-link">
                             <i class="nav-icon fas fa-file"></i>
-                            <p>View</p>
+                            <p>View Policies</p>
                           </a>
                         </li>
                         <li class="nav-item">
                           <a href="<?php echo base_url ?>admin/?page=policies/list_policies" class="nav-link">
                             <i class="nav-icon fas fa-file"></i>
-                            <p>List</p>
+                            <p>List of Policies</p>
                           </a>
                         </li>
                       </ul>

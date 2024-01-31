@@ -21,27 +21,27 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 				<div class="col-6">
 					<div class="form-group">
 						<label for="title" class="control-label">Memo</label>
-						<input name="title" id="title" type="text" class="form-control form  rounded-0" value="<?php echo isset($title) ? $title : ''; ?>" required/>
+						<input name="title" id="title" type="text" class="form-control form" value="<?php echo isset($title) ? $title : ''; ?>" required/>
 					</div>
 					<div class="form-group">
 						<label for="to_" class="control-label>">To</label>
-						<input name="to_" id="to_" type="text" class="form-control form  rounded-0" value="<?php echo isset($to_) ? $to_ : ''; ?>" required/>
+						<input name="to_" id="to_" type="text" class="form-control form" value="<?php echo isset($to_) ? $to_ : ''; ?>" required/>
 					</div>
 					<div class="form-group">
 						<label for="from_" class="control-label>">From</label>
-						<input name="from_" id="from_" type="text" class="form-control form  rounded-0" value="<?php echo isset($from_) ? $from_ : ''; ?>" required/>
+						<input name="from_" id="from_" type="text" class="form-control form" value="<?php echo isset($from_) ? $from_ : ''; ?>" required/>
 					</div>
 					<div class="form-group">
 						<label for="cc_" class="control-label>">Cc</label>
-						<input name="cc_" id="cc_" type="text" class="form-control form  rounded-0" value="<?php echo isset($cc_) ? $cc_ : ''; ?>" required/>
+						<input name="cc_" id="cc_" type="text" class="form-control form" value="<?php echo isset($cc_) ? $cc_ : ''; ?>" required/>
 					</div>
 					<div class="form-group">
 						<label for="ref_" class="control-label>">Ref./Rev</label>
-						<input name="ref_" id="ref_" type="text" class="form-control form  rounded-0" value="<?php echo isset($ref_) ? $ref_ : ''; ?>" required/>
+						<input name="ref_" id="ref_" type="text" class="form-control form" value="<?php echo isset($ref_) ? $ref_ : ''; ?>" required/>
 					</div>
 					<div class="form-group">
 						<label for="re_" class="control-label>">Re</label>
-						<input name="re_" id="re_" type="text" class="form-control form  rounded-0" value="<?php echo isset($re_) ? $re_ : ''; ?>" required/>
+						<input name="re_" id="re_" type="text" class="form-control form" value="<?php echo isset($re_) ? $re_ : ''; ?>" required/>
 					</div>
 				</div>
 			</div>

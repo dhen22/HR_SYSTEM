@@ -23,11 +23,11 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="title" class="control-label">Title</label>
-							<input name="title" id="title" type="text" class="form-control form rounded-0" value="<?php echo isset($title) ? $title : ''; ?>" required/>
+							<input name="title" id="title" type="text" class="form-control form" value="<?php echo isset($title) ? $title : ''; ?>" required/>
 						</div>
 						<div class="form-group">
 							<label for="refer" class="control-label">Refer</label>
-							<input name="refer" id="refer" type="text" class="form-control form rounded-0" value="<?php echo isset($refer) ? $refer : ''; ?>" required/>
+							<input name="refer" id="refer" type="text" class="form-control form" value="<?php echo isset($refer) ? $refer : ''; ?>" required/>
 						</div>
 						<div class="form-group">
 							<label for="date_issuance" class="control-label">Date issuance</label>
@@ -52,7 +52,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 
 						<div class="form-group">
 							<label for="status" class="control-label">Status</label>
-							<select name="status" id="status" class="custom-select rounded-0" required>
+							<select name="status" id="status" class="custom-select" required>
 								<option value="1" <?php echo isset($status) && $status == 1 ? "selected" : '' ?>>Active</option>
 								<option value="0" <?php echo isset($status) && $status == 0 ? "selected" : '' ?>>Inacitve</option>
 							</select>

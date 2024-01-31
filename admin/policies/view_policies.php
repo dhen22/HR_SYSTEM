@@ -1,20 +1,26 @@
 <?php
 require_once('../../config.php');
-if(isset($_GET['id']) && $_GET['id'] > 0){
+
+if (isset($_GET['id']) && $_GET['id'] > 0) {
     $qry = $conn->query("SELECT * FROM `policies_list` WHERE id = '{$_GET['id']}' ");
-    if($qry->num_rows > 0){
-        foreach($qry->fetch_assoc() as $k => $v){
-            $$k=$v;
-        }
+    if ($qry->num_rows > 0) {
+        $policy = $qry->fetch_assoc();
+        $title = $policy['title'];
     }
 }
+
+// Fetch policies with the same title
+$title_policies_query = $conn->query("SELECT * FROM `policies_list` WHERE title LIKE '%$title%' COLLATE utf8mb4_general_ci");
+$title_policies = $title_policies_query->fetch_all(MYSQLI_ASSOC);
+
 ?>
+
 <style>
     #uni_modal .modal-footer button {
         display: none !important;
     }   
 
-    #uni_modal .modal-dialog{
+    #uni_modal .modal-dialog {
         max-width: 750px;
     }
 
@@ -36,6 +42,11 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
         overflow: hidden;
         word-wrap: break-word;
     }
+
+    .accordion-title {
+        cursor: pointer;
+        font-size: 17px; /* Adjust the font size as needed */
+    }
 </style>
 
 <div class="container-fluid">
@@ -47,18 +58,61 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 
         <div class="long-line"></div>
         <br>
-        <div class="title">
-            <h5><?php echo $title ?></h5>
-        </div>
 
-        <div class="description-container">
-            <p><?php echo $description ?></p>
-        </div>
+        <?php if (count($title_policies) > 1) : ?>
+            <!-- Accordion Start -->
+            <div id="accordion">
+                <?php foreach ($title_policies as $index => $title_policy) : ?>
+                    <?php if ($title_policy['status'] != 0) : ?>
+                        <div class="card">
+                            <div class="card-header" id="heading_<?php echo $index; ?>">
+                                <h5 class="mb-0 accordion-title" data-toggle="collapse" data-target="#collapse_<?php echo $index; ?>" aria-expanded="<?php echo ($index === 0) ? 'true' : 'false'; ?>" aria-controls="collapse_<?php echo $index; ?>">
+                                    <?php echo $title_policy['title']; ?>
+                                </h5>
+                            </div>
 
-        <div class="description-container" style="text-align: center;">
-            <!-- Add anchor tag around the link -->
-            <p>For Detailed Policy, Refer to <a href="<?php echo base_url?><?php echo $avatar ?>" target="_blank"><?php echo $refer ?></a></p>
-        </div>
+                            <div id="collapse_<?php echo $index; ?>" class="collapse <?php echo ($index === 0) ? 'show' : ''; ?>" aria-labelledby="heading_<?php echo $index; ?>" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="description-container">
+                                        <p><?php echo $title_policy['description']; ?></p>
+                                    </div>
+
+                                    <!-- Additional content for each accordion item -->
+                                    <div class="description-container" style="text-align: center;">
+                                        <p>For Detailed Policy, Refer to <a href="<?php echo base_url; ?><?php echo $title_policy['avatar']; ?>" target="_blank"><?php echo $title_policy['refer']; ?></a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+            <!-- Accordion End -->
+        <?php else : ?>
+            <!-- Single Policy Display -->
+            <div class="card">
+                <div class="card-header" id="single-heading">
+                    <h5 class="mb-0 accordion-title" data-toggle="collapse" data-target="#single-policy" aria-expanded="true" aria-controls="single-policy">
+                        <?php echo $title; ?>
+                    </h5>
+                </div>
+                <div id="single-policy" class="collapse show" aria-labelledby="single-heading" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="description-container">
+                            <?php foreach ($title_policies as $title_policy) : ?>
+                                <p><?php echo $title_policy['description']; ?></p>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <!-- Additional content for single policy display -->
+                        <div class="description-container" style="text-align: center;">
+                            <p>For Detailed Policy, Refer to <a href="<?php echo base_url; ?><?php echo $title_policy['avatar']; ?>" target="_blank"><?php echo $title_policy['refer']; ?></a></p>
+                        </div>
+                        <!-- End Additional content -->
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
 
@@ -66,3 +120,19 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 <div class="modal-cancel">
     <button type="button" class="btn btn-secondary" style="float: right;" data-dismiss="modal">Close</button>
 </div>
+
+<script>
+    // Add JavaScript to handle accordion toggle on title click
+    document.addEventListener('DOMContentLoaded', function () {
+        var accordionTitles = document.querySelectorAll('.accordion-title');
+        accordionTitles.forEach(function (title) {
+            title.addEventListener('click', function () {
+                var targetCollapse = this.getAttribute('data-target');
+                var collapse = document.querySelector(targetCollapse);
+                if (collapse) {
+                    $(collapse).collapse('toggle');
+                }
+            });
+        });
+    });
+</script>
