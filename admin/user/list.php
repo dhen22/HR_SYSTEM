@@ -17,7 +17,7 @@
 	<div class="card-header">
 		<h3 class="card-title">List of System Users</h3>
 		<div class="card-tools">
-			<a href="?page=user/manage_user" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
+			<a href="?page=user/manage_user" class="btn btn-primary"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
 	</div>
 	<div class="card-body">
@@ -55,7 +55,7 @@
 							<td ><p class="m-0 truncate-1"><?php echo $row['username'] ?></p></td>
 							<td><?php echo ($row['type'] == 1) ? 'Administrator' : 'Staff' ?></td>
 							<td align="center">
-								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+								 <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>

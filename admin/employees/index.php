@@ -73,7 +73,7 @@
 								</p>
 							</td>
 							<td align="center">
-								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+								 <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>
@@ -103,7 +103,9 @@
 		$('.reset_password').click(function(){
 			_conf("You're about to reset the password of the user. Are you sure to continue this action?","reset_password",[$(this).attr('data-id')])
 		})
-		$('.table').dataTable();
+		$('.table').dataTable({
+            "lengthMenu": [[50, 100, -1], [50, 100, "All"]] // This will display dropdown with options for 50, 100 and all entries
+        });
 	})
 	function delete_user($id){
 		start_loader();

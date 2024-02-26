@@ -243,12 +243,12 @@ Class Master extends DBConnection {
 		$check = $this->conn->query("SELECT * FROM `policies_list` where `title` = '{$title}' ".(!empty($id) ? " and id != {$id} " : "")." ")->num_rows;
 		if($this->capture_err())
 			return $this->capture_err();
-		/* if($check > 0){
+		if($check > 0){
 			$resp['status'] = 'failed';
 			$resp['msg'] = " policies already exist.";
 			return json_encode($resp);
 			exit;
-		} */
+		}
 		if(empty($id)){
 			$sql = "INSERT INTO `policies_list` set {$data} ";
 			$save = $this->conn->query($sql);
@@ -311,7 +311,74 @@ Class Master extends DBConnection {
 
 	}
 
-	function save_offense(){
+	function upload_files(){
+		extract($_POST);
+		$data = "";
+		foreach($_POST as $k => $v){
+			if(!in_array($k, array('id'))){
+				$v = addslashes($v);
+				if(!empty($data)) $data .=",";
+				$data .= " `{$k}`='{$v}' ";
+			}
+		}
+		
+		$check = $this->conn->query("SELECT * FROM `uploads` where `title` = '{$title}' ".(!empty($id) ? " and id != {$id} " : "")." ")->num_rows;
+		if($this->capture_err())
+			return $this->capture_err();
+		if($check > 0){
+			$resp['status'] = 'failed';
+			$resp['msg'] = "Uploads Already Exist.";
+			return json_encode($resp);
+			exit;
+		}
+		if(empty($id)){
+			$sql = "INSERT INTO `uploads` set {$data} ";
+			$save = $this->conn->query($sql);
+			$id = $this->conn->insert_id;
+		}else{
+			$sql = "UPDATE `uploads` set {$data} where id = '{$id}' ";
+			$save = $this->conn->query($sql);
+		}
+		if($save){
+			$resp['status'] = 'success';
+			if(empty($id))
+				$this->settings->set_flashdata('success',"New Uploads successfully saved.");
+			else
+				$this->settings->set_flashdata('success',"Uploads successfully updated.");
+
+			#attachement of file
+			$dir = 'admin/memo/uploads/';
+			if (!is_dir(base_app.$dir)) {
+				mkdir(base_app.$dir);
+			}
+			if (isset($_FILES['img'])) {
+				if (!empty($_FILES['img']['tmp_name']) && isset($_SESSION['userdata']) && isset($_SESSION['system_info'])) {
+					$originalFileName = pathinfo($_FILES['img']['name'], PATHINFO_FILENAME);
+					$fileExtension = pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
+					/* $fname = $dir . "(" . $originalFileName . ")" . time() . "." . $fileExtension; */
+					$fname = $dir . $originalFileName . "_" . date("Y-m-d") . "." . $fileExtension;
+
+			
+					$move = move_uploaded_file($_FILES['img']['tmp_name'], base_app.$fname);
+			
+					if ($move) {
+						$this->conn->query("UPDATE `uploads` SET `upload_path` = '{$fname}' WHERE id ='{$id}' ");
+			
+						if (!empty($upload_path) && is_file(base_app.$upload_path)) {
+							unlink(base_app.$upload_path);
+						}
+					}
+				}
+			}
+
+		}else{
+			$resp['status'] = 'failed';
+			$resp['err'] = $this->conn->error."[{$sql}]";
+		}
+		return json_encode($resp);
+	}
+
+	/* function save_offense(){
 		extract($_POST);
 		$data = "";
 		foreach($_POST as $k =>$v){
@@ -361,7 +428,7 @@ Class Master extends DBConnection {
 		}
 		return json_encode($resp);
 
-	}
+	} */
 	//------------------------------------------------------------------------------------------------------
 
 	function save_leave_type(){
@@ -426,7 +493,8 @@ Class Master extends DBConnection {
 	 
 		return $random_string;
 	}
-	function upload_files(){
+
+	/* function upload_files(){
 		extract($_POST);
 		$data = "";
 		if(empty($upload_code)){
@@ -468,7 +536,8 @@ Class Master extends DBConnection {
 		$resp['images'] = $images;
 		$resp['status'] = 'success';
 		return json_encode($resp);
-	}
+	} */	
+
 	function save_employee(){
 		foreach($_POST as $k =>$v){
 			$_POST[$k] = addslashes($v);

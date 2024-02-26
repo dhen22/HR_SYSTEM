@@ -33,6 +33,10 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 							<label for="date_issuance" class="control-label">Date issuance</label>
 							<input type="date" id="date_issuance" class="form-control form" required name="date_issuance" value="<?php echo isset($date_issuance) ? date("Y-m-d",strtotime($date_issuance)) : '' ?>">
 						</div>
+						<div class="form-group">
+							<label for="code" class="control-label">Code</label>
+							<input name="code" id="code" type="text" class="form-control form" value="<?php echo isset($code) ? $code : ''; ?>" required/>
+						</div>
 
 						<!-- attachement of file -->
 

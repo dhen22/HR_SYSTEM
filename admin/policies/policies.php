@@ -68,6 +68,10 @@
         $('.view_policies').click(function () {
             uni_modal("</i>", "policies/view_policies.php?id=" + $(this).attr('data-id'))
         })
-        $('.table').dataTable(); // Note: Make sure you have included the DataTables library
+        $('.table').dataTable();
     })
+
+    function toggleDescription(id) {
+        console.log("Toggling description for ID: " + id);
+    }
 </script>

@@ -1,6 +1,25 @@
 <style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
     .nav li a {
-        font-size: 16px; /* Font size of the navigation text */
+        font-size: 16px;
+        color: #333;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .nav-item.dropdown {
+        position: relative;
+    }
+
+    .nav-item.dropdown .nav-link {
+        display: block;
+        padding: 8px 8px;
+        color: #333;
+        text-decoration: none;
+        transition: background-color 0.3s;
     }
 </style>
 
@@ -145,42 +164,28 @@
                       </a>
                     </li>
 
-                    <!-- <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=memo/memo" class="nav-link nav-memo_memo">
-                        <i class="nav-icon fas fa-envelope"></i>
-                        <p>
-                          Memos
-                        </p>
-                      </a>
-                    </li> -->
-
-                    <!-- Updated memo with List of Previous Memos (2024-01-25) Den -->
-
                     <li class="nav-item dropdown">
-                      <a href="#" class="nav-link nav-memo_memo nav-memo_memo">
+                      <a href="#" class="nav-link nav-memo_memo nav-memo_upload_memo">
                         <i class="nav-icon fas fa-envelope"></i>
                         <p>
-                          Memos
-                          <span class="right badge badge-danger">List</span>
+                          Company Memo
                         </p>
                       </a>
                       <ul class="nav nav-treeview memos-submenu">
                         <li class="nav-item">
                           <a href="<?php echo base_url ?>admin/?page=memo/memo" class="nav-link">
                             <i class="nav-icon fas fa-file"></i>
-                            <p>List Of Memos</p>
+                            <p>Memo List</p>
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a href="<?php echo base_url ?>admin/?page=memo/upload_memo" class="nav-link">
+                          <a href="<?php echo base_url ?>admin/?page=memo/previous_memo" class="nav-link">
                             <i class="nav-icon fas fa-file"></i>
                             <p>Previous Memos</p>
                           </a>
                         </li>
                       </ul>
                     </li>
-
-                    <!-- +++++++++++++++++++++++++++++++++++++++++++ -->
 
                     <li class="nav-header">Manual</li>
 

@@ -8,7 +8,7 @@
 		<h3 class="card-title">List of Designation</h3>
 		<?php if($_settings->userdata('type') == 1): ?>
 		<div class="card-tools">
-			<a href="javascript:void(0)" class="btn btn-flat btn-primary" id="create_new"><span class="fas fa-plus"></span>  Create New</a>
+			<a href="javascript:void(0)" class="btn btn-primary" id="create_new"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
 		<?php endif; ?>
 	</div>
@@ -38,7 +38,7 @@
 							<td ><p class="truncate m-0"><?php echo $row['description'] ?></p></td>
 							<td><?php echo ($row['date_updated'] != null) ? date('Y-m-d H:i',strtotime($row['date_updated'])) : date('Y-m-d H:i',strtotime($row['date_created'])); ?></td>
 							<td align="center">
-								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+								 <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>
@@ -67,7 +67,9 @@
 		$('#create_new').click(function(){
 			uni_modal("<i class='fa fa-plus'></i> Create New Designation",'maintenance/manage_designation.php')
 		})
-		$('.table').dataTable();
+		$('.table').dataTable({
+            "lengthMenu": [[50, 100, -1], [50, 100, "All"]] // This will display dropdown with options for 50, 100 and all entries
+        });
 	})
 	function delete_designation($id){
 		start_loader();

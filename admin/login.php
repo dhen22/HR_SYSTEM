@@ -40,7 +40,7 @@
             <a href="<?php echo base_url ?>">Go to Portal</a>
           </div>
           <div class="col text-right">
-            <button type="submit" class="btn btn-primary btn-flat btn-sm">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-sm">Sign In</button>
           </div>
           <!-- /.col -->
         </div>

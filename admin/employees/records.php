@@ -37,69 +37,12 @@ if(isMobileDevice()):
     <div class="card-body">
         <div class="w-100 d-flex justify-content-end mb-3">
             <?php if($_settings->userdata('type') != 3): ?>
-            <a href="?page=employees/manage_employee&id=<?php echo $id ?>" class="btn btn-flat btn-primary"><span class="fas fa-edit"></span>  Edit Employee</a>
-            <a href="javascript:void(0)" class="btn btn-flat btn-success ml-3" id="print"><span class="fas fa-print"></span>  Print</a>
+            <a href="?page=employees/manage_employee&id=<?php echo $id ?>" class="btn btn-primary"><span class="fas fa-edit"></span>  Edit Employee</a>
+            <a href="javascript:void(0)" class="btn btn-success ml-3" id="print"><span class="fas fa-print"></span>  Print</a>
             <?php endif; ?>
         </div>
         <div id="print_out">
         <table class="table info-table"> <!-- INFORMATION OF EMPLOYEES -->
-            <!-- <tr class='boder-0'>
-                <td width="20%">
-                    <div class="w-100 d-flex align-items-center justify-content-center">
-                        <img src="<?php echo validate_image($avatar) ?>" alt="Employee Avatar" class="img-thumbnail" id="cimg">
-                    </div>
-                </td>
-                <td width="70%" class='boder-0 align-bottom'>
-                    <div class="row">
-                        <div class="col-14">
-                            <div class="card">
-                                <div class="card-header" style="background-color: #27374D ;padding: 0.3rem 1rem">
-                                    <h3 class="card-title" style="color:white;">Personal Information</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row w-max-100 mr-0 mb-1">
-                                        <div class="col-4 col-md-3">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 12px;">Emp. ID:</label>
-                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo $employee_id ?>">
-                                        </div>
-                                        <div class="col-4 col-md-5">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Company:</label>
-                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo $company ?>">
-                                        </div>
-                                        <div class="col-3 col-md-4">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 12px;">Date Hired:</label>
-                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo date("M d, Y",strtotime($date_hired)) ?>">
-                                        </div>
-                                    </div>
-
-                                    <div class="row w-max-100 mr-0 mb-1">
-                                        <div class="col-8 col-md-8">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">Name:</label>
-                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo $name ?>">
-                                        </div>
-                                        <div class="col-3 col-md-4">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 15px;">Birth Date:</label>
-                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo date("M d, Y",strtotime($dob)) ?>">
-                                        </div>
-                                    </div>
-
-                                    <div class="row w-max-100 mr-0 mb-1">
-                                        <div class="col-8 col-md-8">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Address:</label>
-                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo $address ?>">
-                                        </div>
-                                        <div class="col-3 col-md-4">
-                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 35px;">Gender:</label>
-                                            <input type="text" class="form-control" style="background-color:white;" readonly value="<?php echo $sex ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr> -->
-            
             <div class="card">
                 <div class="card-header" style="background-color: #0039a6 ;padding: 0.4rem 1rem">
                     <h3 class="card-title" style="color:white;">Personal Information</h3>
@@ -120,7 +63,7 @@ if(isMobileDevice()):
                         </div>
                         <div class="col-2 col-md-2">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Status</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo 'Single' ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $status ?>">
                         </div>
                         <div class="col-2 col-md-2">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 35px;">Sex</label>
@@ -156,13 +99,13 @@ if(isMobileDevice()):
                         </div>
                         <div class="col-2 col-md-2">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 15px;">Birth Date</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo date("M d, Y", strtotime($dob)) ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo date("M d, Y", strtotime($birthdate)) ?>">
                         </div>
                         <div class="col-2 col-md-2">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 15px;">Age</label>
                             <?php
                             // Calculate age
-                            $birthDate = new DateTime($dob);
+                            $birthDate = new DateTime($birthdate);
                             $today = new DateTime();
                             $age = $today->diff($birthDate)->y;
 

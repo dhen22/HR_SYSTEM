@@ -5,13 +5,14 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
     $qry = $conn->query("SELECT * FROM `policies_list` WHERE id = '{$_GET['id']}' ");
     if ($qry->num_rows > 0) {
         $policy = $qry->fetch_assoc();
-        $title = $policy['title'];
+        $code = $policy['code'];
     }
 }
 
-// Fetch policies with the same title
-$title_policies_query = $conn->query("SELECT * FROM `policies_list` WHERE title LIKE '%$title%' COLLATE utf8mb4_general_ci");
-$title_policies = $title_policies_query->fetch_all(MYSQLI_ASSOC);
+// Fetch policies with the same code
+/* $code_policies_query = $conn->query("SELECT * FROM `policies_list` WHERE code LIKE '%$code%' COLLATE utf8mb4_general_ci"); */
+$code_policies_query = $conn->query("SELECT * FROM `policies_list` WHERE code = '$code' COLLATE utf8mb4_general_ci");
+$code_policies = $code_policies_query->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
@@ -45,7 +46,10 @@ $title_policies = $title_policies_query->fetch_all(MYSQLI_ASSOC);
 
     .accordion-title {
         cursor: pointer;
-        font-size: 17px; /* Adjust the font size as needed */
+        font-size: 17px;
+        font-weight: bold;
+        height: 30px;
+        padding-top: 5px;
     }
 </style>
 
@@ -59,27 +63,28 @@ $title_policies = $title_policies_query->fetch_all(MYSQLI_ASSOC);
         <div class="long-line"></div>
         <br>
 
-        <?php if (count($title_policies) > 1) : ?>
+        <?php if (count($code_policies) >= 1) : ?>
             <!-- Accordion Start -->
             <div id="accordion">
-                <?php foreach ($title_policies as $index => $title_policy) : ?>
-                    <?php if ($title_policy['status'] != 0) : ?>
+                <?php foreach ($code_policies as $index => $code_policy) : ?>
+                    <?php if ($code_policy['status'] == 0 or $code_policy['status'] == 1 ) : ?>
                         <div class="card">
                             <div class="card-header" id="heading_<?php echo $index; ?>">
                                 <h5 class="mb-0 accordion-title" data-toggle="collapse" data-target="#collapse_<?php echo $index; ?>" aria-expanded="<?php echo ($index === 0) ? 'true' : 'false'; ?>" aria-controls="collapse_<?php echo $index; ?>">
-                                    <?php echo $title_policy['title']; ?>
+                                    <?php echo $code_policy['title']; ?>
                                 </h5>
                             </div>
 
                             <div id="collapse_<?php echo $index; ?>" class="collapse <?php echo ($index === 0) ? 'show' : ''; ?>" aria-labelledby="heading_<?php echo $index; ?>" data-parent="#accordion">
                                 <div class="card-body">
                                     <div class="description-container">
-                                        <p><?php echo $title_policy['description']; ?></p>
+                                        <p><?php echo $code_policy['description']; ?></p>
                                     </div>
 
                                     <!-- Additional content for each accordion item -->
                                     <div class="description-container" style="text-align: center;">
-                                        <p>For Detailed Policy, Refer to <a href="<?php echo base_url; ?><?php echo $title_policy['avatar']; ?>" target="_blank"><?php echo $title_policy['refer']; ?></a></p>
+                                        <p>For Detailed Policy, Refer to <a href="<?php echo base_url; ?><?php echo $code_policy['avatar']; ?>" target="_blank"><?php echo $code_policy['refer']; ?></a></p>
+                                        <p>Code: <?php echo $code_policy['code'] ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -99,14 +104,15 @@ $title_policies = $title_policies_query->fetch_all(MYSQLI_ASSOC);
                 <div id="single-policy" class="collapse show" aria-labelledby="single-heading" data-parent="#accordion">
                     <div class="card-body">
                         <div class="description-container">
-                            <?php foreach ($title_policies as $title_policy) : ?>
-                                <p><?php echo $title_policy['description']; ?></p>
+                            <?php foreach ($code_policies as $code_policy) : ?>
+                                <p><?php echo $code_policy['description']; ?></p>
                             <?php endforeach; ?>
                         </div>
 
                         <!-- Additional content for single policy display -->
                         <div class="description-container" style="text-align: center;">
-                            <p>For Detailed Policy, Refer to <a href="<?php echo base_url; ?><?php echo $title_policy['avatar']; ?>" target="_blank"><?php echo $title_policy['refer']; ?></a></p>
+                            <p>For Detailed Policy, Refer to <a href="<?php echo base_url; ?><?php echo $code_policy['avatar']; ?>" target="_blank"><?php echo $code_policy['refer']; ?></a></p>
+                            <p>Code: <?php echo $code_policy['code'] ?></p>
                         </div>
                         <!-- End Additional content -->
                     </div>

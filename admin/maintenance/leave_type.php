@@ -8,7 +8,7 @@
 		<h3 class="card-title">List of Leave Types</h3>
 		<?php if($_settings->userdata('type') == 1): ?>
 		<div class="card-tools">
-			<a href="javascript:void(0)" class="btn btn-flat btn-primary" id="create_new"><span class="fas fa-plus"></span>  Create New</a>
+			<a href="javascript:void(0)" class="btn btn-primary" id="create_new"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
 		<?php endif; ?>
 	</div>
@@ -48,7 +48,7 @@
 							</td>
 							<td><?php echo ($row['date_updated'] != null) ? date('Y-m-d H:i',strtotime($row['date_updated'])) : date('Y-m-d H:i',strtotime($row['date_created'])); ?></td>
 							<td align="center">
-								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+								 <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>

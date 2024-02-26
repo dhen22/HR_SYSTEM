@@ -39,7 +39,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="username">Username</label>
-							<input type="text" name="username" id="username" class="form-control rounded-0" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
+							<input type="text" name="username" id="username" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -67,14 +67,14 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="employee_id">Employee ID</label>
-                            <input type="text" name="employee_id" id="employee_id" class="form-control rounded-0"
+                            <input type="text" name="employee_id" id="employee_id" class="form-control"
                                    value="<?php echo isset($meta['employee_id']) ? $meta['employee_id'] : '' ?>" required>
                         </div>
                     </div>
 					<div class="col-md-2">
                         <div class="form-group">
                             <label for="date_hired">Date Hired</label>
-                            <input type="date" name="date_hired" id="date_hired" class="form-control rounded-0"
+                            <input type="date" name="date_hired" id="date_hired" class="form-control"
                                    value="<?php echo isset($meta['date_hired']) ? date("Y-m-d", strtotime($meta['date_hired'])) : '' ?>"
                                    required>
                         </div>
@@ -83,7 +83,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
                         <div class="form-group">
                             <label for="company">Company</label>
                             <select name="company" id="company"
-                                    class="form-control select2bs4 select2 rounded-0"
+                                    class="form-control select2bs4 select2"
                                     data-placeholder="Select Company" required>
                                 <option value="" disabled <?php echo !isset($meta['company']) ? 'selected' : '' ?>></option>
                                 <option value="ALSC - Asian Land Strategies Company" <?php echo (isset($meta['company']) && $meta['company'] == 'ALSC') ? 'selected' : '' ?>>ALSC - Asian Land Strategies Company
@@ -97,7 +97,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select name="status" id="status"
-                                    class="form-control select2bs4 select2 rounded-0"
+                                    class="form-control select2bs4 select2"
                                     data-placeholder="Select status" required>
                                 <option value="" disabled <?php echo !isset($meta['status']) ? 'selected' : '' ?>></option>
                                 <option value="Head of Family" <?php echo (isset($meta['status']) && $meta['status'] == 'Head of Family') ? 'selected' : '' ?>>Head of Family
@@ -131,7 +131,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
                         <div class="form-group">
                             <label for="sex">Sex</label>
                             <select name="sex" id="sex"
-                                    class="form-control select2bs4 select2 rounded-0"
+                                    class="form-control select2bs4 select2"
                                     data-placeholder="Select Gender" required>
                                 <option value="" disabled <?php echo !isset($meta['sex']) ? 'selected' : '' ?>></option>
                                 <option value="Female" <?php echo (isset($meta['sex']) && $meta['sex'] == 'Female') ? 'selected' : '' ?>>Female
@@ -147,21 +147,21 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="lastname">Last Name</label>
-                            <input type="text" name="lastname" id="lastname" class="form-control rounded-0"
+                            <input type="text" name="lastname" id="lastname" class="form-control"
                                    value="<?php echo isset($meta['lastname']) ? $meta['lastname'] : '' ?>">
                         </div>
                     </div>
 					<div class="col-md-4">
                         <div class="form-group">
                             <label for="firstname">First Name</label>
-                            <input type="text" name="firstname" id="firstname" class="form-control rounded-0"
+                            <input type="text" name="firstname" id="firstname" class="form-control"
                                    value="<?php echo isset($meta['firstname']) ? $meta['firstname'] : '' ?>" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="middlename">Middle Name</label>
-                            <input type="text" name="middlename" id="middlename" class="form-control rounded-0"
+                            <input type="text" name="middlename" id="middlename" class="form-control"
                                    value="<?php echo isset($meta['middlename']) ? $meta['middlename'] : '' ?>" required>
                         </div>
                     </div>
@@ -171,14 +171,14 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					<div class="col-md-8">
 						<div class="form-group">
 							<label for="address">Address</label>
-							<input type="text" name="address" id="address" class="form-control rounded-0"
+							<input type="text" name="address" id="address" class="form-control"
                                    value="<?php echo isset($meta['address']) ? $meta['address'] : '' ?>" required>
 						</div>
                     </div>
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="email">Email Address</label>
-							<input type="text" name="email" id="email" class="form-control rounded-0"
+							<input type="text" name="email" id="email" class="form-control"
 									value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>" required>
 						</div>
                     </div>
@@ -187,7 +187,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="designation_id">Position</label>
-							<select name="designation_id" id="designation_id" class="form-control select2bs4 select2 rounded-0" data-placeholder="Please Select Designation here" reqiured>
+							<select name="designation_id" id="designation_id" class="form-control select2bs4 select2" data-placeholder="Please Select Designation here" reqiured>
 								<option value="" disabled <?php echo !isset($meta['designation_id']) ? 'selected' : '' ?>></option>
 								<?php foreach($desg_arr as $k=>$v): ?>
 									<option value="<?php echo $k ?>" <?php echo (isset($meta['designation_id']) && $meta['designation_id'] == $k) ? 'selected' : '' ?>><?php echo $v ?></option>
@@ -198,15 +198,15 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="contact">Contact No.</label>
-							<input type="text" name="contact" id="contact" class="form-control rounded-0"
+							<input type="text" name="contact" id="contact" class="form-control"
 								value="<?php echo isset($meta['contact']) ? $meta['contact'] : '' ?>" required>
 						</div>
 					</div>
 					<div class="col-md-2">
 						<div class="form-group">
-							<label for="dob">Date of Birth</label>
-							<input type="date" name="dob" id="dob" class="form-control rounded-0"
-								value="<?php echo isset($meta['dob']) ? date("Y-m-d", strtotime($meta['dob'])) : '' ?>" required>
+							<label for="birthdate">Date of Birth</label>
+							<input type="date" name="birthdate" id="birthdate" class="form-control"
+								value="<?php echo isset($meta['birthdate']) ? date("Y-m-d", strtotime($meta['birthdate'])) : '' ?>" required>
 						</div>
 					</div>
 					<div class="col-md-2">
@@ -223,7 +223,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					<div class="col-md-4">		
 						<div class="form-group">
 							<label for="department_id">Department</label>
-							<select name="department_id" id="department_id" class="form-control select2bs4 select2 rounded-0" data-placeholder="Please Select Department" reqiured>
+							<select name="department_id" id="department_id" class="form-control select2bs4 select2" data-placeholder="Please Select Department" reqiured>
 								<option value="" disabled <?php echo !isset($meta['department_id']) ? 'selected' : '' ?>></option>
 								<?php foreach($dept_arr as $k=>$v): ?>
 									<option value="<?php echo $k ?>" <?php echo (isset($meta['department_id']) && $meta['department_id'] == $k) ? 'selected' : '' ?>><?php echo $v ?></option>
@@ -235,7 +235,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 						<div class="form-group">
 							<label for="division">Division</label>
 							<select name="division" id="division"
-									class="form-control select2bs4 select2 rounded-0"
+									class="form-control select2bs4 select2"
 									data-placeholder="Please Select division" required>
 								<option value="" disabled <?php echo !isset($meta['division']) ? 'selected' : '' ?>></option>
 								<option value="Rank" <?php echo (isset($meta['division']) && $meta['division'] == 'Rank') ? 'selected' : '' ?>>Rank
@@ -255,7 +255,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 						<div class="form-group">
 							<label for="emp_status">Employment Status</label>
 							<select name="emp_status" id="emp_status"
-									class="form-control select2bs4 select2 rounded-0"
+									class="form-control select2bs4 select2"
 									data-placeholder="Please Select Employment Status" required>
 								<option value="" disabled <?php echo !isset($meta['emp_status']) ? 'selected' : '' ?>></option>
 								<option value="Probationary" <?php echo (isset($meta['emp_status']) && $meta['emp_status'] == 'Probationary') ? 'selected' : '' ?>>Probationary
@@ -277,7 +277,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 						<div class="form-group">
 							<label for="section">Section</label>
 							<select name="section" id="section"
-									class="form-control select2bs4 select2 rounded-0"
+									class="form-control select2bs4 select2"
 									data-placeholder="Please Select Section" required>
 								<option value="" disabled <?php echo !isset($meta['section']) ? 'selected' : '' ?>></option>
 								<option value="Accounting" <?php echo (isset($meta['section']) && $meta['section'] == 'Accounting') ? 'selected' : '' ?>>Accounting
@@ -338,7 +338,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					<div class="col-md-4">
                         <div class="form-group">
                             <label for="sbc">SBC Account No</label>
-                            <input type="text" name="sbc" id="sbc" class="form-control rounded-0"
+                            <input type="text" name="sbc" id="sbc" class="form-control"
                                    value="<?php echo isset($meta['sbc']) ? $meta['sbc'] : '' ?>">
                         </div>
                     </div>
@@ -347,28 +347,28 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="tin">T.I.N No</label>
-                            <input type="text" name="tin" id="tin" class="form-control rounded-0"
+                            <input type="text" name="tin" id="tin" class="form-control"
                                    value="<?php echo isset($meta['tin']) ? $meta['tin'] : '' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="sss">SSS No</label>
-                            <input type="text" name="sss" id="sss" class="form-control rounded-0"
+                            <input type="text" name="sss" id="sss" class="form-control"
                                    value="<?php echo isset($meta['sss']) ? $meta['sss'] : '' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="pagibig">Pag-Ibig</label>
-                            <input type="text" name="pagibig" id="pagibig" class="form-control rounded-0"
+                            <input type="text" name="pagibig" id="pagibig" class="form-control"
                                    value="<?php echo isset($meta['pagibig']) ? $meta['pagibig'] : '' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="philhealth">PhilHealth</label>
-                            <input type="text" name="philhealth" id="philhealth" class="form-control rounded-0"
+                            <input type="text" name="philhealth" id="philhealth" class="form-control"
                                    value="<?php echo isset($meta['philhealth']) ? $meta['philhealth'] : '' ?>">
                         </div>
                     </div>
@@ -381,29 +381,29 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					<div class="col-md-3">
 						<div class="form-group">
 							<label for="first_salary">Salary 1</label>
-							<input type="text" name="first_salary" id="first_salary" class="form-control rounded-0"
-								value="<?php echo isset($meta['first_salary']) ? $meta['first_salary'] : '0.00' ?>">
+							<input type="text" name="first_salary" id="first_salary" class="form-control"
+								value="<?php echo isset($meta['first_salary']) ? $meta['first_salary'] : '0' ?>">
 						</div>
 					</div>
 
 					<div class="col-md-3">
 						<div class="form-group">
 							<label for="first_allow">Allowance 1</label>
-							<input type="text" name="first_allow" id="first_allow" class="form-control rounded-0"
-								value="<?php echo isset($meta['first_allow']) ? $meta['first_allow'] : '0.00' ?>">
+							<input type="text" name="first_allow" id="first_allow" class="form-control"
+								value="<?php echo isset($meta['first_allow']) ? $meta['first_allow'] : '0' ?>">
 						</div>
 					</div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="transpo">Transpo Allowance</label>
-                            <input type="text" name="transpo" id="transpo" class="form-control rounded-0"
-								   value="<?php echo isset($meta['transpo']) ? $meta['transpo'] : '0.00' ?>">
+                            <input type="text" name="transpo" id="transpo" class="form-control"
+								   value="<?php echo isset($meta['transpo']) ? $meta['transpo'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="effectivity">Effectivity Date</label>
-                            <input type="date" name="effectivity" id="effectivity" class="form-control rounded-0"
+                            <input type="date" name="effectivity" id="effectivity" class="form-control"
                                    value="<?php echo isset($meta['effectivity']) ? date("Y-m-d", strtotime($meta['effectivity'])) : '' ?>"
                                    required>
                         </div>
@@ -411,29 +411,29 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="second_salary">Salary 2</label>
-                            <input type="text" name="second_salary" id="second_salary" class="form-control rounded-0"
-                                   value="<?php echo isset($meta['second_salary']) ? $meta['second_salary'] : '0.00' ?>">
+                            <input type="text" name="second_salary" id="second_salary" class="form-control"
+                                   value="<?php echo isset($meta['second_salary']) ? $meta['second_salary'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="second_allow">Allowance 2</label>
-                            <input type="text" name="second_allow" id="second_allow" class="form-control rounded-0"
-                                   value="<?php echo isset($meta['second_allow']) ? $meta['second_allow'] : '0.00' ?>">
+                            <input type="text" name="second_allow" id="second_allow" class="form-control"
+                                   value="<?php echo isset($meta['second_allow']) ? $meta['second_allow'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="cashier">Cashier Allowance</label>
-                            <input type="text" name="cashier" id="cashier" class="form-control rounded-0"
-                                   value="<?php echo isset($meta['cashier']) ? $meta['cashier'] : '0.00' ?>">
+                            <input type="text" name="cashier" id="cashier" class="form-control"
+                                   value="<?php echo isset($meta['cashier']) ? $meta['cashier'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="atm">ATM Account No</label>
-                            <input type="text" name="atm" id="atm" class="form-control rounded-0"
-                                   value="<?php echo isset($meta['atm']) ? $meta['atm'] : '0.00' ?>">
+                            <input type="text" name="atm" id="atm" class="form-control"
+                                   value="<?php echo isset($meta['atm']) ? $meta['atm'] : '0' ?>">
                         </div>
                     </div>
 				</div>
@@ -445,23 +445,23 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					<div class="col-md-3">
 						<div class="form-group">
 							<label for="deduc_ghp">GHP</label>
-							<input type="text" name="deduc_ghp" id="deduc_ghp" class="form-control rounded-0"
-								value="<?php echo isset($meta['deduc_ghp']) ? $meta['deduc_ghp'] : '0.00' ?>">
+							<input type="text" name="deduc_ghp" id="deduc_ghp" class="form-control"
+								value="<?php echo isset($meta['deduc_ghp']) ? $meta['deduc_ghp'] : '0' ?>">
 						</div>
 					</div>
 
 					<div class="col-md-3">
 						<div class="form-group">
 							<label for="deduc_ma">MA</label>
-							<input type="text" name="deduc_ma" id="deduc_ma" class="form-control rounded-0"
-								value="<?php echo isset($meta['deduc_ma']) ? $meta['deduc_ma'] : '0.00' ?>">
+							<input type="text" name="deduc_ma" id="deduc_ma" class="form-control"
+								value="<?php echo isset($meta['deduc_ma']) ? $meta['deduc_ma'] : '0' ?>">
 						</div>
 					</div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="deduc_tax">Tax Amount</label>
-                            <input type="text" name="deduc_tax" id="deduc_tax" class="form-control rounded-0"
-								   value="<?php echo isset($meta['deduc_tax']) ? $meta['deduc_tax'] : '0.00' ?>">
+                            <input type="text" name="deduc_tax" id="deduc_tax" class="form-control"
+								   value="<?php echo isset($meta['deduc_tax']) ? $meta['deduc_tax'] : '0' ?>">
                         </div>
                     </div>
 				</div>
@@ -473,72 +473,72 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					<div class="col-md-3">
 						<div class="form-group">
 							<label for="deduc_salary">Salary</label>
-							<input type="text" name="deduc_salary" id="deduc_salary" class="form-control rounded-0"
-								value="<?php echo isset($meta['deduc_salary']) ? $meta['deduc_salary'] : '0.00' ?>">
+							<input type="text" name="deduc_salary" id="deduc_salary" class="form-control"
+								value="<?php echo isset($meta['deduc_salary']) ? $meta['deduc_salary'] : '0' ?>">
 						</div>
 					</div>
 
 					<div class="col-md-3">
 						<div class="form-group">
 							<label for="deduc_sss">SSS Loan</label>
-							<input type="text" name="deduc_sss" id="deduc_sss" class="form-control rounded-0"
-								value="<?php echo isset($meta['deduc_sss']) ? $meta['deduc_sss'] : '0.00' ?>">
+							<input type="text" name="deduc_sss" id="deduc_sss" class="form-control"
+								value="<?php echo isset($meta['deduc_sss']) ? $meta['deduc_sss'] : '0' ?>">
 						</div>
 					</div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="deduc_pagibig_mpl">Pag-Ibig Loan (MPL)</label>
-                            <input type="text" name="deduc_pagibig_mpl" id="deduc_pagibig_mpl" class="form-control rounded-0"
-								   value="<?php echo isset($meta['deduc_pagibig_mpl']) ? $meta['deduc_pagibig_mpl'] : '0.00' ?>">
+                            <input type="text" name="deduc_pagibig_mpl" id="deduc_pagibig_mpl" class="form-control"
+								   value="<?php echo isset($meta['deduc_pagibig_mpl']) ? $meta['deduc_pagibig_mpl'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="deduc_pagibig_cal">Pag-Ibig Loan (Cal)</label>
-                            <input type="text" name="deduc_pagibig_cal" id="deduc_pagibig_cal" class="form-control rounded-0"
-								value="<?php echo isset($meta['deduc_pagibig_cal']) ? $meta['deduc_pagibig_cal'] : '0.00' ?>">
+                            <input type="text" name="deduc_pagibig_cal" id="deduc_pagibig_cal" class="form-control"
+								value="<?php echo isset($meta['deduc_pagibig_cal']) ? $meta['deduc_pagibig_cal'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="deduc_medical">Medical</label>
-                            <input type="text" name="deduc_medical" id="deduc_medical" class="form-control rounded-0"
-                                   value="<?php echo isset($meta['deduc_medical']) ? $meta['deduc_medical'] : '0.00' ?>">
+                            <input type="text" name="deduc_medical" id="deduc_medical" class="form-control"
+                                   value="<?php echo isset($meta['deduc_medical']) ? $meta['deduc_medical'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="deduc_emergency">Emergency</label>
-                            <input type="text" name="deduc_emergency" id="deduc_emergency" class="form-control rounded-0"
-                                   value="<?php echo isset($meta['deduc_emergency']) ? $meta['deduc_emergency'] : '0.00' ?>">
+                            <input type="text" name="deduc_emergency" id="deduc_emergency" class="form-control"
+                                   value="<?php echo isset($meta['deduc_emergency']) ? $meta['deduc_emergency'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="deduc_car">Car Loan</label>
-                            <input type="text" name="deduc_car" id="deduc_car" class="form-control rounded-0"
-                                   value="<?php echo isset($meta['deduc_car']) ? $meta['deduc_car'] : '0.00' ?>">
+                            <input type="text" name="deduc_car" id="deduc_car" class="form-control"
+                                   value="<?php echo isset($meta['deduc_car']) ? $meta['deduc_car'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="deduc_educ">Educational</label>
-                            <input type="text" name="deduc_educ" id="deduc_educ" class="form-control rounded-0"
-                                   value="<?php echo isset($meta['deduc_educ']) ? $meta['deduc_educ'] : '0.00' ?>">
+                            <input type="text" name="deduc_educ" id="deduc_educ" class="form-control"
+                                   value="<?php echo isset($meta['deduc_educ']) ? $meta['deduc_educ'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="deduc_planters1">Planters Loan</label>
-                            <input type="text" name="deduc_planters1" id="deduc_planters1" class="form-control rounded-0"
-                                   value="<?php echo isset($meta['deduc_planters1']) ? $meta['deduc_planters1'] : '0.00' ?>">
+                            <input type="text" name="deduc_planters1" id="deduc_planters1" class="form-control"
+                                   value="<?php echo isset($meta['deduc_planters1']) ? $meta['deduc_planters1'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
                             <label for="deduc_planters2">Planters Loan 2nd</label>
-                            <input type="text" name="deduc_planters2" id="deduc_planters2" class="form-control rounded-0"
-                                   value="<?php echo isset($meta['deduc_planters2']) ? $meta['deduc_planters2'] : '0.00' ?>">
+                            <input type="text" name="deduc_planters2" id="deduc_planters2" class="form-control"
+                                   value="<?php echo isset($meta['deduc_planters2']) ? $meta['deduc_planters2'] : '0' ?>">
                         </div>
                     </div>
 				</div>
@@ -611,12 +611,12 @@ var _this = $(this)
 	})
 	$(function(){
 		$('.select2').select2()
-		$('.select2-selection').addClass('form-control rounded-0')
+		$('.select2-selection').addClass('form-control')
 	})
 
 
 	function calculateAge() {
-        var dobValue = document.getElementById('dob').value;
+        var dobValue = document.getElementById('birthdate').value;
 
         if (dobValue) {
             var dob = new Date(dobValue);
@@ -636,7 +636,7 @@ var _this = $(this)
     }
 
     // Attach the calculateAge function to the change event of the date of birth input
-    document.getElementById('dob').addEventListener('change', calculateAge);
+    document.getElementById('birthdate').addEventListener('change', calculateAge);
 
     // Trigger the calculateAge function on page load if the date of birth is pre-filled
     document.addEventListener('DOMContentLoaded', function() {

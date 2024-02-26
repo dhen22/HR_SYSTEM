@@ -94,7 +94,9 @@
 		//$('#create_new').click(function(){
 			//uni_modal("<i class='fa fa-plus'></i> Create New announcement",'announcement/manage_announce.php')
 		//})
-		$('.table').dataTable();
+		$('.table').dataTable({
+            "lengthMenu": [[50, 100, -1], [50, 100, "All"]] // This will display dropdown with options for 50, 100 and all entries
+        });
 	})
 	function delete_policies($id){
 		start_loader();

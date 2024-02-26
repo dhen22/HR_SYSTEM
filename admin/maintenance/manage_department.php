@@ -14,7 +14,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		<input type="hidden" name ="id" value="<?php echo isset($id) ? $id : '' ?>">
 		<div class="form-group">
 			<label for="name" class="control-label">Name</label>
-			<input name="name" id="name" type="text" class="form-control form  rounded-0" value="<?php echo isset($title) ? $name : ''; ?>" required/>
+			<input name="name" id="name" type="text" class="form-control form  rounded-0" value="<?php echo isset($name) ? $name : ''; ?>" required/>
 		</div>
 		<div class="form-group">
 			<label for="description" class="control-label">Description</label>
