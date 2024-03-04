@@ -316,6 +316,8 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 								</option>
 								<option value="Programming" <?php echo (isset($meta['section']) && $meta['section'] == 'Programming') ? 'selected' : '' ?>>Programming
 								</option>
+								<option value="Network/System" <?php echo (isset($meta['section']) && $meta['section'] == 'Network/System') ? 'selected' : '' ?>>Network/System
+								</option>
 								<option value="Repair and Maintenance" <?php echo (isset($meta['section']) && $meta['section'] == 'Repair and Maintenance') ? 'selected' : '' ?>>Repair and Maintenance
 								</option>
 								<option value="Security Admin" <?php echo (isset($meta['section']) && $meta['section'] == 'Security Admin') ? 'selected' : '' ?>>Security Admin

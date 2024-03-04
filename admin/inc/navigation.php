@@ -134,7 +134,7 @@
                     </li> -->
 
                     <?php endif; ?>
-                    <?php if($_settings->userdata('type') <= 2): ?>
+                    <?php if ($_settings->userdata('type') != 2 && $_settings->userdata('type') != 3): ?>
 
                     <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=user/list" class="nav-link nav-user_list">
