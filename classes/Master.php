@@ -346,7 +346,7 @@ Class Master extends DBConnection {
 			else
 				$this->settings->set_flashdata('success',"Uploads successfully updated.");
 
-			#attachement of file
+			#attachement of file -denden 2024-02-27
 			$dir = 'admin/memo/uploads/';
 			if (!is_dir(base_app.$dir)) {
 				mkdir(base_app.$dir);
@@ -355,11 +355,10 @@ Class Master extends DBConnection {
 				if (!empty($_FILES['img']['tmp_name']) && isset($_SESSION['userdata']) && isset($_SESSION['system_info'])) {
 					$originalFileName = pathinfo($_FILES['img']['name'], PATHINFO_FILENAME);
 					$fileExtension = pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
-					/* $fname = $dir . "(" . $originalFileName . ")" . time() . "." . $fileExtension; */
-					$fname = $dir . $originalFileName . "_" . date("Y-m-d") . "." . $fileExtension;
 
+					$fname = $originalFileName . "_" . date("Y-m-d") . "." . $fileExtension;
 			
-					$move = move_uploaded_file($_FILES['img']['tmp_name'], base_app.$fname);
+					$move = move_uploaded_file($_FILES['img']['tmp_name'], base_app.$dir.$fname);
 			
 					if ($move) {
 						$this->conn->query("UPDATE `uploads` SET `upload_path` = '{$fname}' WHERE id ='{$id}' ");
@@ -376,6 +375,20 @@ Class Master extends DBConnection {
 			$resp['err'] = $this->conn->error."[{$sql}]";
 		}
 		return json_encode($resp);
+	}
+
+	function delete_upload_files(){	
+		extract($_POST);
+		$del = $this->conn->query("DELETE FROM `uploads` where id = '{$id}'");
+		if($del){
+			$resp['status'] = 'success';
+			$this->settings->set_flashdata('success',"Uploaded memo successfully deleted.");
+		}else{
+			$resp['status'] = 'failed';
+			$resp['error'] = $this->conn->error;
+		}
+		return json_encode($resp);
+
 	}
 
 	/* function save_offense(){
@@ -823,6 +836,9 @@ switch ($action) {
 	break;
 	case 'upload_files':
 		echo $Master->upload_files();
+	break;
+	case 'delete_upload_files':
+		echo $Master->delete_upload_files();
 	break;
 	case 'save_employee':
 		echo $Master->save_employee();

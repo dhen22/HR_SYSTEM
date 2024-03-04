@@ -44,6 +44,7 @@
 						<th>Employee ID</th>
 						<th>Name</th>
 						<th>Details</th>
+						<th>Division</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -69,9 +70,10 @@
 							<td >
 								<p class="m-0 ">
 									<b>Department: </b><?php echo isset($dept_arr[$row['department_id']]) ? $dept_arr[$row['department_id']] : 'N/A' ?><br>
-									<b>Designation: </b><?php echo isset($desg_arr[$row['designation_id']]) ? $desg_arr[$row['designation_id']] : 'N/A' ?><br>
+									<b>Position: </b><?php echo isset($desg_arr[$row['designation_id']]) ? $desg_arr[$row['designation_id']] : 'N/A' ?><br>
 								</p>
 							</td>
+							<td><?php echo ucwords($row['division']) ?></td>
 							<td align="center">
 								 <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
@@ -82,7 +84,7 @@
 				                    <div class="dropdown-divider"></div>
 				                    <a class="dropdown-item" href="?page=employees/manage_employee&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
 				                    <div class="dropdown-divider"></div>
-									<a class="dropdown-item reset_password" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-key text-primary"></span> Reset Passwowrd</a>
+									<a class="dropdown-item reset_password" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-key text-primary"></span> Reset Password</a>
 				                    <div class="dropdown-divider"></div>
 				                    <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
 				                  </div>

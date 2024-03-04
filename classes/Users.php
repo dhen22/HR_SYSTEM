@@ -49,21 +49,21 @@ Class Users extends DBConnection {
 			}
 
 		}else{
-			$qry = $this->conn->query("UPDATE users set $data where id = {$id}");
-			if($qry){
-				$this->settings->set_flashdata('success','User Details successfully updated.');
-				foreach($_POST as $k => $v){
-					if($k != 'id'){
-						if(!empty($data)) $data .=" , ";
-						$this->settings->set_userdata($k,$v);
-					}
+
+			//pag uupdate ng user sa table (users)
+			$qry = $this->conn->query("UPDATE users SET $data WHERE id = {$id}");
+
+			if ($qry) {
+				$this->settings->set_flashdata('success', 'User details successfully updated.');
+
+				if (isset($_POST['fname']) && isset($_POST['move'])) {
+					$this->settings->set_userdata('avatar', $_POST['fname']);
 				}
-				if(isset($fname) && isset($move))
-				$this->settings->set_userdata('avatar',$fname);
 
 				return 1;
-			}else{
-				return "UPDATE users set $data where id = {$id}";
+			} else {
+				// kapag mali ade mali shutabels haha
+				return "Failed to update user details in the database.";
 			}
 			
 		}

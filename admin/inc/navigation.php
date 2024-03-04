@@ -79,7 +79,9 @@
                     </li>
                     <?php endif; ?>
                     
-                    <?php if($_settings->userdata('type') != 2): ?>
+                    <!-- HIDE MUNA TO PANG PHASE 2 -->
+
+                    <!-- <?php if($_settings->userdata('type') != 2): ?>
                     <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=leave_applications" class="nav-link nav-leave_applications">
                         <i class="nav-icon fas fa-file-alt"></i>
@@ -88,34 +90,48 @@
                         </p>
                       </a>
                     </li>
-                    <?php endif; ?>
+                    <?php endif; ?> -->
+
                     <?php if($_settings->userdata('type') != 3): ?>
-                    <?php if($_settings->userdata('type') == 1): ?>
                     
                     <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=maintenance/department" class="nav-link nav-maintenance_department">
-                        <i class="nav-icon fas fa-building"></i>
+                      <a href="#" class="nav-link nav-maintenance_department nav-maintenance_designation">
+                        <i class="nav-icon fa fa-university"></i>
                         <p>
-                          Department List
+                          Position
+                          <i class="right fas fa-angle-left"></i>
                         </p>
                       </a>
+                      <ul class="nav nav-treeview memos-submenu">
+                        <li class="nav-item">
+                          <a href="<?php echo base_url ?>admin/?page=maintenance/department" class="nav-link">
+                            <i class="nav-icon fas fa-building"></i>
+                            <p>
+                              Departments
+                            </p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="<?php echo base_url ?>admin/?page=maintenance/designation" class="nav-link">
+                            <i class="nav-icon fas fa-th-list"></i>
+                            <p>
+                              Designations
+                            </p>
+                          </a>
+                        </li>
+                      </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=maintenance/designation" class="nav-link nav-maintenance_designation">
-                        <i class="nav-icon fas fa-th-list"></i>
-                        <p>
-                          Designation List
-                        </p>
-                      </a>
-                    </li>
-                    <li class="nav-item dropdown">
+
+                    <!-- HIDE MUNA PANG PHASE 2 NA TO -->
+
+                    <!-- <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=maintenance/leave_type" class="nav-link nav-maintenance_leave_type">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
                           Leave Type List
                         </p>
                       </a>
-                    </li>
+                    </li> -->
 
                     <?php endif; ?>
                     <?php if($_settings->userdata('type') <= 2): ?>
@@ -151,7 +167,6 @@
                       </a>
                     </li>
                     <?php endif; ?>
-                    <?php endif; ?>
 
                     <li class="nav-header">Events</li>
                     
@@ -165,16 +180,17 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                      <a href="#" class="nav-link nav-memo_memo nav-memo_upload_memo">
+                      <a href="#" class="nav-link nav-memo_memo nav-memo_previous_memo">
                         <i class="nav-icon fas fa-envelope"></i>
                         <p>
                           Company Memo
+                          <i class="right fas fa-angle-left"></i>
                         </p>
                       </a>
                       <ul class="nav nav-treeview memos-submenu">
                         <li class="nav-item">
                           <a href="<?php echo base_url ?>admin/?page=memo/memo" class="nav-link">
-                            <i class="nav-icon fas fa-file"></i>
+                            <i class="nav-icon fa fa-folder-open"></i>
                             <p>Memo List</p>
                           </a>
                         </li>
@@ -189,6 +205,7 @@
 
                     <li class="nav-header">Manual</li>
 
+                    <!-- only the employee can see this policies -->
                     <?php if($_settings->userdata('type') == 3): ?>
                     <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=policies/policies" class="nav-link nav-policies_policies">
@@ -207,19 +224,17 @@
                         </p>
                       </a>
                     </li>
-
                     <?php endif; ?>
-
-                    <?php if($_settings->userdata('type') != 3): ?>
 
                     <!-- POLICIES -->
 
+                    <?php if($_settings->userdata('type') != 3): ?>
                     <li class="nav-item dropdown">
                       <a href="#" class="nav-link nav-policies_policies nav-policies_list_policies">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
                           Policies
-                          <span class="right badge badge-danger">List</span>
+                          <i class="right fas fa-angle-left"></i>
                         </p>
                       </a>
                       <ul class="nav nav-treeview policies-submenu">
@@ -238,30 +253,15 @@
                       </ul>
                     </li>
 
-                    <!-- TABLE OF OFFENSE -->
+                    <!-- TABLE OF OFFENSE ALL USER CAN VIEW THIS -->
 
                     <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=offense/offense" class="nav-link nav-offense_offense nav-offense_list_offense">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                           Table of Offense
-                          <span class="right badge badge-danger">List</span>
                         </p>
                       </a>
-                      <!-- <ul class="nav nav-treeview offense-submenu">
-                        <li class="nav-item">
-                          <a href="<?php echo base_url ?>admin/?page=offense/offense" class="nav-link">
-                            <i class="nav-icon fas fa-file"></i>
-                            <p>View</p>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="<?php echo base_url ?>admin/?page=offense/list_offense" class="nav-link">
-                            <i class="nav-icon fas fa-file"></i>
-                            <p>List</p>
-                          </a>
-                        </li>
-                      </ul> -->
                     </li>
                     
                     <?php endif; ?>

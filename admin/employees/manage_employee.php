@@ -39,7 +39,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="username">Username</label>
-							<input type="text" name="username" id="username" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
+							<input type="text" name="username" id="username" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username'] : '' ?>" required autocomplete="off" readonly>
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -64,13 +64,13 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 				<hr class="border-dark">
 
                 <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="employee_id">Employee ID</label>
-                            <input type="text" name="employee_id" id="employee_id" class="form-control"
-                                   value="<?php echo isset($meta['employee_id']) ? $meta['employee_id'] : '' ?>" required>
-                        </div>
-                    </div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="employee_id">Employee ID</label>
+							<input type="text" name="employee_id" id="employee_id" class="form-control"
+								value="<?php echo isset($meta['employee_id']) ? $meta['employee_id'] : '' ?>" required>
+						</div>
+					</div>
 					<div class="col-md-2">
                         <div class="form-group">
                             <label for="date_hired">Date Hired</label>
@@ -238,15 +238,15 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 									class="form-control select2bs4 select2"
 									data-placeholder="Please Select division" required>
 								<option value="" disabled <?php echo !isset($meta['division']) ? 'selected' : '' ?>></option>
-								<option value="Rank" <?php echo (isset($meta['division']) && $meta['division'] == 'Rank') ? 'selected' : '' ?>>Rank
+								<option value="RANK" <?php echo (isset($meta['division']) && $meta['division'] == 'RANK') ? 'selected' : '' ?>>RANK
 								</option>
-								<option value="Manager" <?php echo (isset($meta['division']) && $meta['division'] == 'Manager') ? 'selected' : '' ?>>Manager
+								<option value="MANAGER" <?php echo (isset($meta['division']) && $meta['division'] == 'MANAGER') ? 'selected' : '' ?>>MANAGER
 								</option>
-								<option value="Supervisor" <?php echo (isset($meta['division']) && $meta['division'] == 'Supervisor') ? 'selected' : '' ?>>Supervisor
+								<option value="SUPERVISOR" <?php echo (isset($meta['division']) && $meta['division'] == 'SUPERVISOR') ? 'selected' : '' ?>>SUPERVISOR
 								</option>
 								<option value="AVP" <?php echo (isset($meta['division']) && $meta['division'] == 'AVP') ? 'selected' : '' ?>>AVP
 								</option>
-								<option value="Guard" <?php echo (isset($meta['division']) && $meta['division'] == 'Guard') ? 'selected' : '' ?>>Guard
+								<option value="GUARD" <?php echo (isset($meta['division']) && $meta['division'] == 'GUARD') ? 'selected' : '' ?>>GUARD
 								</option>
 							</select>
 						</div>
@@ -313,6 +313,8 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 								<option value="Project Admin" <?php echo (isset($meta['section']) && $meta['section'] == 'Project Admin') ? 'selected' : '' ?>>Project Admin
 								</option>
 								<option value="Purchasing" <?php echo (isset($meta['section']) && $meta['section'] == 'Purchasing') ? 'selected' : '' ?>>Purchasing
+								</option>
+								<option value="Programming" <?php echo (isset($meta['section']) && $meta['section'] == 'Programming') ? 'selected' : '' ?>>Programming
 								</option>
 								<option value="Repair and Maintenance" <?php echo (isset($meta['section']) && $meta['section'] == 'Repair and Maintenance') ? 'selected' : '' ?>>Repair and Maintenance
 								</option>
@@ -576,7 +578,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 	}
 	$('#manage-user').submit(function(e){
 		e.preventDefault();
-var _this = $(this)
+		var _this = $(this)
 		start_loader()
 		$.ajax({
 			url:_base_url_+'classes/Master.php?f=save_employee',
@@ -626,29 +628,32 @@ var _this = $(this)
             if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())) {
                 age--;
             }
-
-            // Update the age input field
             document.getElementById('age').value = age;
         } else {
-            // Clear the age input field if date of birth is not set
             document.getElementById('age').value = '';
         }
     }
 
-    // Attach the calculateAge function to the change event of the date of birth input
     document.getElementById('birthdate').addEventListener('change', calculateAge);
 
-    // Trigger the calculateAge function on page load if the date of birth is pre-filled
     document.addEventListener('DOMContentLoaded', function() {
         calculateAge();
     });
 
 	$(document).ready(function() {
-        // Update readonly input when the dropdown changes
         $('#designation_id').on('change', function() {
             var selectedText = $('#designation_id option:selected').text();
             $('#readonly_designation').val(selectedText);
         });
-    });
 
+		//same value from username and employee_id by default -denden
+		$(document).ready(function(){
+
+			$('#username').val($('#employee_id').val());
+			
+			$('#employee_id').on('input', function(){
+				$('#username').val($(this).val());
+			});
+		});
+    });
 </script>

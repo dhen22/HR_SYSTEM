@@ -18,12 +18,12 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 
 <style>
 	.table tbody tr td {
-		padding: 12px !important; /* Adjust the value as needed */
+		padding: 12px !important;
 	}
 	
 </style>
 
-
+<?php if($_settings->userdata('type') != 3): ?>
 <div class="card card-outline card-primary">
 	<div class="card-body">
 		<form action="" id="upload-form">
@@ -63,66 +63,73 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                         </div>
                     </div>
 				</div>
+				<p>Please note: Our system automatically removes any memo lists older than five years.</p>
 			</div>
 		</form>
 	</div>
 </div>
+<?php endif; ?>
 
-<div class="card">
-	<div class="card-body">
-        <div class="container-fluid">
-			<table class="table table-stripped table-hover">
-				<!-- <thead style="background-color: black;"> -->
-				<thead>
-					<tr style="height:40px;">
-						<th style="color: black; width: 5%;">No.</th>
-						<th style="color: black; width: 30%;">Title</th>
-						<th style="color: black; width: 10;">Date Issuance</th>
-						<th style="color: black; width: 40%;">File Name</th>
-						<th style="color: black; width: 10%;">Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php 
-					$i = 1;
-						$qry = $conn->query("SELECT * from `uploads` order by id desc ");
-						while($row = $qry->fetch_assoc()):
-					?>
-						<tr>
-							<td class="text-center"><?php echo $i++; ?></td>
-							<td><?php echo $row['title'] ?></td>
-							<td><?php echo date('Y-m-d', strtotime($row['date_issuance'])); ?></td>
-							<td><?php echo $row['upload_path'] ?></td>
-							<td align="center">
-								 <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-				                  		Action
-				                    <span class="sr-only">Toggle Dropdown</span>
-				                  </button>
-				                  <div class="dropdown-menu" role="menu">
-								  	<a class="dropdown-item view_memo" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye"></span> View</a>
 
-									<?php if($_settings->userdata('type') == 1 || $_settings->userdata('type') == 2): ?>
-										
-									<div class="dropdown-divider"></div>
-				                    <a class="dropdown-item edit_data"  href="./?page=memo/manage_memo&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
-				                    <div class="dropdown-divider"></div>
-				                    <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
-									<?php endif; ?>
+<?php
+// Delete records older than 5 years from the current date -denden
+$delete_date = date('Y-m-d', strtotime('-5 years'));
+$conn->query("DELETE FROM `uploads` WHERE date_issuance < '{$delete_date}'");
 
-				                  </div>
-							</td>
-						</tr>
-					<?php endwhile; ?>
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
+// Fetch and distinct years from the database -denden
+$qry_years = $conn->query("SELECT DISTINCT YEAR(date_issuance) AS year FROM `uploads` ORDER BY year DESC");
+?>
+
+<?php if($qry_years->num_rows > 0): ?>
+    <?php while($year_row = $qry_years->fetch_assoc()): ?>
+        <div class="card">
+            <div class="card-body">
+                <div class="container-fluid">
+				<h2><?php echo $year_row['year']; ?></h2>
+                    <table class="table table-stripped table-hover">
+                        <thead>
+                            <tr style="height:40px;">
+                                <th style="color: black; width: 5%;">No.</th>
+                                <th style="color: black; width: 30%;">Title</th>
+                                <th style="color: black; width: 10%;">Date Issuance</th>
+                                <th style="color: black; width: 40%;">File Name</th>
+                                <th style="color: black; width: 10%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                            $i = 1;
+                            // Fetch files for the current year -denden
+                            $qry_files = $conn->query("SELECT * FROM `uploads` WHERE YEAR(date_issuance) = '{$year_row['year']}' ORDER BY date_issuance DESC");
+                            while($row = $qry_files->fetch_assoc()):
+                            ?>
+                                <tr>
+                                    <td class="text-center"><?php echo $i++; ?></td>
+                                    <td><?php echo $row['title'] ?></td>
+                                    <td><?php echo date('Y-m-d', strtotime($row['date_issuance'])); ?></td>
+                                    <td><?php echo $row['upload_path'] ?></td>
+                                    <td align="center">
+										<?php if($_settings->userdata('type') == 1 || $_settings->userdata('type') == 2): ?>
+											<a class="delete_data btn btn-sm btn-danger" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>">
+												<span class="fa fa-trash"></span> Remove
+											</a>
+										<?php endif; ?>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <?php endwhile; ?>
+<?php endif; ?>
+
 
 <script>
 	$(document).ready(function(){
 		$('.delete_data').click(function(){
-			_conf("Are you sure to delete this Memo permanently?","delete_memo",[$(this).attr('data-id')])
+			_conf("Are you sure to delete this Memo permanently?","delete_upload_files",[$(this).attr('data-id')])
 		});
 		$('.view_memo').click(function(){
 			uni_modal("</i>","memo/view_memo.php?id="+$(this).attr('data-id'));
@@ -132,7 +139,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 			"paging": false,
 			"ordering": true,
 			"info": false,
-			"searching": false,
+			"searching": false
 		});
 	});
 
@@ -158,19 +165,11 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 					end_loader();
 				},
 				success:function(resp){
-					if(typeof resp =='object' && resp.status == 'success'){
-						location.href = "./?page=memo/previous_memo";
-					}else if(resp.status == 'failed' && !!resp.msg){
-                        var el = $('<div>')
-                            el.addClass("alert alert-danger err-msg").text(resp.msg)
-                            _this.prepend(el)
-                            el.show('slow')
-                            $("html, body").animate({ scrollTop: 0 }, "fast");
-                            end_loader()
-                    }else{
-						alert_toast("An error occured",'error');
+					if(typeof resp== 'object' && resp.status == 'success'){
+						location.reload();
+					}else{
+						alert_toast("An error occured.",'error');
 						end_loader();
-                        console.log(resp)
 					}
 				}
 			})
@@ -182,5 +181,28 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		var fileName = fileInput.val().split("\\").pop();
 		var label = input.parentNode.getElementsByClassName('custom-file-label')[0];
 		label.innerHTML = fileName;
+	}
+
+	function delete_upload_files($id){
+		start_loader();
+		$.ajax({
+			url:_base_url_+"classes/Master.php?f=delete_upload_files",
+			method:"POST",
+			data:{id: $id},
+			dataType:"json",
+			error:err=>{
+				console.log(err)
+				alert_toast("An error occured.",'error');
+				end_loader();
+			},
+			success:function(resp){
+				if(typeof resp== 'object' && resp.status == 'success'){
+					location.reload();
+				}else{
+					alert_toast("An error occured.",'error');
+					end_loader();
+				}
+			}
+		})
 	}
 </script>

@@ -9,9 +9,8 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
     }
 }
 
-// Fetch policies with the same code
 /* $code_policies_query = $conn->query("SELECT * FROM `policies_list` WHERE code LIKE '%$code%' COLLATE utf8mb4_general_ci"); */
-$code_policies_query = $conn->query("SELECT * FROM `policies_list` WHERE code = '$code' COLLATE utf8mb4_general_ci");
+$code_policies_query = $conn->query("SELECT * FROM `policies_list` WHERE code = '$code' COLLATE utf8mb4_general_ci ORDER BY date_issuance DESC");
 $code_policies = $code_policies_query->fetch_all(MYSQLI_ASSOC);
 
 ?>
@@ -54,7 +53,6 @@ $code_policies = $code_policies_query->fetch_all(MYSQLI_ASSOC);
 </style>
 
 <div class="container-fluid">
-    <!-- memo Letter -->
     <div class="card-body memo-letter">
         <div class="modal-logo">
             <h1>Asian Land Strategies Corporation</h1>
@@ -64,7 +62,6 @@ $code_policies = $code_policies_query->fetch_all(MYSQLI_ASSOC);
         <br>
 
         <?php if (count($code_policies) >= 1) : ?>
-            <!-- Accordion Start -->
             <div id="accordion">
                 <?php foreach ($code_policies as $index => $code_policy) : ?>
                     <?php if ($code_policy['status'] == 0 or $code_policy['status'] == 1 ) : ?>
@@ -81,7 +78,6 @@ $code_policies = $code_policies_query->fetch_all(MYSQLI_ASSOC);
                                         <p><?php echo $code_policy['description']; ?></p>
                                     </div>
 
-                                    <!-- Additional content for each accordion item -->
                                     <div class="description-container" style="text-align: center;">
                                         <p>For Detailed Policy, Refer to <a href="<?php echo base_url; ?><?php echo $code_policy['avatar']; ?>" target="_blank"><?php echo $code_policy['refer']; ?></a></p>
                                         <p>Code: <?php echo $code_policy['code'] ?></p>
@@ -92,9 +88,7 @@ $code_policies = $code_policies_query->fetch_all(MYSQLI_ASSOC);
                     <?php endif; ?>
                 <?php endforeach; ?>
             </div>
-            <!-- Accordion End -->
         <?php else : ?>
-            <!-- Single Policy Display -->
             <div class="card">
                 <div class="card-header" id="single-heading">
                     <h5 class="mb-0 accordion-title" data-toggle="collapse" data-target="#single-policy" aria-expanded="true" aria-controls="single-policy">
@@ -109,12 +103,11 @@ $code_policies = $code_policies_query->fetch_all(MYSQLI_ASSOC);
                             <?php endforeach; ?>
                         </div>
 
-                        <!-- Additional content for single policy display -->
                         <div class="description-container" style="text-align: center;">
                             <p>For Detailed Policy, Refer to <a href="<?php echo base_url; ?><?php echo $code_policy['avatar']; ?>" target="_blank"><?php echo $code_policy['refer']; ?></a></p>
                             <p>Code: <?php echo $code_policy['code'] ?></p>
                         </div>
-                        <!-- End Additional content -->
+
                     </div>
                 </div>
             </div>
@@ -122,13 +115,12 @@ $code_policies = $code_policies_query->fetch_all(MYSQLI_ASSOC);
     </div>
 </div>
 
-<!-- Cancel Button -->
+
 <div class="modal-cancel">
     <button type="button" class="btn btn-secondary" style="float: right;" data-dismiss="modal">Close</button>
 </div>
 
 <script>
-    // Add JavaScript to handle accordion toggle on title click
     document.addEventListener('DOMContentLoaded', function () {
         var accordionTitles = document.querySelectorAll('.accordion-title');
         accordionTitles.forEach(function (title) {
