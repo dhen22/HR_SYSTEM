@@ -20,7 +20,7 @@
 </style> 
 <div class="card">
 	<div class="card-header" style="background-color: #0039a6 ;padding: 0.3rem 1rem">
-		<h3 class="card-title">List of Employ</h3>
+		<h3 class="card-title">List of Employees</h3>
 		<div class="card-tools">
 			<a href="?page=employees/manage_employee" class="btn btn-success"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
@@ -73,7 +73,7 @@
 									<b>Position: </b><?php echo isset($desg_arr[$row['designation_id']]) ? $desg_arr[$row['designation_id']] : 'N/A' ?><br>
 								</p>
 							</td>
-							<td><?php echo ucwords($row['division']) ?></td>
+							<td><?php echo ($row['division']) ?></td>
 							<td align="center">
 								 <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
