@@ -20,7 +20,7 @@
 </style> 
 <div class="card">
 	<div class="card-header" style="background-color: #0039a6 ;padding: 0.3rem 1rem">
-		<h3 class="card-title">List of Employees</h3>
+		<h3 class="card-title">List of Employ</h3>
 		<div class="card-tools">
 			<a href="?page=employees/manage_employee" class="btn btn-success"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
