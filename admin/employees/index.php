@@ -44,17 +44,17 @@
 						<th>Employee ID</th>
 						<th>Name</th>
 						<th>Details</th>
-						<th>Division</th>
+						<th>Level</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php 
 					$i = 1;
-					$department_qry = $conn->query("SELECT id,name FROM department_list");
+					/* $department_qry = $conn->query("SELECT id,name FROM department_list");
 					$dept_arr = array_column($department_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					$designation_qry = $conn->query("SELECT id,name FROM designation_list");
-					$desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
+					$desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id'); */
 						$qry = $conn->query("SELECT *,concat(firstname,' ',lastname) as name from `users` where `type` = '3'  order by concat(firstname,' ',lastname) asc ");
 						while($row = $qry->fetch_assoc()):
 							$meta_qry = $conn->query("SELECT * FROM employee_meta where user_id = '{$row['id']}' ");
@@ -69,11 +69,14 @@
 							<td><?php echo ucwords($row['name']) ?></td>
 							<td >
 								<p class="m-0 ">
-									<b>Department: </b><?php echo isset($dept_arr[$row['department_id']]) ? $dept_arr[$row['department_id']] : 'N/A' ?><br>
-									<b>Position: </b><?php echo isset($desg_arr[$row['designation_id']]) ? $desg_arr[$row['designation_id']] : 'N/A' ?><br>
+									<b>Department: </b><?php echo isset($row['department_name']) ? $row['department_name'] : 'N/A' ?><br>
+									<b>Position: </b><?php echo isset($row['designation_name']) ? $row['designation_name'] : 'N/A' ?><br>
+									
+									<!-- <b>Position: </b><?php echo isset($desg_arr[$row['designation_id']]) ? $desg_arr[$row['designation_id']] : 'N/A' ?><br> -->
+
 								</p>
 							</td>
-							<td><?php echo ($row['division']) ?></td>
+							<td><?php echo ($row['c_level']) ?></td>
 							<td align="center">
 								 <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action

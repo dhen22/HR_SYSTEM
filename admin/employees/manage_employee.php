@@ -73,76 +73,79 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 					</div>
 					<div class="col-md-2">
                         <div class="form-group">
-                            <label for="date_hired">Date Hired</label>
-                            <input type="date" name="date_hired" id="date_hired" class="form-control"
-                                   value="<?php echo isset($meta['date_hired']) ? date("Y-m-d", strtotime($meta['date_hired'])) : '' ?>"
+                            <label for="c_date_hired">Date Hired</label>
+                            <input type="date" name="c_date_hired" id="c_date_hired" class="form-control"
+                                   value="<?php echo isset($meta['c_date_hired']) ? date("Y-m-d", strtotime($meta['c_date_hired'])) : '' ?>"
                                    required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="company">Company</label>
-                            <select name="company" id="company"
+                            <label for="c_company">Company</label>
+                            <select name="c_company" id="c_company"
                                     class="form-control select2bs4 select2"
                                     data-placeholder="Select Company" required>
-                                <option value="" disabled <?php echo !isset($meta['company']) ? 'selected' : '' ?>></option>
-                                <option value="ALSC - Asian Land Strategies Company" <?php echo (isset($meta['company']) && $meta['company'] == 'ALSC') ? 'selected' : '' ?>>ALSC - Asian Land Strategies Company
+                                <option value="" disabled <?php echo !isset($meta['c_company']) ? 'selected' : '' ?>></option>
+                                <option value="ALSC - Asian Land Strategies Company" <?php echo (isset($meta['c_company']) && $meta['c_company'] == 'ALSC') ? 'selected' : '' ?>>ALSC - Asian Land Strategies Company
                                 </option>
-                                <option value="JAM" <?php echo (isset($meta['company']) && $meta['company'] == 'JAM') ? 'selected' : '' ?>>JAM
+                                <option value="JAM" <?php echo (isset($meta['c_company']) && $meta['c_company'] == 'JAM') ? 'selected' : '' ?>>JAM
                                 </option>
                             </select>
                         </div>
                     </div>
 					<div class="col-md-2">
                         <div class="form-group">
-                            <label for="status">Status</label>
-                            <select name="status" id="status"
+                            <label for="c_status">Status</label>
+                            <select name="c_status" id="c_status"
                                     class="form-control select2bs4 select2"
                                     data-placeholder="Select status" required>
-                                <option value="" disabled <?php echo !isset($meta['status']) ? 'selected' : '' ?>></option>
-                                <option value="Head of Family" <?php echo (isset($meta['status']) && $meta['status'] == 'Head of Family') ? 'selected' : '' ?>>Head of Family
+                                <option value="" disabled <?php echo !isset($meta['c_status']) ? 'selected' : '' ?>></option>
+                                <option value="Head of Family" <?php echo (isset($meta['c_status']) && $meta['c_status'] == 'Head of Family') ? 'selected' : '' ?>>Head of Family
                                 </option>
-                                <option value="Married" <?php echo (isset($meta['status']) && $meta['status'] == 'Married') ? 'selected' : '' ?>>Married
+                                <option value="Married" <?php echo (isset($meta['c_status']) && $meta['c_status'] == 'Married') ? 'selected' : '' ?>>Married
                                 </option>
-								<option value="Married 1 Children" <?php echo (isset($meta['status']) && $meta['status'] == 'Married 1 Children') ? 'selected' : '' ?>>Married 1 Children
+								<option value="Married 1 Children" <?php echo (isset($meta['c_status']) && $meta['c_status'] == 'Married 1 Children') ? 'selected' : '' ?>>Married 1 Children
                                 </option>
-								<option value="Married 2 Children" <?php echo (isset($meta['status']) && $meta['status'] == 'Married 2 Children') ? 'selected' : '' ?>>Married 2 Children
+								<option value="Married 2 Children" <?php echo (isset($meta['c_status']) && $meta['c_status'] == 'Married 2 Children') ? 'selected' : '' ?>>Married 2 Children
                                 </option>
-								<option value="Married 3 Children" <?php echo (isset($meta['status']) && $meta['status'] == 'Married 3 Children') ? 'selected' : '' ?>>Married 3 Children
+								<option value="Married 3 Children" <?php echo (isset($meta['c_status']) && $meta['c_status'] == 'Married 3 Children') ? 'selected' : '' ?>>Married 3 Children
                                 </option>
-								<option value="Married 4 Children" <?php echo (isset($meta['status']) && $meta['status'] == 'Married 4 Children') ? 'selected' : '' ?>>Married 4 Children
+								<option value="Married 4 Children" <?php echo (isset($meta['c_status']) && $meta['c_status'] == 'Married 4 Children') ? 'selected' : '' ?>>Married 4 Children
                                 </option>
-								<option value="Single" <?php echo (isset($meta['status']) && $meta['status'] == 'Single') ? 'selected' : '' ?>>Single
+								<option value="Single" <?php echo (isset($meta['c_status']) && $meta['c_status'] == 'Single') ? 'selected' : '' ?>>Single
                                 </option>
-								<option value="Single 1 Dependent" <?php echo (isset($meta['status']) && $meta['status'] == 'Single 1 Dependent') ? 'selected' : '' ?>>Single 1 Dependent
+								<option value="Single 1 Dependent" <?php echo (isset($meta['c_status']) && $meta['c_status'] == 'Single 1 Dependent') ? 'selected' : '' ?>>Single 1 Dependent
                                 </option>
-								<option value="Single 2 Dependents" <?php echo (isset($meta['status']) && $meta['status'] == 'Single 2 Dependents') ? 'selected' : '' ?>>Single 2 Dependents
+								<option value="Single 2 Dependents" <?php echo (isset($meta['c_status']) && $meta['c_status'] == 'Single 2 Dependents') ? 'selected' : '' ?>>Single 2 Dependents
                                 </option>
-								<option value="Single 3 Dependents" <?php echo (isset($meta['status']) && $meta['status'] == 'Single 3 Dependents') ? 'selected' : '' ?>>Single 3 Dependents
+								<option value="Single 3 Dependents" <?php echo (isset($meta['c_status']) && $meta['c_status'] == 'Single 3 Dependents') ? 'selected' : '' ?>>Single 3 Dependents
                                 </option>
-								<option value="Single 4 Dependents" <?php echo (isset($meta['status']) && $meta['status'] == 'Single 4 Dependents') ? 'selected' : '' ?>>Single 4 Dependents
+								<option value="Single 4 Dependents" <?php echo (isset($meta['c_status']) && $meta['c_status'] == 'Single 4 Dependents') ? 'selected' : '' ?>>Single 4 Dependents
                                 </option>
-								<option value="Zero" <?php echo (isset($meta['status']) && $meta['status'] == 'Zero') ? 'selected' : '' ?>>Zero
+								<option value="Zero" <?php echo (isset($meta['c_status']) && $meta['c_status'] == 'Zero') ? 'selected' : '' ?>>Zero
                                 </option>
                             </select>
                         </div>
                     </div>
 					<div class="col-md-2">
                         <div class="form-group">
-                            <label for="sex">Sex</label>
-                            <select name="sex" id="sex"
+                            <label for="c_sex">Sex</label>
+                            <select name="c_sex" id="c_sex"
                                     class="form-control select2bs4 select2"
                                     data-placeholder="Select Gender" required>
-                                <option value="" disabled <?php echo !isset($meta['sex']) ? 'selected' : '' ?>></option>
-                                <option value="Female" <?php echo (isset($meta['sex']) && $meta['sex'] == 'Female') ? 'selected' : '' ?>>Female
+                                <option value="" disabled <?php echo !isset($meta['c_sex']) ? 'selected' : '' ?>></option>
+                                <option value="Female" <?php echo (isset($meta['c_sex']) && $meta['c_sex'] == 'Female') ? 'selected' : '' ?>>Female
                                 </option>
-                                <option value="Male" <?php echo (isset($meta['sex']) && $meta['sex'] == 'Male') ? 'selected' : '' ?>>Male
+                                <option value="Male" <?php echo (isset($meta['c_sex']) && $meta['c_sex'] == 'Male') ? 'selected' : '' ?>>Male
                                 </option>
                             </select>
                         </div>
                     </div>
                     <!-- Repeat this structure for each set of three inputs -->
                 </div>
+
+				<!-- Hindi pwedeng ibahin ang name ng last, frist and middle name kasi connectado sya sa table user !!!	 -->
+
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
@@ -170,43 +173,43 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
                 <div class="row">
 					<div class="col-md-8">
 						<div class="form-group">
-							<label for="address">Address</label>
-							<input type="text" name="address" id="address" class="form-control"
-                                   value="<?php echo isset($meta['address']) ? $meta['address'] : '' ?>" required>
+							<label for="c_address">Address</label>
+							<input type="text" name="c_address" id="c_address" class="form-control"
+                                   value="<?php echo isset($meta['c_address']) ? $meta['c_address'] : '' ?>" required>
 						</div>
                     </div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label for="email">Email Address</label>
-							<input type="text" name="email" id="email" class="form-control"
-									value="<?php echo isset($meta['email']) ? $meta['email']: '' ?>" required>
+							<label for="c_email">Email Address</label>
+							<input type="text" name="c_email" id="c_email" class="form-control"
+									value="<?php echo isset($meta['c_email']) ? $meta['c_email']: '' ?>" required>
 						</div>
                     </div>
                 </div>
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-4">		
 						<div class="form-group">
-							<label for="designation_id">Position</label>
-							<select name="designation_id" id="designation_id" class="form-control select2bs4 select2" data-placeholder="Please Select Designation here" reqiured>
-								<option value="" disabled <?php echo !isset($meta['designation_id']) ? 'selected' : '' ?>></option>
-								<?php foreach($desg_arr as $k=>$v): ?>
-									<option value="<?php echo $k ?>" <?php echo (isset($meta['designation_id']) && $meta['designation_id'] == $k) ? 'selected' : '' ?>><?php echo $v ?></option>
+							<label for="designation_name">Position</label>
+							<select name="designation_name" id="designation_name" class="form-control select2bs4 select2" data-placeholder="Please Select Position" required>
+								<option value="" disabled <?php echo !isset($meta['designation_name']) ? 'selected' : '' ?>></option>
+								<?php foreach($desg_arr as $v): ?>
+									<option value="<?php echo $v ?>" <?php echo (isset($meta['designation_name']) && $meta['designation_name'] == $v) ? 'selected' : '' ?>><?php echo $v ?></option>
 								<?php endforeach; ?>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label for="contact">Contact No.</label>
-							<input type="text" name="contact" id="contact" class="form-control"
-								value="<?php echo isset($meta['contact']) ? $meta['contact'] : '' ?>" required>
+							<label for="c_contact">Contact No.</label>
+							<input type="text" name="c_contact" id="c_contact" class="form-control"
+								value="<?php echo isset($meta['c_contact']) ? $meta['c_contact'] : '' ?>" required>
 						</div>
 					</div>
 					<div class="col-md-2">
 						<div class="form-group">
-							<label for="birthdate">Date of Birth</label>
-							<input type="date" name="birthdate" id="birthdate" class="form-control"
-								value="<?php echo isset($meta['birthdate']) ? date("Y-m-d", strtotime($meta['birthdate'])) : '' ?>" required>
+							<label for="c_birthdate">Date of Birth</label>
+							<input type="date" name="c_birthdate" id="c_birthdate" class="form-control"
+								value="<?php echo isset($meta['c_birthdate']) ? date("Y-m-d", strtotime($meta['c_birthdate'])) : '' ?>" required>
 						</div>
 					</div>
 					<div class="col-md-2">
@@ -222,51 +225,53 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 				<div class="row">
 					<div class="col-md-4">		
 						<div class="form-group">
-							<label for="department_id">Department</label>
-							<select name="department_id" id="department_id" class="form-control select2bs4 select2" data-placeholder="Please Select Department" reqiured>
-								<option value="" disabled <?php echo !isset($meta['department_id']) ? 'selected' : '' ?>></option>
-								<?php foreach($dept_arr as $k=>$v): ?>
-									<option value="<?php echo $k ?>" <?php echo (isset($meta['department_id']) && $meta['department_id'] == $k) ? 'selected' : '' ?>><?php echo $v ?></option>
+							<label for="department_name">Department</label>
+							<select name="department_name" id="department_name" class="form-control select2bs4 select2" data-placeholder="Please Select Department" required>
+								<option value="" disabled <?php echo !isset($meta['department_name']) ? 'selected' : '' ?>></option>
+								<?php foreach($dept_arr as $v): ?>
+									<option value="<?php echo $v ?>" <?php echo (isset($meta['department_name']) && $meta['department_name'] == $v) ? 'selected' : '' ?>><?php echo $v ?></option>
 								<?php endforeach; ?>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label for="division">Division</label>
-							<select name="division" id="division"
+							<label for="c_division">Division</label>
+							<select name="c_division" id="c_division"
 									class="form-control select2bs4 select2"
-									data-placeholder="Please Select division" required>
-								<option value="" disabled <?php echo !isset($meta['division']) ? 'selected' : '' ?>></option>
-								<option value="RANK" <?php echo (isset($meta['division']) && $meta['division'] == 'RANK') ? 'selected' : '' ?>>RANK
+									data-placeholder="Please Select Division" required>
+								<option value="" disabled <?php echo !isset($meta['c_division']) ? 'selected' : '' ?>></option>
+								<option value="Finance" <?php echo (isset($meta['c_division']) && $meta['c_division'] == 'Finance') ? 'selected' : '' ?>>Finance
 								</option>
-								<option value="MANAGER" <?php echo (isset($meta['division']) && $meta['division'] == 'MANAGER') ? 'selected' : '' ?>>MANAGER
+								<option value="Engineering" <?php echo (isset($meta['c_division']) && $meta['c_division'] == 'Engineering') ? 'selected' : '' ?>>Engineering
 								</option>
-								<option value="SUPERVISOR" <?php echo (isset($meta['division']) && $meta['division'] == 'SUPERVISOR') ? 'selected' : '' ?>>SUPERVISOR
+								<option value="BOD" <?php echo (isset($meta['c_division']) && $meta['c_division'] == 'BOD') ? 'selected' : '' ?>>BOD
 								</option>
-								<option value="AVP" <?php echo (isset($meta['division']) && $meta['division'] == 'AVP') ? 'selected' : '' ?>>AVP
+								<option value="Executive" <?php echo (isset($meta['c_division']) && $meta['c_division'] == 'Executive') ? 'selected' : '' ?>>Executive
 								</option>
-								<option value="GUARD" <?php echo (isset($meta['division']) && $meta['division'] == 'GUARD') ? 'selected' : '' ?>>GUARD
+								<option value="MANCOMM" <?php echo (isset($meta['c_division']) && $meta['c_division'] == 'MANCOMM') ? 'selected' : '' ?>>MANCOMM
+								</option>
+								<option value="Sales and Marketing" <?php echo (isset($meta['c_division']) && $meta['c_division'] == 'Sales and Marketing') ? 'selected' : '' ?>>Sales and Marketing
 								</option>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label for="emp_status">Employment Status</label>
-							<select name="emp_status" id="emp_status"
+							<label for="c_level">Level</label>
+							<select name="c_level" id="c_level"
 									class="form-control select2bs4 select2"
-									data-placeholder="Please Select Employment Status" required>
-								<option value="" disabled <?php echo !isset($meta['emp_status']) ? 'selected' : '' ?>></option>
-								<option value="Probationary" <?php echo (isset($meta['emp_status']) && $meta['emp_status'] == 'Probationary') ? 'selected' : '' ?>>Probationary
+									data-placeholder="Please Select level" required>
+								<option value="" disabled <?php echo !isset($meta['c_level']) ? 'selected' : '' ?>></option>
+								<option value="Rank" <?php echo (isset($meta['c_level']) && $meta['c_level'] == 'Rank') ? 'selected' : '' ?>>Rank
 								</option>
-								<option value="Regular" <?php echo (isset($meta['emp_status']) && $meta['emp_status'] == 'Regular') ? 'selected' : '' ?>>Regular
+								<option value="Manager" <?php echo (isset($meta['c_level']) && $meta['c_level'] == 'Manager') ? 'selected' : '' ?>>Manager
 								</option>
-								<option value="Contractual" <?php echo (isset($meta['emp_status']) && $meta['emp_status'] == 'Contractual') ? 'selected' : '' ?>>Contractual
+								<option value="Supervisor" <?php echo (isset($meta['c_level']) && $meta['c_level'] == 'Supervisor') ? 'selected' : '' ?>>Supervisor
 								</option>
-								<option value="Terminated" <?php echo (isset($meta['emp_status']) && $meta['emp_status'] == 'Terminated') ? 'selected' : '' ?>>Terminated
+								<option value="AVP" <?php echo (isset($meta['c_level']) && $meta['c_level'] == 'AVP') ? 'selected' : '' ?>>AVP
 								</option>
-								<option value="AVP-In Position" <?php echo (isset($meta['emp_status']) && $meta['emp_status'] == 'AVP-In Position') ? 'selected' : '' ?>>AVP-In Position
+								<option value="Guard" <?php echo (isset($meta['c_level']) && $meta['c_level'] == 'Guard') ? 'selected' : '' ?>>Guard
 								</option>
 							</select>
 						</div>
@@ -275,105 +280,127 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 				<div class="row">
 					<div class="col-md-4">
 						<div class="form-group">
-							<label for="section">Section</label>
-							<select name="section" id="section"
+							<label for="c_section">Section</label>
+							<select name="c_section" id="c_section"
 									class="form-control select2bs4 select2"
 									data-placeholder="Please Select Section" required>
-								<option value="" disabled <?php echo !isset($meta['section']) ? 'selected' : '' ?>></option>
-								<option value="Accounting" <?php echo (isset($meta['section']) && $meta['section'] == 'Accounting') ? 'selected' : '' ?>>Accounting
+								<option value="" disabled <?php echo !isset($meta['c_section']) ? 'selected' : '' ?>></option>
+								<option value="Audit" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Audit') ? 'selected' : '' ?>>Audit
 								</option>
-								<option value="Billing" <?php echo (isset($meta['section']) && $meta['section'] == 'Billing') ? 'selected' : '' ?>>Billing
+								<option value="Billing" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Billing') ? 'selected' : '' ?>>Billing
 								</option>
-								<option value="Const. and Impln." <?php echo (isset($meta['section']) && $meta['section'] == 'Const. and Impln.') ? 'selected' : '' ?>>Const. and Impln.
+								<option value="Broker Sales" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Broker Sales') ? 'selected' : '' ?>>Broker Sales
 								</option>
-								<option value="Contracts and Doc." <?php echo (isset($meta['section']) && $meta['section'] == 'Contracts and Doc.') ? 'selected' : '' ?>>Contracts and Doc.
+								<option value="Client Assets" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Client Assets') ? 'selected' : '' ?>>Client Assets
 								</option>
-								<option value="Design and Devt." <?php echo (isset($meta['section']) && $meta['section'] == 'Design and Devt.') ? 'selected' : '' ?>>Design and Devt.
+								<option value="Comp&Ben" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Comp&Ben') ? 'selected' : '' ?>>Comp&Ben
 								</option>
-								<option value="Documentation and Loan" <?php echo (isset($meta['section']) && $meta['section'] == 'Documentation and Loan') ? 'selected' : '' ?>>Documentation and Loan
+								<option value="Corporate Assets" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Corporate Assets') ? 'selected' : '' ?>>Corporate Assets
 								</option>
-								<option value="EDP" <?php echo (isset($meta['section']) && $meta['section'] == 'EDP') ? 'selected' : '' ?>>EDP
+								<option value="Credit Assessment and Loans" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Credit Assessment and Loans') ? 'selected' : '' ?>>Credit Assessment and Loans
 								</option>
-								<option value="Electrical" <?php echo (isset($meta['section']) && $meta['section'] == 'Electrical') ? 'selected' : '' ?>>Electrical
+								<option value="Direct Sales" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Direct Sales') ? 'selected' : '' ?>>Direct Sales
 								</option>
-								<option value="Engineering" <?php echo (isset($meta['section']) && $meta['section'] == 'Engineering') ? 'selected' : '' ?>>Engineering
+								<option value="Documentation" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Documentation') ? 'selected' : '' ?>>Documentation
 								</option>
-								<option value="Executive" <?php echo (isset($meta['section']) && $meta['section'] == 'Executive') ? 'selected' : '' ?>>Executive
+								<option value="Electrical" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Electrical') ? 'selected' : '' ?>>Electrical
 								</option>
-								<option value="Finance" <?php echo (isset($meta['section']) && $meta['section'] == 'Finance') ? 'selected' : '' ?>>Finance
+								<option value="Employee Engagement" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Employee Engagement') ? 'selected' : '' ?>>Employee Engagement
 								</option>
-								<option value="General Services" <?php echo (isset($meta['section']) && $meta['section'] == 'General Services') ? 'selected' : '' ?>>General Services
+								<option value="Encoding and Support" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Encoding and Support') ? 'selected' : '' ?>>Encoding and Support
 								</option>
-								<option value="Marketing" <?php echo (isset($meta['section']) && $meta['section'] == 'Marketing') ? 'selected' : '' ?>>Marketing
+								<option value="Estimate" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Estimate') ? 'selected' : '' ?>>Estimate
 								</option>
-								<option value="Personnel" <?php echo (isset($meta['section']) && $meta['section'] == 'Personnel') ? 'selected' : '' ?>>Personnel
+								<option value="General Services" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'General Services') ? 'selected' : '' ?>>General Services
 								</option>
-								<option value="Permits and Licenses" <?php echo (isset($meta['section']) && $meta['section'] == 'Permits and Licenses') ? 'selected' : '' ?>>Permits and Licenses
+								<option value="Housing Permits" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Housing Permits') ? 'selected' : '' ?>>Housing Permits
 								</option>
-								<option value="Project Admin" <?php echo (isset($meta['section']) && $meta['section'] == 'Project Admin') ? 'selected' : '' ?>>Project Admin
+								<option value="Network/System" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Network/System') ? 'selected' : '' ?>>Network/System
 								</option>
-								<option value="Purchasing" <?php echo (isset($meta['section']) && $meta['section'] == 'Purchasing') ? 'selected' : '' ?>>Purchasing
+								<option value="Operations" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Operations') ? 'selected' : '' ?>>Operations
 								</option>
-								<option value="Programming" <?php echo (isset($meta['section']) && $meta['section'] == 'Programming') ? 'selected' : '' ?>>Programming
+								<option value="Permits" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Permits') ? 'selected' : '' ?>>Permits
 								</option>
-								<option value="Network/System" <?php echo (isset($meta['section']) && $meta['section'] == 'Network/System') ? 'selected' : '' ?>>Network/System
+								<option value="Programming" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Programming') ? 'selected' : '' ?>>Programming
 								</option>
-								<option value="Repair and Maintenance" <?php echo (isset($meta['section']) && $meta['section'] == 'Repair and Maintenance') ? 'selected' : '' ?>>Repair and Maintenance
+								<option value="Property Admin" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Property Admin') ? 'selected' : '' ?>>Property Admin
 								</option>
-								<option value="Security Admin" <?php echo (isset($meta['section']) && $meta['section'] == 'Security Admin') ? 'selected' : '' ?>>Security Admin
+								<option value="Purchasing" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Purchasing') ? 'selected' : '' ?>>Purchasing
 								</option>
-								<option value="Technical Planning" <?php echo (isset($meta['section']) && $meta['section'] == 'Technical Planning') ? 'selected' : '' ?>>Technical Planning
+								<option value="Quality Constrol" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Quality Constrol') ? 'selected' : '' ?>>Quality Constrol
 								</option>
-								<option value="Training and Recruitment" <?php echo (isset($meta['section']) && $meta['section'] == 'Training and Recruitment') ? 'selected' : '' ?>>Training and Recruitment
+								<option value="Recruitment" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Recruitment') ? 'selected' : '' ?>>Recruitment
 								</option>
-								<option value="Treasury" <?php echo (isset($meta['section']) && $meta['section'] == 'Treasury') ? 'selected' : '' ?>>Treasury
+								<option value="Security Admin" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Security Admin') ? 'selected' : '' ?>>Security Admin
 								</option>
-								<option value="Water and Electric Services" <?php echo (isset($meta['section']) && $meta['section'] == 'Water and Electric Services') ? 'selected' : '' ?>>Water and Electric Services
+								<option value="Structural Design" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Structural Design') ? 'selected' : '' ?>>Structural Design
+								</option>
+								<option value="Technical" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Technical') ? 'selected' : '' ?>>Technical
+								</option>
+								<option value="Technical Planning" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Technical Planning') ? 'selected' : '' ?>>Technical Planning
+								</option>
+								<option value="Training" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Training') ? 'selected' : '' ?>>Training
+								</option>
+								<option value="Tresury" <?php echo (isset($meta['c_section']) && $meta['c_section'] == 'Tresury') ? 'selected' : '' ?>>Tresury
 								</option>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label for="readonly_designation">Designation</label>
-							<input type="text" id="readonly_designation" class="form-control" style="background-color:#f9f9f9;" readonly>
+							<label for="c_employment">Employment</label>
+							<select name="c_employment" id="c_employment"
+									class="form-control select2bs4 select2"
+									data-placeholder="Please Select Employment Status" required>
+								<option value="" disabled <?php echo !isset($meta['c_employment']) ? 'selected' : '' ?>></option>
+								<option value="Probationary" <?php echo (isset($meta['c_employment']) && $meta['c_employment'] == 'Probationary') ? 'selected' : '' ?>>Probationary
+								</option>
+								<option value="Regular" <?php echo (isset($meta['c_employment']) && $meta['c_employment'] == 'Regular') ? 'selected' : '' ?>>Regular
+								</option>
+								<option value="Contractual" <?php echo (isset($meta['c_employment']) && $meta['c_employment'] == 'Contractual') ? 'selected' : '' ?>>Contractual
+								</option>
+								<option value="Terminated" <?php echo (isset($meta['c_employment']) && $meta['c_employment'] == 'Terminated') ? 'selected' : '' ?>>Terminated
+								</option>
+								<option value="AVP-In Position" <?php echo (isset($meta['c_employment']) && $meta['c_employment'] == 'AVP-In Position') ? 'selected' : '' ?>>AVP-In Position
+								</option>
+							</select>
 						</div>
 					</div>
 					<div class="col-md-4">
                         <div class="form-group">
-                            <label for="sbc">SBC Account No</label>
-                            <input type="text" name="sbc" id="sbc" class="form-control"
-                                   value="<?php echo isset($meta['sbc']) ? $meta['sbc'] : '' ?>">
+                            <label for="c_sbc_account_no">SBC Account No</label>
+                            <input type="text" name="c_sbc_account_no" id="c_sbc_account_no" class="form-control"
+                                   value="<?php echo isset($meta['c_sbc_account_no']) ? $meta['c_sbc_account_no'] : '' ?>">
                         </div>
                     </div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="tin">T.I.N No</label>
-                            <input type="text" name="tin" id="tin" class="form-control"
-                                   value="<?php echo isset($meta['tin']) ? $meta['tin'] : '' ?>">
+                            <label for="c_tin">T.I.N No</label>
+                            <input type="text" name="c_tin" id="c_tin" class="form-control"
+                                   value="<?php echo isset($meta['c_tin']) ? $meta['c_tin'] : '' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="sss">SSS No</label>
-                            <input type="text" name="sss" id="sss" class="form-control"
-                                   value="<?php echo isset($meta['sss']) ? $meta['sss'] : '' ?>">
+                            <label for="c_sss">SSS No</label>
+                            <input type="text" name="c_sss" id="c_sss" class="form-control"
+                                   value="<?php echo isset($meta['c_sss']) ? $meta['c_sss'] : '' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="pagibig">Pag-Ibig</label>
-                            <input type="text" name="pagibig" id="pagibig" class="form-control"
-                                   value="<?php echo isset($meta['pagibig']) ? $meta['pagibig'] : '' ?>">
+                            <label for="c_pagibig">Pag-Ibig</label>
+                            <input type="text" name="c_pagibig" id="c_pagibig" class="form-control"
+                                   value="<?php echo isset($meta['c_pagibig']) ? $meta['c_pagibig'] : '' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="philhealth">PhilHealth</label>
-                            <input type="text" name="philhealth" id="philhealth" class="form-control"
-                                   value="<?php echo isset($meta['philhealth']) ? $meta['philhealth'] : '' ?>">
+                            <label for="c_philhealth">PhilHealth</label>
+                            <input type="text" name="c_philhealth" id="c_philhealth" class="form-control"
+                                   value="<?php echo isset($meta['c_philhealth']) ? $meta['c_philhealth'] : '' ?>">
                         </div>
                     </div>
 				</div>
@@ -384,60 +411,60 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 				<div class="row">
 					<div class="col-md-3">
 						<div class="form-group">
-							<label for="first_salary">Salary 1</label>
-							<input type="text" name="first_salary" id="first_salary" class="form-control"
-								value="<?php echo isset($meta['first_salary']) ? $meta['first_salary'] : '0' ?>">
+							<label for="c_salary1">Salary 1</label>
+							<input type="text" name="c_salary1" id="c_salary1" class="form-control"
+								value="<?php echo isset($meta['c_salary1']) ? $meta['c_salary1'] : '0' ?>">
 						</div>
 					</div>
 
 					<div class="col-md-3">
 						<div class="form-group">
-							<label for="first_allow">Allowance 1</label>
-							<input type="text" name="first_allow" id="first_allow" class="form-control"
-								value="<?php echo isset($meta['first_allow']) ? $meta['first_allow'] : '0' ?>">
+							<label for="c_allowance">Allowance 1</label>
+							<input type="text" name="c_allowance" id="c_allowance" class="form-control"
+								value="<?php echo isset($meta['c_allowance']) ? $meta['c_allowance'] : '0' ?>">
 						</div>
 					</div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="transpo">Transpo Allowance</label>
-                            <input type="text" name="transpo" id="transpo" class="form-control"
-								   value="<?php echo isset($meta['transpo']) ? $meta['transpo'] : '0' ?>">
+                            <label for="c_transpo">Transpo Allowance</label>
+                            <input type="text" name="c_transpo" id="c_transpo" class="form-control"
+								   value="<?php echo isset($meta['c_transpo']) ? $meta['c_transpo'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="effectivity">Effectivity Date</label>
-                            <input type="date" name="effectivity" id="effectivity" class="form-control"
-                                   value="<?php echo isset($meta['effectivity']) ? date("Y-m-d", strtotime($meta['effectivity'])) : '' ?>"
+                            <label for="c_e_date">Effectivity Date</label>
+                            <input type="date" name="c_e_date" id="c_e_date" class="form-control"
+                                   value="<?php echo isset($meta['c_e_date']) ? date("Y-m-d", strtotime($meta['c_e_date'])) : '' ?>"
                                    required>
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="second_salary">Salary 2</label>
-                            <input type="text" name="second_salary" id="second_salary" class="form-control"
-                                   value="<?php echo isset($meta['second_salary']) ? $meta['second_salary'] : '0' ?>">
+                            <label for="c_salary2">Salary 2</label>
+                            <input type="text" name="c_salary2" id="c_salary2" class="form-control"
+                                   value="<?php echo isset($meta['c_salary2']) ? $meta['c_salary2'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="second_allow">Allowance 2</label>
-                            <input type="text" name="second_allow" id="second_allow" class="form-control"
-                                   value="<?php echo isset($meta['second_allow']) ? $meta['second_allow'] : '0' ?>">
+                            <label for="c_allowance2">Allowance 2</label>
+                            <input type="text" name="c_allowance2" id="c_allowance2" class="form-control"
+                                   value="<?php echo isset($meta['c_allowance2']) ? $meta['c_allowance2'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="cashier">Cashier Allowance</label>
-                            <input type="text" name="cashier" id="cashier" class="form-control"
-                                   value="<?php echo isset($meta['cashier']) ? $meta['cashier'] : '0' ?>">
+                            <label for="c_cashiers_allow">Cashier Allowance</label>
+                            <input type="text" name="c_cashiers_allow" id="c_cashiers_allow" class="form-control"
+                                   value="<?php echo isset($meta['c_cashiers_allow']) ? $meta['c_cashiers_allow'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="atm">ATM Account No</label>
-                            <input type="text" name="atm" id="atm" class="form-control"
-                                   value="<?php echo isset($meta['atm']) ? $meta['atm'] : '0' ?>">
+                            <label for="c_atm_account">ATM Account No</label>
+                            <input type="text" name="c_atm_account" id="c_atm_account" class="form-control"
+                                   value="<?php echo isset($meta['c_atm_account']) ? $meta['c_atm_account'] : '0' ?>">
                         </div>
                     </div>
 				</div>
@@ -448,24 +475,24 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 				<div class="row">
 					<div class="col-md-3">
 						<div class="form-group">
-							<label for="deduc_ghp">GHP</label>
-							<input type="text" name="deduc_ghp" id="deduc_ghp" class="form-control"
-								value="<?php echo isset($meta['deduc_ghp']) ? $meta['deduc_ghp'] : '0' ?>">
+							<label for="c_ghp">GHP</label>
+							<input type="text" name="c_ghp" id="c_ghp" class="form-control"
+								value="<?php echo isset($meta['c_ghp']) ? $meta['c_ghp'] : '0' ?>">
 						</div>
 					</div>
 
 					<div class="col-md-3">
 						<div class="form-group">
-							<label for="deduc_ma">MA</label>
-							<input type="text" name="deduc_ma" id="deduc_ma" class="form-control"
-								value="<?php echo isset($meta['deduc_ma']) ? $meta['deduc_ma'] : '0' ?>">
+							<label for="c_deduction_ma">MA</label>
+							<input type="text" name="c_deduction_ma" id="c_deduction_ma" class="form-control"
+								value="<?php echo isset($meta['c_deduction_ma']) ? $meta['c_deduction_ma'] : '0' ?>">
 						</div>
 					</div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="deduc_tax">Tax Amount</label>
-                            <input type="text" name="deduc_tax" id="deduc_tax" class="form-control"
-								   value="<?php echo isset($meta['deduc_tax']) ? $meta['deduc_tax'] : '0' ?>">
+                            <label for="c_tax_amount">Tax Amount</label>
+                            <input type="text" name="c_tax_amount" id="c_tax_amount" class="form-control"
+								   value="<?php echo isset($meta['c_tax_amount']) ? $meta['c_tax_amount'] : '0' ?>">
                         </div>
                     </div>
 				</div>
@@ -476,73 +503,73 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 				<div class="row">
 					<div class="col-md-3">
 						<div class="form-group">
-							<label for="deduc_salary">Salary</label>
-							<input type="text" name="deduc_salary" id="deduc_salary" class="form-control"
-								value="<?php echo isset($meta['deduc_salary']) ? $meta['deduc_salary'] : '0' ?>">
+							<label for="c_loan_sal">Salary</label>
+							<input type="text" name="c_loan_sal" id="c_loan_sal" class="form-control"
+								value="<?php echo isset($meta['c_loan_sal']) ? $meta['c_loan_sal'] : '0' ?>">
 						</div>
 					</div>
 
 					<div class="col-md-3">
 						<div class="form-group">
-							<label for="deduc_sss">SSS Loan</label>
-							<input type="text" name="deduc_sss" id="deduc_sss" class="form-control"
-								value="<?php echo isset($meta['deduc_sss']) ? $meta['deduc_sss'] : '0' ?>">
+							<label for="c_loan_sss">SSS Loan</label>
+							<input type="text" name="c_loan_sss" id="c_loan_sss" class="form-control"
+								value="<?php echo isset($meta['c_loan_sss']) ? $meta['c_loan_sss'] : '0' ?>">
 						</div>
 					</div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="deduc_pagibig_mpl">Pag-Ibig Loan (MPL)</label>
-                            <input type="text" name="deduc_pagibig_mpl" id="deduc_pagibig_mpl" class="form-control"
-								   value="<?php echo isset($meta['deduc_pagibig_mpl']) ? $meta['deduc_pagibig_mpl'] : '0' ?>">
+                            <label for="c_loan_pib">Pag-Ibig Loan (MPL)</label>
+                            <input type="text" name="c_loan_pib" id="c_loan_pib" class="form-control"
+								   value="<?php echo isset($meta['c_loan_pib']) ? $meta['c_loan_pib'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="deduc_pagibig_cal">Pag-Ibig Loan (Cal)</label>
-                            <input type="text" name="deduc_pagibig_cal" id="deduc_pagibig_cal" class="form-control"
-								value="<?php echo isset($meta['deduc_pagibig_cal']) ? $meta['deduc_pagibig_cal'] : '0' ?>">
+                            <label for="c_loan_calamity">Pag-Ibig Loan (Cal)</label>
+                            <input type="text" name="c_loan_calamity" id="c_loan_calamity" class="form-control"
+								value="<?php echo isset($meta['c_loan_calamity']) ? $meta['c_loan_calamity'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="deduc_medical">Medical</label>
-                            <input type="text" name="deduc_medical" id="deduc_medical" class="form-control"
-                                   value="<?php echo isset($meta['deduc_medical']) ? $meta['deduc_medical'] : '0' ?>">
+                            <label for="c_loan_med">Medical</label>
+                            <input type="text" name="c_loan_med" id="c_loan_med" class="form-control"
+                                   value="<?php echo isset($meta['c_loan_med']) ? $meta['c_loan_med'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="deduc_emergency">Emergency</label>
-                            <input type="text" name="deduc_emergency" id="deduc_emergency" class="form-control"
-                                   value="<?php echo isset($meta['deduc_emergency']) ? $meta['deduc_emergency'] : '0' ?>">
+                            <label for="c_loan_eme">Emergency</label>
+                            <input type="text" name="c_loan_eme" id="c_loan_eme" class="form-control"
+                                   value="<?php echo isset($meta['c_loan_eme']) ? $meta['c_loan_eme'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="deduc_car">Car Loan</label>
-                            <input type="text" name="deduc_car" id="deduc_car" class="form-control"
-                                   value="<?php echo isset($meta['deduc_car']) ? $meta['deduc_car'] : '0' ?>">
+                            <label for="c_loan_car">Car Loan</label>
+                            <input type="text" name="c_loan_car" id="c_loan_car" class="form-control"
+                                   value="<?php echo isset($meta['c_loan_car']) ? $meta['c_loan_car'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="deduc_educ">Educational</label>
-                            <input type="text" name="deduc_educ" id="deduc_educ" class="form-control"
-                                   value="<?php echo isset($meta['deduc_educ']) ? $meta['deduc_educ'] : '0' ?>">
+                            <label for="c_loan_edu">Educational</label>
+                            <input type="text" name="c_loan_edu" id="c_loan_edu" class="form-control"
+                                   value="<?php echo isset($meta['c_loan_edu']) ? $meta['c_loan_edu'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="deduc_planters1">Planters Loan</label>
-                            <input type="text" name="deduc_planters1" id="deduc_planters1" class="form-control"
-                                   value="<?php echo isset($meta['deduc_planters1']) ? $meta['deduc_planters1'] : '0' ?>">
+                            <label for="c_loan_planters">Planters Loan</label>
+                            <input type="text" name="c_loan_planters" id="c_loan_planters" class="form-control"
+                                   value="<?php echo isset($meta['c_loan_planters']) ? $meta['c_loan_planters'] : '0' ?>">
                         </div>
                     </div>
 					<div class="col-md-3">
                         <div class="form-group">
-                            <label for="deduc_planters2">Planters Loan 2nd</label>
-                            <input type="text" name="deduc_planters2" id="deduc_planters2" class="form-control"
-                                   value="<?php echo isset($meta['deduc_planters2']) ? $meta['deduc_planters2'] : '0' ?>">
+                            <label for="c_loan_planters2">Planters Loan 2nd</label>
+                            <input type="text" name="c_loan_planters2" id="c_loan_planters2" class="form-control"
+                                   value="<?php echo isset($meta['c_loan_planters2']) ? $meta['c_loan_planters2'] : '0' ?>">
                         </div>
                     </div>
 				</div>
@@ -620,7 +647,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 
 
 	function calculateAge() {
-        var dobValue = document.getElementById('birthdate').value;
+        var dobValue = document.getElementById('c_birthdate').value;
 
         if (dobValue) {
             var dob = new Date(dobValue);
@@ -636,7 +663,7 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
         }
     }
 
-    document.getElementById('birthdate').addEventListener('change', calculateAge);
+    document.getElementById('c_birthdate').addEventListener('change', calculateAge);
 
     document.addEventListener('DOMContentLoaded', function() {
         calculateAge();

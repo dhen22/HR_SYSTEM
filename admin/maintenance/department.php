@@ -6,7 +6,7 @@
 <div class="card card-outline card-primary">
 	<div class="card-header">
 		<h3 class="card-title">List of Department</h3>
-		<?php if($_settings->userdata('type') == 1): ?>
+		<?php if($_settings->userdata('type') != 3): ?>
 		<div class="card-tools">
 			<a href="javascript:void(0)" class="btn btn-primary" id="create_new"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
@@ -28,7 +28,7 @@
 				<tbody>
 					<?php 
 					$i = 1;
-						$qry = $conn->query("SELECT * from `department_list` order by unix_timestamp(date_updated) desc, unix_timestamp(date_created) desc ");
+						$qry = $conn->query("SELECT * from `department_list` order by `date_created` desc ");
 						while($row = $qry->fetch_assoc()):
                             $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
 					?>

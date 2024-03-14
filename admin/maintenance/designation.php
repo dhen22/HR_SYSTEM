@@ -6,7 +6,7 @@
 <div class="card card-outline card-primary">
 	<div class="card-header">
 		<h3 class="card-title">List of Designation</h3>
-		<?php if($_settings->userdata('type') == 1): ?>
+		<?php if($_settings->userdata('type') != 3): ?>
 		<div class="card-tools">
 			<a href="javascript:void(0)" class="btn btn-primary" id="create_new"><span class="fas fa-plus"></span>  Create New</a>
 		</div>

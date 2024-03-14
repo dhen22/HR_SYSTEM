@@ -10,6 +10,19 @@ Class Users extends DBConnection {
 	public function __destruct(){
 		parent::__destruct();
 	}
+
+	//for logs activity
+	function log_activity($date, $time, $module, $activity){
+
+		$username = $_SESSION['userdata']['username'];
+	
+		$sql = "INSERT INTO logs (c_user, c_date, c_time, c_module, c_activity) VALUES (?, ?, ?, ?, ?)";
+		$stmt = $this->conn->prepare($sql);
+		$stmt->bind_param("sssss", $username, $date, $time, $module, $activity);
+		$stmt->execute();
+		$stmt->close();
+	}
+
 	public function save_users(){
 		extract($_POST);
 		$data = '';
@@ -42,6 +55,8 @@ Class Users extends DBConnection {
 		if(empty($id)){
 			$qry = $this->conn->query("INSERT INTO users set {$data}");
 			if($qry){
+				//logs
+				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Users', "Add -- $lastname, $firstname -- $username");
 				$this->settings->set_flashdata('success','User Details successfully saved.');
 				return 1;
 			}else{
@@ -54,6 +69,8 @@ Class Users extends DBConnection {
 			$qry = $this->conn->query("UPDATE users SET $data WHERE id = {$id}");
 
 			if ($qry) {
+				//logs
+				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Users', "Update -- $lastname, $firstname -- $username");
 				$this->settings->set_flashdata('success', 'User details successfully updated.');
 
 				if (isset($_POST['fname']) && isset($_POST['move'])) {
@@ -68,11 +85,28 @@ Class Users extends DBConnection {
 			
 		}
 	}
+
+	//employee side to
 	public function delete_users(){
 		extract($_POST);
+
+		$query2 = $this->conn->query("SELECT * FROM `users` where id = '{$id}'");
+		if (!$query2) {
+			$resp['status'] = 'failed';
+			$resp['error'] = $this->conn->error;
+			return json_encode($resp);
+		}
+
+		$users_data = $query2->fetch_assoc();
+		$fname = $users_data['firstname'];
+		$lname = $users_data['lastname'];
+		$uname = $users_data['username'];
+
 		$avatar = $this->conn->query("SELECT avatar FROM users where id = '{$id}'")->fetch_array()['avatar'];
 		$qry = $this->conn->query("DELETE FROM users where id = $id");
 		if($qry){
+			//logs
+			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Users | Employee', "Delete -- $uname -- $lname -- $fname");
 			$this->settings->set_flashdata('success','User Details successfully deleted.');
 			if(is_file(base_app.$avatar))
 				unlink(base_app.$avatar);
@@ -108,6 +142,8 @@ Class Users extends DBConnection {
 			$save = $this->conn->query($sql);
 
 			if($save){
+			//logs
+			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Users', "Update -- $uname -- $lname -- $fname");
 			$this->settings->set_flashdata('success','User Details successfully updated.');
 			foreach($_POST as $k => $v){
 				if(!in_array($k,array('id','password'))){

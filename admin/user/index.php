@@ -25,7 +25,7 @@ foreach($user->fetch_array() as $k =>$v){
 				</div>
 				<div class="form-group">
 					<label for="username">Username</label>
-					<input type="text" name="username" id="username" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off">
+					<input type="text" name="username" id="username" class="form-control" value="<?php echo isset($meta['username']) ? $meta['username']: '' ?>" required  autocomplete="off" readonly>
 				</div>
 				<div class="form-group">
 					<label for="password">Password</label>

@@ -16,10 +16,10 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
     }
 
 }
-$department_qry = $conn->query("SELECT id,name FROM department_list");
+/* $department_qry = $conn->query("SELECT id,name FROM department_list");
 $dept_arr = array_column($department_qry->fetch_all(MYSQLI_ASSOC),'name','id');
 $designation_qry = $conn->query("SELECT id,name FROM designation_list");
-$desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
+$desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id'); */
 ?>
 <?php 
 if(isMobileDevice()):
@@ -51,63 +51,63 @@ if(isMobileDevice()):
                     <div class="row">
                         <div class="col-2 col-md-2">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 12px;">Employee Code</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $employee_id ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($employee_id) ? '' : $employee_id; ?>">
                         </div>
                         <div class="col-2 col-md-2">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 12px;">Date Hired</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo date("M d, Y",strtotime($date_hired)) ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_date_hired) ? '' : date("M d, Y", strtotime($c_date_hired)); ?>">
                         </div>
                         <div class="col-4 col-md-4">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Company</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $company ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_company) ? '' : $c_company; ?>">
                         </div>
                         <div class="col-2 col-md-2">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Status</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $status ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_status) ? '' : $c_status; ?>">
                         </div>
                         <div class="col-2 col-md-2">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 35px;">Sex</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $sex ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_sex) ? '' : $c_sex; ?>">
                         </div>
                         <div class="col-4 col-md-4">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">Last Name</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $lastname ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($lastname) ? '' : $lastname; ?>">
                         </div>
                         <div class="col-4 col-md-4">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">First Name</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $firstname ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($firstname) ? '' : $firstname; ?>">
                         </div>
                         <div class="col-4 col-md-4">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">Middle Name</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $middlename ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($middlename) ? '' : $middlename; ?>">
                         </div>
                         <div class="col-8 col-md-8">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Address</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $address ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_address) ? '' : $c_address; ?>">
                         </div>
                         <div class="col-4 col-md-4">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Email Address</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $email ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_email) ? '' : $c_email; ?>">
                         </div>
                         <div class="col-4 col-md-4">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Position</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $desg_arr[$designation_id] ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($designation_name) ? '' : $designation_name; ?>">
                         </div>
                         <div class="col-4 col-md-4">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Contact No</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $contact ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_contact) ? '' : $c_contact; ?>">
                         </div>
                         <div class="col-2 col-md-2">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 15px;">Birth Date</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo date("M d, Y", strtotime($birthdate)) ?>">
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_birthdate) ? '' : date("M d, Y", strtotime($c_birthdate)); ?>">
                         </div>
                         <div class="col-2 col-md-2">
                             <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 15px;">Age</label>
                             <?php
                             // Calculate age
-                            $birthDate = new DateTime($birthdate);
+                            $c_birthdate = new DateTime($c_birthdate);
                             $today = new DateTime();
-                            $age = $today->diff($birthDate)->y;
+                            $age = $today->diff($c_birthdate)->y;
 
                             // Display age
                             ?>
@@ -129,43 +129,43 @@ if(isMobileDevice()):
                 <div class="row">
                     <div class="col-4 col-md-4">
                         <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Department</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $dept_arr[$department_id] ?>">
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($department_name) ? '' : $department_name; ?>">
                     </div>
                     <div class="col-4 col-md-4">
                         <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Division</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $division ?>">
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_division) ? '' : $c_division; ?>">
+                    </div>
+                    <div class="col-4 col-md-4">
+                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Level</label>
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_level) ? '' : $c_level; ?>">
                     </div>
                     <div class="col-4 col-md-4">
                         <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Employment Status</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $emp_status ?>">
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_employment) ? '' : $c_employment; ?>">
                     </div>
                     <div class="col-4 col-md-4">
                         <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Section</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $section ?>">
-                    </div>
-                    <div class="col-4 col-md-4">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Designation</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $desg_arr[$designation_id] ?>">
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_section) ? '' : $c_section; ?>">
                     </div>
                     <div class="col-4 col-md-4">
                         <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">SBC Account No</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $sbc ?>">
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_sbc_account_no) ? '' : $c_sbc_account_no; ?>">
                     </div>
                     <div class="col-3 col-md-3">
                         <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">T.I.N No</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $tin ?>">
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_tin) ? '' : $c_tin; ?>">
                     </div>
                     <div class="col-3 col-md-3">
                         <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">SSS No</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $sss ?>">
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_sss) ? '' : $c_sss; ?>">
                     </div>
                     <div class="col-3 col-md-3">
                         <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Pag-Ibig</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $pagibig ?>">
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_pagibig) ? '' : $c_pagibig; ?>">
                     </div>
                     <div class="col-3 col-md-3">
                         <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">PhilHealth</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $philhealth ?>">
+                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_philhealth) ? '' : $c_philhealth; ?>">
                     </div>
                 </div>
             </div>
@@ -195,35 +195,35 @@ if(isMobileDevice()):
                             <div class="row">
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Salary 1</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($first_salary) ? '0.00' : number_format($first_salary, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_salary1) ? '0.00' : number_format($c_salary1, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Allowance 1</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($first_allow) ? '0.00' : number_format($first_allow, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_allowance) ? '0.00' : number_format($c_allowance, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Transpo Allowance</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($transpo) ? '0.00' : number_format($transpo, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_transpo) ? '0.00' : number_format($c_transpo, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Effectivity Date</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $effectivity ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_e_date) ? 'None' : $c_e_date; ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Salary 2</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($second_salary) ? '0.00' : number_format($second_salary, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_salary2) ? '0.00' : number_format($c_salary2, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Allowance 2</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($second_allow) ? '0.00' : number_format($second_allow, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_allowance2) ? '0.00' : number_format($c_allowance2, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Cashier Allowance</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($cashier) ? '0.00' : number_format($cashier, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_cashiers_allow) ? '0.00' : number_format($c_cashiers_allow, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">ATM Account No</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($atm) ? '0.00' : $atm ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_atm_account) ? '0.00' : $c_atm_account ?>">
                                 </div>
                             </div>
                         </div>
@@ -233,15 +233,15 @@ if(isMobileDevice()):
                             <div class="row">
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">GHP</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_ghp) ? '0.00' : number_format($deduc_ghp, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_ghp) ? '0.00' : number_format($c_ghp, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">MA</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_ma) ? '0.00' : number_format($deduc_ma, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_deduction_ma) ? '0.00' : number_format($c_deduction_ma, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Tax Amount</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_tax) ? '0.00' : number_format($deduc_tax, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_tax_amount) ? '0.00' : number_format($c_tax_amount, 2); ?>">
                                 </div>
                             </div>
                         </div>
@@ -251,47 +251,47 @@ if(isMobileDevice()):
                             <div class="row">
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Salary</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_salary) ? '0.00' : number_format($deduc_salary, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_loan_sal) ? '0.00' : number_format($c_loan_sal, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">SSS Loan</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_sss) ? '0.00' : number_format($deduc_sss, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_loan_sss) ? '0.00' : number_format($c_loan_sss, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Pag-Ibig Loan (MPL)</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_pagibig_mpl) ? '0.00' : number_format($deduc_pagibig_mpl, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_loan_pib) ? '0.00' : number_format($c_loan_pib, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Pag-Ibig Loan (Cal)</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_pagibig_cal) ? '0.00' : number_format($deduc_pagibig_cal, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_loan_calamity) ? '0.00' : number_format($c_loan_calamity, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Medical</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_medical) ? '0.00' : number_format($deduc_medical, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_loan_med) ? '0.00' : number_format($c_loan_med, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Emergency</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_emergency) ? '0.00' : number_format($deduc_emergency, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_loan_eme) ? '0.00' : number_format($c_loan_eme, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Car Loan</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_car) ? '0.00' : number_format($deduc_car, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_loan_car) ? '0.00' : number_format($c_loan_car, 2); ?>">
                                 </div>
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Educational</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_educ) ? '0.00' : number_format($deduc_educ, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_loan_edu) ? '0.00' : number_format($c_loan_edu, 2); ?>">
                                 </div>
 
                                 <!-- Planters Loadn 2 input -->
 
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Planters Loan</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_planters1) ? '0.00' : number_format($deduc_planters1, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_loan_planters) ? '0.00' : number_format($c_loan_planters, 2); ?>">
                                 </div>
 
                                 <div class="col-3 col-md-3">
                                     <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 16px;">Planters Loan 2nd</label>
-                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($deduc_planters2) ? '0.00' : number_format($deduc_planters2, 2); ?>">
+                                    <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_loan_planters2) ? '0.00' : number_format($c_loan_planters2, 2); ?>">
                                 </div>
                             </div>
                         </div>

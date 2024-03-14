@@ -36,7 +36,7 @@
 				<tbody>
 					<?php 
 					$i = 1;
-						$qry = $conn->query("SELECT * from `policies_list` order by id asc");
+						$qry = $conn->query("SELECT * from `policies_list` order by `date_issuance` desc");
 						while($row = $qry->fetch_assoc()):
                             $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
 					?>

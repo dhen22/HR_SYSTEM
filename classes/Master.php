@@ -21,6 +21,20 @@ Class Master extends DBConnection {
 			exit;
 		}
 	}
+
+
+	//for logs activity
+	function log_activity($date, $time, $module, $activity){
+
+		$username = $_SESSION['userdata']['username'];
+	
+		$sql = "INSERT INTO logs (c_user, c_date, c_time, c_module, c_activity) VALUES (?, ?, ?, ?, ?)";
+		$stmt = $this->conn->prepare($sql);
+		$stmt->bind_param("sssss", $username, $date, $time, $module, $activity);
+		$stmt->execute();
+		$stmt->close();
+	}
+	
 	function save_department(){
 		extract($_POST);
 		$data = "";
@@ -49,20 +63,40 @@ Class Master extends DBConnection {
 		}
 		if($save){
 			$resp['status'] = 'success';
-			if(empty($id))
+			if(empty($id)){
+				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Department', "Add -- $name -- $description");
 				$this->settings->set_flashdata('success',"New Department successfully saved.");
-			else
+			}else{
+				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Department', "Update -- $name -- $description");
 				$this->settings->set_flashdata('success',"Department successfully updated.");
+			}
 		}else{
 			$resp['status'] = 'failed';
 			$resp['err'] = $this->conn->error."[{$sql}]";
 		}
 		return json_encode($resp);
 	}
+
 	function delete_department(){
 		extract($_POST);
+		
+		//pagkuha ng column sa department
+		$query2 = $this->conn->query("SELECT * FROM `department_list` where id = '{$id}'");
+		if (!$query2) {
+			$resp['status'] = 'failed';
+			$resp['error'] = $this->conn->error;
+			return json_encode($resp);
+		}
+
+		//pag lalagay sa variable
+		$department_data = $query2->fetch_assoc();
+		$name = $department_data['name'];
+		$desc = $department_data['description'];
+	
 		$del = $this->conn->query("DELETE FROM `department_list` where id = '{$id}'");
 		if($del){
+			//pag llog kapag nadedelete si user
+			$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Department', "Deleted -- $name -- $desc");
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"Department successfully deleted.");
 		}else{
@@ -70,8 +104,8 @@ Class Master extends DBConnection {
 			$resp['error'] = $this->conn->error;
 		}
 		return json_encode($resp);
-
 	}
+	
 	function save_designation(){
 		extract($_POST);
 		$data = "";
@@ -100,10 +134,14 @@ Class Master extends DBConnection {
 		}
 		if($save){
 			$resp['status'] = 'success';
-			if(empty($id))
+			if(empty($id)){
+				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Designation', "Add -- $name -- $description");
 				$this->settings->set_flashdata('success',"New Designation successfully saved.");
-			else
+			}
+			else{
+				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Designation', "Update -- $name -- $description");
 				$this->settings->set_flashdata('success',"Designation successfully updated.");
+			}
 		}else{
 			$resp['status'] = 'failed';
 			$resp['err'] = $this->conn->error."[{$sql}]";
@@ -112,8 +150,21 @@ Class Master extends DBConnection {
 	}
 	function delete_designation(){
 		extract($_POST);
+
+		$query2 = $this->conn->query("SELECT * FROM `designation_list` where id = '{$id}'");
+		if (!$query2) {
+			$resp['status'] = 'failed';
+			$resp['error'] = $this->conn->error;
+			return json_encode($resp);
+		}
+
+		$designation_data = $query2->fetch_assoc();
+		$name = $designation_data['name'];
+		$desc = $designation_data['description'];
+
 		$del = $this->conn->query("DELETE FROM `designation_list` where id = '{$id}'");
 		if($del){
+			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Designation', "Delete -- $name -- $desc");
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"Designation successfully deleted.");
 		}else{
@@ -154,10 +205,14 @@ Class Master extends DBConnection {
 		}
 		if($save){
 			$resp['status'] = 'success';
-			if(empty($id))
+			if(empty($id)){
+				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Announcement', "Add -- $title -- $ref_");
 				$this->settings->set_flashdata('success',"New announcement successfully saved.");
-			else
+			}
+			else{
+				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Announcement', "Update -- $title -- $ref_");
 				$this->settings->set_flashdata('success',"announcement successfully updated.");
+			}
 		}else{
 			$resp['status'] = 'failed';
 			$resp['err'] = $this->conn->error."[{$sql}]";
@@ -166,8 +221,21 @@ Class Master extends DBConnection {
 	}
 	function delete_announcement(){	
 		extract($_POST);
+
+		$query2 = $this->conn->query("SELECT * FROM `announcement_list` where id = '{$id}'");
+		if (!$query2) {
+			$resp['status'] = 'failed';
+			$resp['error'] = $this->conn->error;
+			return json_encode($resp);
+		}
+
+		$announcement_data = $query2->fetch_assoc();
+		$title = $announcement_data['title'];
+		$ref_ = $announcement_data['ref_'];
+
 		$del = $this->conn->query("DELETE FROM `announcement_list` where id = '{$id}'");
 		if($del){
+			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Announcement', "Deleted -- $title -- $ref_");
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"announcement successfully deleted.");
 		}else{
@@ -206,10 +274,14 @@ Class Master extends DBConnection {
 		}
 		if($save){
 			$resp['status'] = 'success';
-			if(empty($id))
+			if(empty($id)){
+				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Memo', "Add -- $title -- $ref_");
 				$this->settings->set_flashdata('success',"New memo successfully saved.");
-			else
+			}
+			else{
+				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Memo', "Update -- $title -- $ref_");
 				$this->settings->set_flashdata('success',"memo successfully updated.");
+			}
 		}else{
 			$resp['status'] = 'failed';
 			$resp['err'] = $this->conn->error."[{$sql}]";
@@ -218,8 +290,21 @@ Class Master extends DBConnection {
 	}
 	function delete_memo(){
 		extract($_POST);
+
+		$query2 = $this->conn->query("SELECT * FROM `memo_list` where id = '{$id}'");
+		if (!$query2) {
+			$resp['status'] = 'failed';
+			$resp['error'] = $this->conn->error;
+			return json_encode($resp);
+		}
+
+		$memo_data = $query2->fetch_assoc();
+		$title = $memo_data['title'];
+		$ref_ = $memo_data['ref_'];
+
 		$del = $this->conn->query("DELETE FROM `memo_list` where id = '{$id}'");
 		if($del){
+			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Memo', "Deleted -- $title -- $ref_");
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"memo successfully deleted.");
 		}else{
@@ -249,21 +334,39 @@ Class Master extends DBConnection {
 			return json_encode($resp);
 			exit;
 		}
-		if(empty($id)){
-			$sql = "INSERT INTO `policies_list` set {$data} ";
-			$save = $this->conn->query($sql);
-			$id = $this->conn->insert_id; // Get the inserted ID #attachement of file
-		}else{
-			$sql = "UPDATE `policies_list` set {$data} where id = '{$id}' ";
-			$save = $this->conn->query($sql);
-		}
-		if($save){
-			$resp['status'] = 'success';
-			if(empty($id))
-				$this->settings->set_flashdata('success',"New policies successfully saved.");
-			else
-				$this->settings->set_flashdata('success',"Policies successfully updated.");
 
+		//update ko lang kasi di nagana nung nag lagay nako log_activity 2024-03-12
+		if(empty($id)){
+			// Insert data
+			$sql = "INSERT INTO `policies_list` SET {$data}";
+			$save = $this->conn->query($sql); // Execute the query
+			$id = $this->conn->insert_id; // Get the inserted ID
+		
+			if ($save) {
+				$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Policies', "Add -- $title -- $refer -- $date_issuance");
+				$this->settings->set_flashdata('success', "New policies successfully saved.");
+				$resp['status'] = 'success';
+			} else {
+				$resp['status'] = 'failed';
+				$resp['err'] = $this->conn->error . "[{$sql}]";
+			}
+		}else{
+			 // Update data
+			 $sql = "UPDATE `policies_list` SET {$data} WHERE id = '{$id}'";
+			 $save = $this->conn->query($sql); // Execute the query
+		 
+			 if ($save) {
+				 $this->log_activity(date('Y-m-d'), date('H:i:s'), 'Policies', "Update -- $title -- $refer -- $date_issuance");
+				 $this->settings->set_flashdata('success', "Policies successfully updated.");
+				 $resp['status'] = 'success';
+			 } else {
+				 $resp['status'] = 'failed';
+				 $resp['err'] = $this->conn->error . "[{$sql}]";
+			 }
+		}
+		
+
+		if($save){
 			#attachement of file
 			$dir = 'admin/policies/uploads/';
 			if (!is_dir(base_app.$dir)) {
@@ -277,7 +380,6 @@ Class Master extends DBConnection {
 					/* $fname = $dir . "(" . $originalFileName . ")" . time() . "." . $fileExtension; */
 					$fname = $dir . $originalFileName . "_" . date("Y-m-d") . "." . $fileExtension;
 
-			
 					$move = move_uploaded_file($_FILES['img']['tmp_name'], base_app.$fname);
 			
 					if ($move) {
@@ -299,8 +401,21 @@ Class Master extends DBConnection {
 	
 	function delete_policies(){	
 		extract($_POST);
+
+		$query2 = $this->conn->query("SELECT * FROM `policies_list` where id = '{$id}'");
+		if (!$query2) {
+			$resp['status'] = 'failed';
+			$resp['error'] = $this->conn->error;
+			return json_encode($resp);
+		}
+
+		$policies_data = $query2->fetch_assoc();
+		$title = $policies_data['title'];
+		$refer = $policies_data['refer'];
+
 		$del = $this->conn->query("DELETE FROM `policies_list` where id = '{$id}'");
 		if($del){
+			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Policies', "Deleted -- $title -- $refer");
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"Policies successfully deleted.");
 		}else{
@@ -335,17 +450,29 @@ Class Master extends DBConnection {
 			$sql = "INSERT INTO `uploads` set {$data} ";
 			$save = $this->conn->query($sql);
 			$id = $this->conn->insert_id;
+
+			if ($save) {
+				$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Uploads', "Add -- $title -- $date_issuance");
+				$this->settings->set_flashdata('success', "New uploads successfully saved.");
+				$resp['status'] = 'success';
+			} else {
+				$resp['status'] = 'failed';
+				$resp['err'] = $this->conn->error . "[{$sql}]";
+			}
 		}else{
 			$sql = "UPDATE `uploads` set {$data} where id = '{$id}' ";
 			$save = $this->conn->query($sql);
+
+			if ($save) {
+				$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Uploads', "Updated -- $title -- $date_issuance");
+				$this->settings->set_flashdata('success', "Uploads successfully updated.");
+				$resp['status'] = 'success';
+			} else {
+				$resp['status'] = 'failed';
+				$resp['err'] = $this->conn->error . "[{$sql}]";
+			}
 		}
 		if($save){
-			$resp['status'] = 'success';
-			if(empty($id))
-				$this->settings->set_flashdata('success',"New Uploads successfully saved.");
-			else
-				$this->settings->set_flashdata('success',"Uploads successfully updated.");
-
 			#attachement of file -denden 2024-02-27
 			$dir = 'admin/memo/uploads/';
 			if (!is_dir(base_app.$dir)) {
@@ -379,8 +506,25 @@ Class Master extends DBConnection {
 
 	function delete_upload_files(){	
 		extract($_POST);
+
+		$query2 = $this->conn->query("SELECT * FROM `uploads` where id = '{$id}'");
+		if (!$query2) {
+			$resp['status'] = 'failed';
+			$resp['error'] = $this->conn->error;
+			return json_encode($resp);
+		}
+
+		$policies_data = $query2->fetch_assoc();
+		$title = $policies_data['title'];
+		$date_issuance = $policies_data['date_issuance'];
+
+		$date = new DateTime($date_issuance);
+
+		$format_date = $date->format('Y-m-d');
+
 		$del = $this->conn->query("DELETE FROM `uploads` where id = '{$id}'");
 		if($del){
+			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Policies', "Deleted -- $title -- $format_date");
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"Uploaded memo successfully deleted.");
 		}else{
@@ -579,12 +723,6 @@ Class Master extends DBConnection {
 				$data .= " `{$k}` = '{$v}' ";
 			}
 		}
-		/* if(empty($id))
-		$data .= ", `password` = md5('{$employee_id}') ";
-		if(empty($id))
-			$sql1 = "INSERT INTO `users` set {$data} ";
-		else
-			$sql1 = "UPDATE `users` set {$data}' where id = '{$id}' "; */
 
 		if (empty($id)) {
 			$data .= ", `password` = md5('{$employee_id}') ";
@@ -620,10 +758,14 @@ Class Master extends DBConnection {
 		if($save){
 			$resp['status'] = 'success';
 			$resp['id'] = $user_id;
-			if(empty($id))
+			if(empty($id)){
+				$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Employee', "Add -- $employee_id -- $lastname -- $firstname");
 				$this->settings->set_flashdata('success',"New Employee successfully saved.");
-			else
+			}
+			else{
+				$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Employee', "Update -- $employee_id -- $lastname -- $firstname");
 				$this->settings->set_flashdata('success',"Employee Details successfully updated.");
+			}
 			$dir = 'uploads/';
 			if(!is_dir(base_app.$dir))
 				mkdir(base_app.$dir);
@@ -651,6 +793,7 @@ Class Master extends DBConnection {
 		$update = $this->conn->query("UPDATE `users` set `password` = md5('{$employee_id}') where id = '{$id}'");
 		$this->capture_err();
 		$resp['status']='success';
+		$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Employee', "Reset Password -- $employee_id");
 		$this->settings->set_flashdata('success',' User\'s password successfully updated. ');
 		return json_encode($resp);
 	}
