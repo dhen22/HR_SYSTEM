@@ -64,9 +64,11 @@ Class Master extends DBConnection {
 		if($save){
 			$resp['status'] = 'success';
 			if(empty($id)){
+				//logs
 				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Department', "Add -- $name -- $description");
 				$this->settings->set_flashdata('success',"New Department successfully saved.");
 			}else{
+				//logs
 				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Department', "Update -- $name -- $description");
 				$this->settings->set_flashdata('success',"Department successfully updated.");
 			}
@@ -95,7 +97,7 @@ Class Master extends DBConnection {
 	
 		$del = $this->conn->query("DELETE FROM `department_list` where id = '{$id}'");
 		if($del){
-			//pag llog kapag nadedelete si user
+			//logs
 			$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Department', "Deleted -- $name -- $desc");
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"Department successfully deleted.");
@@ -135,10 +137,12 @@ Class Master extends DBConnection {
 		if($save){
 			$resp['status'] = 'success';
 			if(empty($id)){
+				//logs
 				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Designation', "Add -- $name -- $description");
 				$this->settings->set_flashdata('success',"New Designation successfully saved.");
 			}
 			else{
+				//logs
 				$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Designation', "Update -- $name -- $description");
 				$this->settings->set_flashdata('success',"Designation successfully updated.");
 			}
@@ -164,6 +168,7 @@ Class Master extends DBConnection {
 
 		$del = $this->conn->query("DELETE FROM `designation_list` where id = '{$id}'");
 		if($del){
+			//logs
 			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Designation', "Delete -- $name -- $desc");
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"Designation successfully deleted.");
@@ -759,10 +764,12 @@ Class Master extends DBConnection {
 			$resp['status'] = 'success';
 			$resp['id'] = $user_id;
 			if(empty($id)){
+				//logs
 				$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Employee', "Add -- $employee_id -- $lastname -- $firstname");
 				$this->settings->set_flashdata('success',"New Employee successfully saved.");
 			}
 			else{
+				//logs
 				$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Employee', "Update -- $employee_id -- $lastname -- $firstname");
 				$this->settings->set_flashdata('success',"Employee Details successfully updated.");
 			}
