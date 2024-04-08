@@ -43,136 +43,152 @@ if(isMobileDevice()):
         </div>
         <div id="print_out">
         <table class="table info-table"> <!-- INFORMATION OF EMPLOYEES -->
-            <div class="card">
-                <div class="card-header" style="background-color: #0039a6 ;padding: 0.4rem 1rem">
-                    <h3 class="card-title" style="color:white;">Personal Information</h3>
-                </div>
-                <div class="card-body">
+            <tr class='boder-0'>
+                <td width="11%">
+                    <div class="w-100 d-flex align-items-center justify-content-center">
+                        <img src="<?php echo validate_image($avatar) ?>" alt="Employee Avatar" class="img-thumbnail rounded-circle" id="cimg">
+                    </div>
+                </td>
+                <td width="70%" class='boder-0 align-bottom'>
                     <div class="row">
-                        <div class="col-2 col-md-2">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 12px;">Employee Code</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($employee_id) ? '' : $employee_id; ?>">
-                        </div>
-                        <div class="col-2 col-md-2">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 12px;">Date Hired</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_date_hired) ? '' : date("M d, Y", strtotime($c_date_hired)); ?>">
-                        </div>
-                        <div class="col-4 col-md-4">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Company</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_company) ? '' : $c_company; ?>">
-                        </div>
-                        <div class="col-2 col-md-2">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Status</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_status) ? '' : $c_status; ?>">
-                        </div>
-                        <div class="col-2 col-md-2">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 35px;">Sex</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_sex) ? '' : $c_sex; ?>">
-                        </div>
-                        <div class="col-4 col-md-4">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">Last Name</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($lastname) ? '' : $lastname; ?>">
-                        </div>
-                        <div class="col-4 col-md-4">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">First Name</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($firstname) ? '' : $firstname; ?>">
-                        </div>
-                        <div class="col-4 col-md-4">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">Middle Name</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($middlename) ? '' : $middlename; ?>">
-                        </div>
-                        <div class="col-8 col-md-8">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Address</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_address) ? '' : $c_address; ?>">
-                        </div>
-                        <div class="col-4 col-md-4">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Email Address</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_email) ? '' : $c_email; ?>">
-                        </div>
-                        <div class="col-4 col-md-4">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Position</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($designation_name) ? '' : $designation_name; ?>">
-                        </div>
-                        <div class="col-4 col-md-4">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Contact No</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_contact) ? '' : $c_contact; ?>">
-                        </div>
-                        <div class="col-2 col-md-2">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 15px;">Birth Date</label>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_birthdate) ? '' : date("M d, Y", strtotime($c_birthdate)); ?>">
-                        </div>
-                        <div class="col-2 col-md-2">
-                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 15px;">Age</label>
-                            <?php
-                            // Calculate age
-                            $c_birthdate = new DateTime($c_birthdate);
-                            $today = new DateTime();
-                            $age = $today->diff($c_birthdate)->y;
+                        <div class="col-14">
+                            <div class="card">
+                                <div class="card-header" style="background-color: #0039a6 ;padding: 0.4rem 1rem">
+                                    <h3 class="card-title" style="color:white;">Personal Information</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-2 col-md-2">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 12px;">Employee Code</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($employee_id) ? '' : $employee_id; ?>">
+                                        </div>
+                                        <div class="col-2 col-md-2">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 12px;">Date Hired</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_date_hired) ? '' : date("M d, Y", strtotime($c_date_hired)); ?>">
+                                        </div>
+                                        <div class="col-4 col-md-4">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Company</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_company) ? '' : $c_company; ?>">
+                                        </div>
+                                        <div class="col-2 col-md-2">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Status</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_status) ? '' : $c_status; ?>">
+                                        </div>
+                                        <div class="col-2 col-md-2">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 35px;">Sex</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_sex) ? '' : $c_sex; ?>">
+                                        </div>
+                                        <div class="col-4 col-md-4">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">Last Name</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($lastname) ? '' : $lastname; ?>">
+                                        </div>
+                                        <div class="col-4 col-md-4">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">First Name</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($firstname) ? '' : $firstname; ?>">
+                                        </div>
+                                        <div class="col-4 col-md-4">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 23px;">Middle Name</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($middlename) ? '' : $middlename; ?>">
+                                        </div>
+                                        <div class="col-8 col-md-8">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Address</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_address) ? '' : $c_address; ?>">
+                                        </div>
+                                        <div class="col-2 col-md-2">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Email Address</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_email) ? '' : $c_email; ?>">
+                                        </div>
+                                        <div class="col-2 col-md-2">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Office Loc.</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_office_loc) ? '' : $c_office_loc; ?>">
+                                        </div>
+                                        <div class="col-4 col-md-4">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Position</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($designation_name) ? '' : $designation_name; ?>">
+                                        </div>
+                                        <div class="col-4 col-md-4">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Contact No</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_contact) ? '' : $c_contact; ?>">
+                                        </div>
+                                        <div class="col-2 col-md-2">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 15px;">Birth Date</label>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_birthdate) ? '' : date("M d, Y", strtotime($c_birthdate)); ?>">
+                                        </div>
+                                        <div class="col-2 col-md-2">
+                                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 15px;">Age</label>
+                                            <?php
+                                            // Calculate age
+                                            $c_birthdate = new DateTime($c_birthdate);
+                                            $today = new DateTime();
+                                            $age = $today->diff($c_birthdate)->y;
 
-                            // Display age
-                            ?>
-                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $age; ?>">
+                                            // Display age
+                                            ?>
+                                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo $age; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
+                </td>
+            </tr>
         </table>
 
         <!-- <hr class="border-dark"> --> <!-- CONTACT INFO OF EMPLOYEES -->
-
-        <div class="card">
-            <div class="card-header" style="background-color: #0039a6 ;padding: 0.4rem 1rem">
-                <h3 class="card-title" style="color:white;">Employee Data</h3>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-4 col-md-4">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Department</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($department_name) ? '' : $department_name; ?>">
-                    </div>
-                    <div class="col-4 col-md-4">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Division</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_division) ? '' : $c_division; ?>">
-                    </div>
-                    <div class="col-4 col-md-4">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Level</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_level) ? '' : $c_level; ?>">
-                    </div>
-                    <div class="col-4 col-md-4">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Employment Status</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_employment) ? '' : $c_employment; ?>">
-                    </div>
-                    <div class="col-4 col-md-4">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Section</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_section) ? '' : $c_section; ?>">
-                    </div>
-                    <div class="col-4 col-md-4">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">SBC Account No</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_sbc_account_no) ? '' : $c_sbc_account_no; ?>">
-                    </div>
-                    <div class="col-3 col-md-3">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">T.I.N No</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_tin) ? '' : $c_tin; ?>">
-                    </div>
-                    <div class="col-3 col-md-3">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">SSS No</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_sss) ? '' : $c_sss; ?>">
-                    </div>
-                    <div class="col-3 col-md-3">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Pag-Ibig</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_pagibig) ? '' : $c_pagibig; ?>">
-                    </div>
-                    <div class="col-3 col-md-3">
-                        <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">PhilHealth</label>
-                        <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_philhealth) ? '' : $c_philhealth; ?>">
+        <?php if($_settings->userdata('type') != 3): ?>        
+            <div class="card">
+                <div class="card-header" style="background-color: #0039a6 ;padding: 0.4rem 1rem">
+                    <h3 class="card-title" style="color:white;">Employee Data</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4 col-md-4">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Department</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($department_name) ? '' : $department_name; ?>">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Division</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_division) ? '' : $c_division; ?>">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Level</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_level) ? '' : $c_level; ?>">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Employment Status</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_employment) ? '' : $c_employment; ?>">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Section</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_section) ? '' : $c_section; ?>">
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">SBC Account No</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_sbc_account_no) ? '' : $c_sbc_account_no; ?>">
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">T.I.N No</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_tin) ? '' : $c_tin; ?>">
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">SSS No</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_sss) ? '' : $c_sss; ?>">
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">Pag-Ibig</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_pagibig) ? '' : $c_pagibig; ?>">
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label class="float-left w-auto whitespace-nowrap" style="padding-top: 8px; padding-right: 10px;">PhilHealth</label>
+                            <input type="text" class="form-control" style="background-color: white;" readonly value="<?php echo empty($c_philhealth) ? '' : $c_philhealth; ?>">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- <hr class="border-dark"> --> <!-- COMPANY INFORMATION OF EMPLOYEES -->
-        <?php if($_settings->userdata('type') != 3): ?>
+            
+            <!-- <hr class="border-dark"> --> <!-- COMPANY INFORMATION OF EMPLOYEES -->
+            
             <div class="card">
                 <div class="card-header" style="background-color: #0039a6 ;padding: 0.4rem 1rem">
                     <h3 class="card-title" style="color:white;">Salary Info & Deductions</h3>
@@ -298,103 +314,104 @@ if(isMobileDevice()):
                     </div>
                 </div>
             </div>
-        <?php endif; ?>
+        
 
-        <!-- <hr class="border-dark"> --> <!-- Leave List & Application Leave Records -->
-        <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <div class="callout border-0">
-                    <?php if($_settings->userdata('type') != 3): ?>
-                    <div class="float-right">
-                        <button class="btn btn-sm btn-default bg-lightblue rounded-circle text-center" type="button" id="manage_leave"><span class="fa fa-cog"></span></button>
-                    </div>
-                    <?php endif; ?>
-
-                    <h5 class="mb-2">Leave Credits</h5>
-                    <table class="table table-hover ">
-                        <colgroup>
-                            <col width="70%">
-                            <col width="15%">
-                            <col width="15%">
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th class="py-1 px-2">Type</th>
-                                <th class="py-1 px-2">Allowable</th>
-                                <th class="py-1 px-2">Available</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php 
-                        if(isset($leave_type_ids) && !empty($leave_type_ids)):
-                        $leave_type_credits = isset($leave_type_credits) ? json_decode($leave_type_credits) : array();
-                        $ltc = array();
-                        foreach($leave_type_credits as $k=> $v){
-                            $ltc[$k] = $v;
-                        }
-                        $lt = $conn->query("SELECT * FROM `leave_types` where `id` in ({$leave_type_ids}) order by code asc ");
-                        while($row=$lt->fetch_assoc()):
-                            $used = $conn->query("SELECT SUM(`leave_days`) as total FROM `leave_applications` where user_id = '{$id}' and status = 1 and date_format(date_start,'%Y') = '".date('Y')."' and date_format(date_end,'%Y') = '".date('Y')."' and leave_type_id = '{$row['id']}' ")->fetch_array()['total'];
-                            $allowed = (isset($ltc[$row['id']])) ? $ltc[$row['id']] : 0;
-                            $available =  $allowed - $used;
-                        ?>
-                        <tr>
-                            <td><?php echo $row['code'] ?></td>
-                            <td><?php echo number_format($allowed) ?></td>
-                            <td><?php echo number_format($available,1) ?></td>
-                        </tr>
-                        <?php endwhile; ?>
+            <!-- <hr class="border-dark"> --> <!-- Leave List & Application Leave Records -->
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="callout border-0">
+                        <?php if($_settings->userdata('type') != 3): ?>
+                        <div class="float-right">
+                            <button class="btn btn-sm btn-default bg-lightblue rounded-circle text-center" type="button" id="manage_leave"><span class="fa fa-cog"></span></button>
+                        </div>
                         <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-8 col-sm-12">
-                <div class="callout border-0">
-                    <h5>Records</h5>
-                    <table class="table-stripped table">
-                        <colgroup>
-                                <col width="30%">
-                                <col width="20%">
-                                <col width="10%">
-                                <col width="40%">
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th class="p-1">Leave Type</th>
-                                <th class="p-1">Date</th>
-                                <th class="p-1">Days</th>
-                                <th class="p-1">Remarks</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+
+                        <h5 class="mb-2">Leave Credits</h5>
+                        <table class="table table-hover ">
+                            <colgroup>
+                                <col width="70%">
+                                <col width="15%">
+                                <col width="15%">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th class="py-1 px-2">Type</th>
+                                    <th class="py-1 px-2">Allowable</th>
+                                    <th class="py-1 px-2">Available</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                             <?php 
-                            $la = $conn->query("SELECT l.*,lt.code, lt.name FROM `leave_applications` l inner join `leave_types` lt on l.leave_type_id = lt.id where l.status = 1 and l.user_id = '{$id}' and (date_format(l.date_start,'%Y') = '".date("Y")."' or date_format(l.date_end,'%Y') = '".date("Y")."')  order by unix_timestamp(l.date_start) asc,unix_timestamp(l.date_end) asc ");
-                            while($row = $la->fetch_assoc()):
+                            if(isset($leave_type_ids) && !empty($leave_type_ids)):
+                            $leave_type_credits = isset($leave_type_credits) ? json_decode($leave_type_credits) : array();
+                            $ltc = array();
+                            foreach($leave_type_credits as $k=> $v){
+                                $ltc[$k] = $v;
+                            }
+                            $lt = $conn->query("SELECT * FROM `leave_types` where `id` in ({$leave_type_ids}) order by code asc ");
+                            while($row=$lt->fetch_assoc()):
+                                $used = $conn->query("SELECT SUM(`leave_days`) as total FROM `leave_applications` where user_id = '{$id}' and status = 1 and date_format(date_start,'%Y') = '".date('Y')."' and date_format(date_end,'%Y') = '".date('Y')."' and leave_type_id = '{$row['id']}' ")->fetch_array()['total'];
+                                $allowed = (isset($ltc[$row['id']])) ? $ltc[$row['id']] : 0;
+                                $available =  $allowed - $used;
                             ?>
                             <tr>
-                                <td class="p-1"><?php echo $row['code'].' - '.$row['name'] ?></td>
-                                <td class="p-1">
-                                    <?php
-                                    if ($row['date_start'] == $row['date_end']) {
-                                        echo substr($row['date_start'], 0, 10);
-                                    }elseif($row['type'] == 2){
-                                        echo substr($row['date_start'], 0, 10) . ' / HALF DAY';
-                                    }
-                                    else {
-                                        echo substr($row['date_start'], 0, 10) . ' / ' . substr($row['date_end'], 0, 10);
-                                    }
-                                    ?>
-                                </td>
-                                <td class="p-1"><?php echo $row['leave_days'] ?></td>
-                                <td class="p-1"><small><i><?php echo $row['reason'] ?></i></small></td>
+                                <td><?php echo $row['code'] . ' - ' . $row['name']?></td>
+                                <td><?php echo number_format($allowed) ?></td>
+                                <td><?php echo number_format($available,1) ?></td>
                             </tr>
                             <?php endwhile; ?>
-                        </tbody>
-                    </table>
+                            <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <div class="callout border-0">
+                        <h5>Records</h5>
+                        <table class="table-stripped table">
+                            <colgroup>
+                                    <col width="30%">
+                                    <col width="20%">
+                                    <col width="10%">
+                                    <col width="40%">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th class="p-1">Leave Type</th>
+                                    <th class="p-1">Date</th>
+                                    <th class="p-1">Days</th>
+                                    <th class="p-1">Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                $la = $conn->query("SELECT l.*,lt.code, lt.name FROM `leave_applications` l inner join `leave_types` lt on l.leave_type_id = lt.id where l.status = 1 and l.user_id = '{$id}' and (date_format(l.date_start,'%Y') = '".date("Y")."' or date_format(l.date_end,'%Y') = '".date("Y")."')  order by unix_timestamp(l.date_start) asc,unix_timestamp(l.date_end) asc ");
+                                while($row = $la->fetch_assoc()):
+                                ?>
+                                <tr>
+                                    <td class="p-1"><?php echo $row['code'].' - '.$row['name'] ?></td>
+                                    <td class="p-1">
+                                        <?php
+                                        if ($row['date_start'] == $row['date_end']) {
+                                            echo substr($row['date_start'], 0, 10);
+                                        }elseif($row['type'] == 2){
+                                            echo substr($row['date_start'], 0, 10) . ' / HALF DAY';
+                                        }
+                                        else {
+                                            echo substr($row['date_start'], 0, 10) . ' / ' . substr($row['date_end'], 0, 10);
+                                        }
+                                        ?>
+                                    </td>
+                                    <td class="p-1"><?php echo $row['leave_days'] ?></td>
+                                    <td class="p-1"><small><i><?php echo $row['reason'] ?></i></small></td>
+                                </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
         </div>
     </div>
 </div>

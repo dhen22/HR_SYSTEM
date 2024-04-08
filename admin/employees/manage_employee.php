@@ -178,12 +178,26 @@ $desg_arr = array_column($designation_qry->fetch_all(MYSQLI_ASSOC),'name','id');
                                    value="<?php echo isset($meta['c_address']) ? $meta['c_address'] : '' ?>" required>
 						</div>
                     </div>
-					<div class="col-md-4">
+					<div class="col-md-2">
 						<div class="form-group">
 							<label for="c_email">Email Address</label>
 							<input type="text" name="c_email" id="c_email" class="form-control"
 									value="<?php echo isset($meta['c_email']) ? $meta['c_email']: '' ?>" required>
 						</div>
+                    </div>
+					<div class="col-md-2">
+                        <div class="form-group">
+                            <label for="c_office_loc">Office Loc.</label>
+                            <select name="c_office_loc" id="c_office_loc"
+                                    class="form-control select2bs4 select2"
+                                    data-placeholder="Select Office Location" required>
+                                <option value="" disabled <?php echo !isset($meta['c_office_loc']) ? 'selected' : '' ?>></option>
+                                <option value="Malolos" <?php echo (isset($meta['c_office_loc']) && $meta['c_office_loc'] == 'Malolos') ? 'selected' : '' ?>>Malolos
+                                </option>
+                                <option value="Caloocan" <?php echo (isset($meta['c_office_loc']) && $meta['c_office_loc'] == 'Caloocan') ? 'selected' : '' ?>>Caloocan
+                                </option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 				<div class="row">

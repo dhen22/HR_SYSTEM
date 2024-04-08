@@ -61,7 +61,7 @@ if($_settings->userdata('type') == 3){
 							$lt = $conn->query("SELECT * FROM `leave_types` where status = 1 {$where} order by `code` asc");
 							while($row = $lt->fetch_assoc()):
 							?>
-								<option value="<?php echo $row['id'] ?>" <?php echo (isset($leave_type_id) && $leave_type_id == $row['id']) ? 'selected' : '' ?>><?php echo $row['code'] ?></option>
+								<option value="<?php echo $row['id'] ?>" <?php echo (isset($leave_type_id) && $leave_type_id == $row['id']) ? 'selected' : '' ?>><?php echo $row['code'] . ' - ' . $row['name'] ?></option>
 							<?php endwhile; ?>
 						</select>
 					</div>

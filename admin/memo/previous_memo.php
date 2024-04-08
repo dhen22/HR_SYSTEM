@@ -21,9 +21,16 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		padding: 12px !important;
 	}
 	
+	.custom-file-label {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 100%;
+		font-size: 14px;
+	}
 </style>
 
-<?php if($_settings->userdata('type') != 3): ?>
+<!-- <?php if($_settings->userdata('type') != 3): ?>
 <div class="card card-outline card-primary">
 	<div class="card-body">
 		<form action="" id="upload-form">
@@ -52,7 +59,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                                     $filename = $upload_path ? basename($upload_path) : '';
                                 ?>
                                 <label class="custom-file-label" for="customFile" data-value="<?php echo $upload_path; ?>" required>
-                                    <!-- Choose file: --> <?php echo $filename; ?>
+                                    <?php echo $filename; ?>
                                 </label>
                             </div>
                         </div>
@@ -68,30 +75,36 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		</form>
 	</div>
 </div>
-<?php endif; ?>
+<?php endif; ?> -->
 
 
 <?php
-// Delete records older than 5 years from the current date -denden
-$delete_date = date('Y-m-d', strtotime('-5 years'));
-$conn->query("DELETE FROM `uploads` WHERE date_issuance < '{$delete_date}'");
-
-// Fetch and distinct years from the database -denden
-$qry_years = $conn->query("SELECT DISTINCT YEAR(date_issuance) AS year FROM `uploads` ORDER BY year DESC");
+// Fetch and distinct years from the database excluding the current year (eto behind the current date)
+$qry_years = $conn->query("SELECT DISTINCT YEAR(date_issuance) AS year FROM `uploads` WHERE YEAR(date_issuance) < YEAR(CURDATE()) AND date_issuance >= DATE_SUB(CURDATE(), INTERVAL 5 YEAR) ORDER BY year DESC");
 ?>
 
 <?php if($qry_years->num_rows > 0): ?>
     <?php while($year_row = $qry_years->fetch_assoc()): ?>
         <div class="card">
+			<!-- <div class="card-header" style="background-color: #0039a6; padding: 0.4rem 1rem">
+				<div class="row">
+					<div class="col-auto">
+						<i class="fas fa-envelope" style="font-size: 1.2em; color: white; padding-top: 5px;"></i>
+					</div>
+					<div class="col">
+						<h3 class="card-title" style="padding-top: 5px; color:white;">Previous Memo</h3>
+					</div>
+				</div>
+			</div> -->
             <div class="card-body">
                 <div class="container-fluid">
-				<h2><?php echo $year_row['year']; ?></h2>
+                    <h2><?php echo $year_row['year']; ?></h2>
                     <table class="table table-stripped table-hover">
                         <thead>
                             <tr style="height:40px;">
                                 <th style="color: black; width: 5%;">No.</th>
                                 <th style="color: black; width: 30%;">Title</th>
-                                <th style="color: black; width: 10%;">Date Issuance</th>
+                                <th style="color: black; width: 15%;">Date Issuance</th>
                                 <th style="color: black; width: 40%;">File Name</th>
                                 <th style="color: black; width: 10%;">Action</th>
                             </tr>
@@ -99,20 +112,32 @@ $qry_years = $conn->query("SELECT DISTINCT YEAR(date_issuance) AS year FROM `upl
                         <tbody>
                             <?php 
                             $i = 1;
-                            // Fetch files for the current year -denden
-                            $qry_files = $conn->query("SELECT * FROM `uploads` WHERE YEAR(date_issuance) = '{$year_row['year']}' ORDER BY date_issuance DESC");
+                            // Fetch files for the current year (eto current year kukuhanin)
+                            $qry_files = $conn->query("SELECT * FROM `uploads` WHERE YEAR(date_issuance) = '{$year_row['year']}' AND date_issuance >= DATE_SUB(CURDATE(), INTERVAL 5 YEAR) ORDER BY date_issuance DESC");
                             while($row = $qry_files->fetch_assoc()):
                             ?>
                                 <tr>
                                     <td class="text-center"><?php echo $i++; ?></td>
                                     <td><?php echo $row['title'] ?></td>
-                                    <td><?php echo date('Y-m-d', strtotime($row['date_issuance'])); ?></td>
+                                    <td><?php echo date('F d, Y', strtotime($row['date_issuance'])); ?></td>
                                     <td><?php echo $row['upload_path'] ?></td>
                                     <td align="center">
+										<!-- <a class="btn btn-default btn-sm revised_view" style="width: 100%;" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye text-primary"></span> View</a> -->
+										<a class="btn btn-default btn-sm" style="width: 100%;" href="<?php echo base_url . '/' . $row['upload_path']; ?>" target="_blank" data-id="<?php echo $row['id'] ?>">
+											<span class="fa fa-eye text-primary"></span> View
+										</a>
+
 										<?php if($_settings->userdata('type') == 1 || $_settings->userdata('type') == 2): ?>
-											<a class="delete_data btn btn-sm btn-danger" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>">
-												<span class="fa fa-trash"></span> Remove
-											</a>
+											<button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" style="margin-top: 5px; width: 100%;" data-toggle="dropdown">
+													Action
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+
+											<div class="dropdown-menu" role="menu">
+												<a class="dropdown-item edit_data"  href="./?page=memo/revised_memo&id=<?php echo $row['id'] ?>"><span class="fa fa-edit text-info"></span> Edit</a>
+												<div class="dropdown-divider"></div>
+												<a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Remove</a>
+											</div>
 										<?php endif; ?>
                                     </td>
                                 </tr>
@@ -126,20 +151,22 @@ $qry_years = $conn->query("SELECT DISTINCT YEAR(date_issuance) AS year FROM `upl
 <?php endif; ?>
 
 
+
 <script>
 	$(document).ready(function(){
 		$('.delete_data').click(function(){
 			_conf("Are you sure to delete this Memo permanently?","delete_upload_files",[$(this).attr('data-id')])
 		});
-		$('.view_memo').click(function(){
-			uni_modal("</i>","memo/view_memo.php?id="+$(this).attr('data-id'));
+		$('.revised_view').click(function(){
+			uni_modal("</i>","memo/revised_view.php?id="+$(this).attr('data-id'));
 		});
 		
 		$('.table').DataTable({
-			"paging": false,
-			"ordering": true,
-			"info": false,
-			"searching": false
+			"paging": true,
+			"ordering": false,
+			"info": true,
+			"searching": true,
+			"pageLength": 5
 		});
 	});
 

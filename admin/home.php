@@ -142,7 +142,9 @@
 
 </style>
 
-<div id="announcementCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
+<!-- Hide muna announcements displayed (request by hr shibalsekya) -->
+
+<!-- <div id="announcementCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
   <div class="carousel-inner">
     <?php
     $qry = $conn->query("SELECT * from `announcement_list` order by date_created desc LIMIT 4");
@@ -195,18 +197,18 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span> 
     <span style="color: black; font-weight: bold;">Next</span>
   </a>
-</div>
+</div> -->
 
 
 
-<div class="card">
-  <div class="card-header" style="background-color: #0039a6; padding: 0.2rem 1rem">
+<!-- <div class="card">
+  <div class="card-header" style="background-color: #0039a6; padding: 0.5rem 1rem">
     <div class="row">
       <div class="col-auto">
-        <i class="fas fa-envelope" style="font-size: 1.2em; color: white;"></i>
+        <i class="fas fa-envelope" style="font-size: 1.2em; color: white; padding-top: 5px;"></i>
       </div>
       <div class="col">
-        <h3 class="card-title">Latest Memos</h3>
+        <h3 class="card-title" style="padding-top: 5px;">Latest Memos</h3>
         <div class="text-right">
           <a href="?page=memo/memo" class="btn btn-default btn-sm" style="padding: 0.1rem 1rem">See All</a>
         </div>
@@ -237,6 +239,61 @@
                 <td><?php echo ($row['date_updated'] != null) ? date('F j, Y', strtotime($row['date_updated'])) : date('F j, Y', strtotime($row['date_created'])); ?></td>
                 <td>
                   <a class="btn btn-default btn-sm view_memo" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye text-primary"></span> View</a>
+                </td>
+              </tr>
+            <?php endwhile; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="card">
+  <div class="card-header" style="background-color: #0039a6; padding: 0.5rem 1rem">
+    <div class="row">
+      <div class="col-auto">
+        <i class="fas fa-envelope" style="font-size: 1.2em; color: white; padding-top: 5px;"></i>
+      </div>
+      <div class="col">
+        <h3 class="card-title" style="padding-top: 5px;">Latest Memos</h3>
+        <div class="text-right">
+          <a href="?page=memo/revised_memo" class="btn btn-default btn-sm" style="padding: 0.1rem 1rem">See All</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="container-fluid">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr style="height:40px;">
+              <th style="color: black; width: 5%;">No.</th>
+              <th style="color: black; width: 30%;">Title</th>
+              <th style="color: black; width: 10%;">Date Issuance</th>
+              <th style="color: black; width: 40%;">File Name</th>
+              <th style="color: black; width: 10%;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            $i = 1;
+
+            $currentYear = date('Y');
+            $qry = $conn->query("SELECT * FROM `uploads` WHERE YEAR(date_issuance) = $currentYear ORDER BY date_issuance limit 5");            
+            while ($row = $qry->fetch_assoc()):
+
+            ?>
+              <tr>
+                <td class="text-center"><?php echo $i++; ?></td>
+                <td><?php echo $row['title'] ?></td>
+                <td><?php echo date('Y-m-d', strtotime($row['date_issuance'])); ?></td>
+                <td><?php echo $row['upload_path'] ?></td>
+                <td align="center">
+                  <a class="btn btn-default btn-sm" style="width: 100%;" href="<?php echo base_url . '/' . $row['upload_path']; ?>" target="_blank" data-id="<?php echo $row['id'] ?>">
+                      <span class="fa fa-eye text-primary"></span> View
+                  </a>
                 </td>
               </tr>
             <?php endwhile; ?>

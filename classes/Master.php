@@ -98,7 +98,7 @@ Class Master extends DBConnection {
 		$del = $this->conn->query("DELETE FROM `department_list` where id = '{$id}'");
 		if($del){
 			//logs
-			$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Department', "Deleted -- $name -- $desc");
+			$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Department', "Delete -- $name -- $desc");
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"Department successfully deleted.");
 		}else{
@@ -240,7 +240,7 @@ Class Master extends DBConnection {
 
 		$del = $this->conn->query("DELETE FROM `announcement_list` where id = '{$id}'");
 		if($del){
-			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Announcement', "Deleted -- $title -- $ref_");
+			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Announcement', "Delete -- $title -- $ref_");
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"announcement successfully deleted.");
 		}else{
@@ -309,7 +309,7 @@ Class Master extends DBConnection {
 
 		$del = $this->conn->query("DELETE FROM `memo_list` where id = '{$id}'");
 		if($del){
-			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Memo', "Deleted -- $title -- $ref_");
+			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Memo', "Delete -- $title -- $ref_");
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"memo successfully deleted.");
 		}else{
@@ -420,7 +420,7 @@ Class Master extends DBConnection {
 
 		$del = $this->conn->query("DELETE FROM `policies_list` where id = '{$id}'");
 		if($del){
-			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Policies', "Deleted -- $title -- $refer");
+			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Policies', "Delete -- $title -- $refer");
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"Policies successfully deleted.");
 		}else{
@@ -441,23 +441,39 @@ Class Master extends DBConnection {
 				$data .= " `{$k}`='{$v}' ";
 			}
 		}
+
+		/* binago ko lang yung pag check kapag may doubleng encode si user! */
 		
-		$check = $this->conn->query("SELECT * FROM `uploads` where `title` = '{$title}' ".(!empty($id) ? " and id != {$id} " : "")." ")->num_rows;
-		if($this->capture_err())
+		/* $check = $this->conn->query("SELECT * FROM `uploads` WHERE `title` = '{$title}' " . (!empty($id) ? " AND `id` != {$id} " : "") . " AND `date_issuance` = '{$date_issuance}'")->num_rows; */
+		/* $check = $this->conn->query("SELECT * FROM `uploads` where `title` = '{$title}' ".(!empty($id) ? " and id != {$id} " : "")." ")->num_rows; */
+		/* if($this->capture_err())
 			return $this->capture_err();
 		if($check > 0){
 			$resp['status'] = 'failed';
 			$resp['msg'] = "Uploads Already Exist.";
 			return json_encode($resp);
 			exit;
+		} */
+
+		$check = $this->conn->query("SELECT * FROM `uploads` WHERE `title` = '{$title}' AND `date_issuance` = '{$date_issuance}'" . (!empty($id) ? " AND `id` != {$id} " : ""))->num_rows;
+
+		if($this->capture_err())
+			return $this->capture_err();
+
+		if($check > 0){
+			$resp['status'] = 'failed';
+			$resp['msg'] = "Uploads Already Exist.";
+			return json_encode($resp);
+			exit;
 		}
+
 		if(empty($id)){
 			$sql = "INSERT INTO `uploads` set {$data} ";
 			$save = $this->conn->query($sql);
 			$id = $this->conn->insert_id;
 
 			if ($save) {
-				$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Uploads', "Add -- $title -- $date_issuance");
+				$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Memo Upload', "Add -- $title -- $date_issuance");
 				$this->settings->set_flashdata('success', "New uploads successfully saved.");
 				$resp['status'] = 'success';
 			} else {
@@ -469,7 +485,7 @@ Class Master extends DBConnection {
 			$save = $this->conn->query($sql);
 
 			if ($save) {
-				$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Uploads', "Updated -- $title -- $date_issuance");
+				$this->log_activity(date('Y-m-d'), date('H:i:s'), 'Memo Upload', "Updated -- $title -- $date_issuance");
 				$this->settings->set_flashdata('success', "Uploads successfully updated.");
 				$resp['status'] = 'success';
 			} else {
@@ -477,31 +493,33 @@ Class Master extends DBConnection {
 				$resp['err'] = $this->conn->error . "[{$sql}]";
 			}
 		}
+		
 		if($save){
-			#attachement of file -denden 2024-02-27
+			#attachement of file
 			$dir = 'admin/memo/uploads/';
 			if (!is_dir(base_app.$dir)) {
 				mkdir(base_app.$dir);
 			}
+			
 			if (isset($_FILES['img'])) {
 				if (!empty($_FILES['img']['tmp_name']) && isset($_SESSION['userdata']) && isset($_SESSION['system_info'])) {
 					$originalFileName = pathinfo($_FILES['img']['name'], PATHINFO_FILENAME);
 					$fileExtension = pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
+					/* $fname = $dir . "(" . $originalFileName . ")" . time() . "." . $fileExtension; */
+					$fname = $dir . $originalFileName . "_" . date("Y-m-d") . "." . $fileExtension;
 
-					$fname = $originalFileName . "_" . date("Y-m-d") . "." . $fileExtension;
-			
-					$move = move_uploaded_file($_FILES['img']['tmp_name'], base_app.$dir.$fname);
+					$move = move_uploaded_file($_FILES['img']['tmp_name'], base_app.$fname);
 			
 					if ($move) {
 						$this->conn->query("UPDATE `uploads` SET `upload_path` = '{$fname}' WHERE id ='{$id}' ");
 			
-						if (!empty($upload_path) && is_file(base_app.$upload_path)) {
-							unlink(base_app.$upload_path);
+						if (!empty($avatar) && is_file(base_app.$avatar)) {
+							unlink(base_app.$avatar);
 						}
 					}
 				}
 			}
-
+			
 		}else{
 			$resp['status'] = 'failed';
 			$resp['err'] = $this->conn->error."[{$sql}]";
@@ -529,7 +547,7 @@ Class Master extends DBConnection {
 
 		$del = $this->conn->query("DELETE FROM `uploads` where id = '{$id}'");
 		if($del){
-			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Policies', "Deleted -- $title -- $format_date");
+			$this->log_activity( date('Y-m-d'), date('H:i:s'), 'Memo Upload', "Delete -- $title -- $format_date");
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"Uploaded memo successfully deleted.");
 		}else{

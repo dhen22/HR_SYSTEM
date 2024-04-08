@@ -86,7 +86,7 @@
                       <a href="<?php echo base_url ?>admin/?page=leave_applications" class="nav-link nav-leave_applications">
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>
-                          Application List
+                          Leaves Application
                         </p>
                       </a>
                     </li>
@@ -148,14 +148,14 @@
                     <?php if($_settings->userdata('type') != 3): ?>
                     
 
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=reports" class="nav-link nav-reports">
                         <i class="nav-icon fas fa-file"></i>
                         <p>
                           Reports
                         </p>
                       </a>
-                    </li>
+                    </li> -->
                     
 
                     <li class="nav-item dropdown">
@@ -170,7 +170,9 @@
 
                     <li class="nav-header">Events</li>
                     
-                    <li class="nav-item dropdown">
+                    <!-- Pinapa hide ng HR SHIBALLLL -->
+
+                    <!-- <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=announcement/announcement" class="nav-link nav-announcement_announcement">
                         <i class="nav-icon fa fa-arrow-circle-right"></i>
                         <p>
@@ -201,6 +203,24 @@
                           </a>
                         </li>
                       </ul>
+                    </li> -->
+
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=memo/revised_memo" class="nav-link nav-memo_revised_memo">
+                        <i class="nav-icon fas fa-envelope"></i>
+                        <p>
+                          Company Memo
+                        </p>
+                      </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=memo/previous_memo" class="nav-link nav-memo_previous_memo">
+                        <i class="nav-icon fa fa-folder-open"></i>
+                        <p>
+                          Previous Memo
+                        </p>
+                      </a>
                     </li>
 
                     <li class="nav-header">Manual</li>
@@ -265,6 +285,15 @@
                     </li>
                     
                     <?php endif; ?>
+
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=emp_manual/manual" class="nav-link nav-emp_manual_manual">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>
+                          Employee Manual
+                        </p>
+                      </a>
+                    </li>
                     
                   </ul>
                 </nav>
