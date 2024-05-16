@@ -86,7 +86,7 @@ $qry_years = $conn->query("SELECT DISTINCT YEAR(date_issuance) AS year FROM `upl
 <?php if($qry_years->num_rows > 0): ?>
     <?php while($year_row = $qry_years->fetch_assoc()): ?>
         <div class="card">
-			<!-- <div class="card-header" style="background-color: #0039a6; padding: 0.4rem 1rem">
+			<div class="card-header" style="background-color: #0039a6; padding: 0.4rem 1rem">
 				<div class="row">
 					<div class="col-auto">
 						<i class="fas fa-envelope" style="font-size: 1.2em; color: white; padding-top: 5px;"></i>
@@ -95,7 +95,7 @@ $qry_years = $conn->query("SELECT DISTINCT YEAR(date_issuance) AS year FROM `upl
 						<h3 class="card-title" style="padding-top: 5px; color:white;">Previous Memo</h3>
 					</div>
 				</div>
-			</div> -->
+			</div>
             <div class="card-body">
                 <div class="container-fluid">
                     <h2><?php echo $year_row['year']; ?></h2>

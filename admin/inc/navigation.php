@@ -228,7 +228,7 @@
                     <!-- only the employee can see this policies -->
                     <?php if($_settings->userdata('type') == 3): ?>
                     <li class="nav-item dropdown">
-                      <a href="<?php echo base_url ?>admin/?page=policies/policies" class="nav-link nav-policies_policies">
+                      <a href="<?php echo base_url ?>admin/?page=policies/e_policies" class="nav-link nav-policies_e_policies">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
                           Policies
@@ -249,7 +249,7 @@
                     <!-- POLICIES -->
 
                     <?php if($_settings->userdata('type') != 3): ?>
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                       <a href="#" class="nav-link nav-policies_policies nav-policies_list_policies">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
@@ -271,9 +271,18 @@
                           </a>
                         </li>
                       </ul>
-                    </li>
+                    </li> -->
 
                     <!-- TABLE OF OFFENSE ALL USER CAN VIEW THIS -->
+                    
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=policies/list_policies" class="nav-link nav-policies_list_policies">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                          Policies
+                        </p>
+                      </a>
+                    </li>
 
                     <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=offense/offense" class="nav-link nav-offense_offense nav-offense_list_offense">

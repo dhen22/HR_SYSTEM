@@ -20,10 +20,12 @@
             <table class="table table-striped table-hover">
                 <tbody>
                     <?php
+                    /* $qry = $conn->query("SELECT * FROM `policies_list` WHERE `status` = 1 ORDER BY id ASC"); */
                     $qry = $conn->query("SELECT * FROM `policies_list` WHERE `status` = 1 ORDER BY id ASC");
                     $counter = 1; 
                     while ($row = $qry->fetch_assoc()):
-                        $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
+                        /* $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description']))); */
+                        $row['refer'] = strip_tags(stripslashes(html_entity_decode($row['refer'])));
                     ?>
                         <tr>
                             <td>
@@ -32,9 +34,13 @@
                                         <h5 class="title" style="font-weight: bold; font-size: 20px; margin-bottom: 15px;">
                                             <?php echo $counter . '. ' . $row['title']; ?>
                                         </h5>
-                                        <p class="card-text" id="description_<?php echo $counter; ?>" style="font-size: 14px;">
+                                        <!-- <p class="card-text" id="description_<?php echo $counter; ?>" style="font-size: 14px;">
                                             <?php echo substr($row['description'], 0, 400); ?>...
                                             <span style="display:none;"><?php echo $row['description']; ?></span>
+                                        </p> -->
+                                        <p class="card-text" id="refer_<?php echo $counter; ?>" style="font-size: 14px;">
+                                            <p>For Detailed Policy, Refer to <a href="<?php echo base_url; ?><?php echo $row['avatar']; ?>" target="_blank"><?php echo $row['refer']; ?></a></p>
+                                            <span style="display:none;"><?php echo $row['refer']; ?></span>
                                         </p>
                                         <?php
                                         $counter++; 

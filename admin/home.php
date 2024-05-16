@@ -250,7 +250,7 @@
 </div> -->
 
 <div class="card">
-  <div class="card-header" style="background-color: #0039a6; padding: 0.5rem 1rem">
+  <div class="card-header" style="background-color: #0039a6; padding: 0.4rem 1rem">
     <div class="row">
       <div class="col-auto">
         <i class="fas fa-envelope" style="font-size: 1.2em; color: white; padding-top: 5px;"></i>
@@ -281,7 +281,7 @@
             $i = 1;
 
             $currentYear = date('Y');
-            $qry = $conn->query("SELECT * FROM `uploads` WHERE YEAR(date_issuance) = $currentYear ORDER BY date_issuance limit 5");            
+            $qry = $conn->query("SELECT * FROM `uploads` WHERE YEAR(date_issuance) = $currentYear ORDER BY date_issuance DESC limit 5");            
             while ($row = $qry->fetch_assoc()):
 
             ?>

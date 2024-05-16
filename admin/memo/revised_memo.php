@@ -81,9 +81,6 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 <div class="card">
   <div class="card-header" style="background-color: #0039a6; padding: 0.4rem 1rem">
     <div class="row">
-      <div class="col-auto">
-        <i class="fas fa-envelope-open" style="font-size: 1.2em; color: white; padding-top: 5px;"></i>
-      </div>
       <div class="col">
         <h3 class="card-title" style="padding-top: 5px; color:white;">Memo for this year</h3>
       </div>

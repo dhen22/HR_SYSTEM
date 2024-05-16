@@ -65,12 +65,14 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 				</div>
 			</div>
 
-			<div class="container">
+			<!-- alisin muna to for future daw sabi ng HR 2024-04-18 -denden -->
+
+			<!-- <div class="container">
 				<div class="form-group">
 					<label for="description" class="control-label">Description</label>
 					<textarea name="description" id="description" cols="30" rows="3" style="resize:none !important" class="form-control summernote_2" required><?php echo isset($description) ? $description : ''; ?></textarea>
 				</div>
-			</div>
+			</div> -->
 		</form>
 	</div>
 	<div class="card-footer">
